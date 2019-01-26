@@ -276,7 +276,6 @@ public client_putinserver(id)
 	get_user_name(id, Name, charsmax(Name))
 	AddUser(Name)
 	Load(id)
-	
 	set_task(300.0, "CrediteTask", id + TASKID2, _, _, "b")
 	set_task(62.0, "TransferTask", id + TASKID)
 	new ip[33]
