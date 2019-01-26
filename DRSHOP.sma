@@ -1479,7 +1479,6 @@ public TransferTask(taskid)
 	chat_color(id,"!y[!gCREDITS!y] !gAcum poti sa transfer!")
 }
 
-
 public StartCountDown()
 {
 	if(Countdown >= 1)
