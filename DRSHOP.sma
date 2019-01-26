@@ -26,11 +26,15 @@
 #define ACCES_FLAG  ADMIN_RESERVATION
 #define NRBW 	18
 #define NRSW	7
+#define NRMESAJE 4
 //#define UpdateInViitor
 //#define DEBUGSHOP "SHOP"
 //#define ST
 //#define TestBB
 //#define SBDEBUG
+
+// Mesaje
+new CurrentMSG = 0
 
 // SB
 new SBNR[33]
@@ -170,11 +174,8 @@ public plugin_init() {
 	}
 	format(LOADLOG,63,"addons/amxmodx/logs/SHOP/LOAD.log")
 	IVault = nvault_open("INVENTARYDB")
-	set_task(90.0,"MsgTransfer",0,_,_,"b")
 	set_task(180.0,"MsgInfoPlugin",0,_,_,"b")
-	set_task(75.0,"MsgSound",0,_,_,"b")
-	set_task(50.5,"MsgInventar",0,_,_,"b")
-	set_task(70.5,"MsgGlow",0,_,_,"b")
+	set_task(30.0,"MesajeID",0,_,_,"b")
 }
 public client_disconnect(id)
 {
@@ -1582,33 +1583,32 @@ public GiveItems(id)
 	}
 }
 
-public MsgTransfer()
+public MesajeID()
 {
-	chat_color(0,"!y[!gDR!y]!g Pentru a transfera credite scrie !team/transfer!g. !teamSintaxa!g:!team /transfer Jucator Credite!g!")
-}
-public MsgReducere(id)
-{
-	chat_color(id,"!y[!gDR!y]!gAvem o reducere de preturi pe server, aceseaza !team/shop !gpentru a vedea despre ce e vorba!")
-}
-public kmodmsg() { 
-	chat_color(0,"!y[!gDR!y]!g Type !team/knife !gto change your !teamknife !gskin")
-} 
-public MsgInfoPlugin()
-{
-	chat_color(0,"!y[!gSHOP!y]!g Pe acest server ruleaza !team'%s' !gVersiune !team'%s' !gCreata de !team'%s'!g!",PLUGIN,VERSION,AUTHOR)
-}
-public MsgSound()
-{
-	chat_color(0,"!y[!gBIG BOX!y]!g Pentru a !teamtesta !gsunetele pe care le poti castiga in !teamBIG BOX !gscrie !team/testsound")
-}
-public MsgInventar()
-{
-	chat_color(0,"!y[!gDR!y]!g Pentru a vedea inventarul cuiva, scrie !team/inventar NUME")
-}
-public MsgGlow()
-{
-	chat_color(0,"!y[!gDR!y]!g Pentru a stralucii scrie !team/glow. !gPentru o stralucire custom, scrie !team/cglow [0-255] [0-255] [0-255]")
-	chat_color(0,"!team[0-255] inseamna un numar de la 0 la 255")
+	if(CurrentMSG == 0)
+	{
+		chat_color(0,"!y[!gDR!y]!g Pentru a transfera credite scrie !team/transfer!g. !teamSintaxa!g:!team /transfer Jucator Credite!g!")
+	}
+	else if(CurrentMSG == 1)
+	{
+		chat_color(0,"!y[!gBIG BOX!y]!g Pentru a !teamtesta !gsunetele pe care le poti castiga in !teamBIG BOX !gscrie !team/testsound")
+	}
+	else if(CurrentMSG == 2)
+	{
+		chat_color(0,"!y[!gDR!y]!g Pentru a vedea inventarul cuiva, scrie !team/inventar NUME")
+	}
+	else if(CurrentMSG == 3)
+	{
+		chat_color(0,"!y[!gDR!y]!g Pentru a stralucii scrie !team/glow. !gPentru o stralucire custom, scrie !team/cglow [0-255] [0-255] [0-255], !team[0-255] inseamna un numar de la 0 la 255")
+	}
+	if(CurrentMSG == 3)
+	{
+		CurrentMSG = 0
+	}
+	else
+	{
+		CurrentMSG += 1
+	}
 }
 
 stock log_kill(killer, victim, weapon[],headshot) {
