@@ -174,6 +174,9 @@ public plugin_init() {
 	format(LOADLOG,63,"addons/amxmodx/logs/SHOP/LOAD.log")
 	IVault = nvault_open("INVENTARYDB")
 	set_task(30.0,"MesajeID",0,_,_,"b")
+	// INVENTAR
+	skinTrie = TrieCreate()
+	soundTrie = TrieCreate()
 }
 public client_disconnect(id)
 {
@@ -271,7 +274,7 @@ public client_putinserver(id)
 	get_user_ip(id,ip,32,1)
 	log_to_file("LogLoad.txt","Am incarcat %d credite pentru %s [%s]", Credite[id], Name, ip)
 	LoadInventar(id)
-
+	//ReadFileInventar(id)
 	for(new i = 0; i < 32; i++)
 	{
 		if(strcmp(ip,DisconnectIP[i]) == 0)

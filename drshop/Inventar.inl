@@ -6,6 +6,10 @@
 
 #define SkinNR 13
 #define SoundNR 17
+// SALVARE
+new Trie:skinTrie
+new Trie:soundTrie
+new InventarPath[32] = "addons/amxmodx/configs/inv/"
 // GLOBAL
 new SkinID[33][SkinNR]
 new SoundID[33][SoundNR]
@@ -200,7 +204,7 @@ public SoundMenu(id, Menu, item)
 	} 
 	new Name[33]
 	get_user_name(id,Name,charsmax(Name))
-	if(SoundID[id][item] == 1)
+	if(str_to_num(SoundID[id][item]) == 1)
 	{
 		chat_color(id,"!y[!gSOUNDS!y]!g Ai ales !team%s !gsunetul va fi aplicat!",SoundNames[item])
 		client_cmd( id, "spk ^"%s^"", SoundNamesID[item] );
@@ -219,7 +223,7 @@ public CmdTestSound(id)
 	new Menu = menu_create("LALEAGANE SOUND TESTER","SoundMenuTest")
 	for(new i = 0; i < SoundNR; i++)
 	{
-		if(SoundID[id][i] == 1)
+		if(str_to_num(SoundID[id][i]) == 1)
 		{
 			new txt[128]
 			format(txt,charsmax(txt),"%s - IN INVENTAR", SoundNames[i])
@@ -272,6 +276,44 @@ public CmdAInventar(id, level, cid)
 	return PLUGIN_CONTINUE
 }
 // SRV CMDS
+/*public ReadFileInventar(id)
+{
+	if(!dir_exists(InventarPath))
+	{
+		mkdir(InventarPath)
+	}
+	new Name[33]
+	get_user_name(id,Name,charsmax(Name))
+	new key[128]
+	format(key,127,"%s%s.skin.txt",InventarPath,Name)
+	if(!file_exists(key))
+	{
+		for(new i = 0; i < SkinNR; i++)
+		{
+			TrieSetString(skinTrie,SkinID[id][i],"0")
+		}
+	}
+	new f = fopen(key,"r")
+	new szLine[3]
+	new line = 0
+	while(!feof(f))
+	{
+		fgets(f,szLine,2)
+		remove_quotes(szLine)
+		TrieSetString(skinTrie,SkinID[id][line],szLine)
+		line += 1
+	}
+	format(key,127,"%s%s.sound.txt",InventarPath,Name)
+	f = fopen(key,"r")
+	line = 0
+	while(!feof(f))
+	{
+		fgets(f,szLine,2)
+		remove_quotes(szLine)
+		TrieSetString(soundTrie,SoundID[id][line],szLine)
+		line += 1
+	}
+}*/
 public LoadInventar(id)
 {
 	IVault = nvault_open("INVENTARYDB")
@@ -357,6 +399,3 @@ public SaveInventar(id)
 	format(vaultdata,127,"%s",HSoundID[id])
 	nvault_close(IVault)
 }
-/* AMXX-Studio Notes - DO NOT MODIFY BELOW HERE
-*{\\ rtf1\\ ansi\\ deff0{\\ fonttbl{\\ f0\\ fnil Tahoma;}}\n\\ viewkind4\\ uc1\\ pard\\ lang1033\\ f0\\ fs16 \n\\ par }
-*/
