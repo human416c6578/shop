@@ -39,7 +39,6 @@ new SBPlayed[33]
 new SBDisconnectIP[33][32]
 new SBDisconnectPlayed[33] = 0
 // IDK
-new g_Menu
 new GTotal = 0
 new AllowGamble = 1
 new GMin = 0
@@ -124,7 +123,6 @@ new Credite[33] = 0
 new Weapon[33] = 0
 new Survival[33] = 0
 new Invizibilitate[33] = 0
-new reducere
 new reducerex
 new MBPlayed[33] = 0
 new MBPlayedD[33] = 0
@@ -162,7 +160,6 @@ public plugin_init() {
 	register_forward( FM_CmdStart, "forward_cmdstart" );
 	register_forward(FM_ClientUserInfoChanged, "ClientUserInfoChanged") 
 	// CVARS
-	reducere = register_cvar("shop_reducere","0")
 	reducerex = register_cvar("shop_reducere_x", "1.0")
 	// OTHER
 	format(SVFile,63,"Credite.txt")
