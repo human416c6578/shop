@@ -1525,6 +1525,7 @@ public StartCountDown()
 public CrediteTask(taskid)
 {
 	new id = taskid - TASKID2
+	
 	chat_color(id,"!y[!gDR!y]!g Ai primit !team100 credite !gpentru activitatea pe server!")
 	Credite[id] += 100
 }
