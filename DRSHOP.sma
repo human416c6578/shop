@@ -178,12 +178,6 @@ public plugin_init() {
 	set_task(75.0,"MsgSound",0,_,_,"b")
 	set_task(50.5,"MsgInventar",0,_,_,"b")
 	set_task(70.5,"MsgGlow",0,_,_,"b")
-	//register_forward(FM_PlayerPreThink, "PreThink", 1)
-	
-	//register_clcmd("say /test","CmdTest")
-	
-	// SKINS
-	//register_forward(FM_SetClientKeyValue, "fw_SetClientKeyValue")
 }
 public client_disconnect(id)
 {
