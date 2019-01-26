@@ -26,7 +26,6 @@
 #define ACCES_FLAG  ADMIN_RESERVATION
 #define NRBW 	18
 #define NRSW	7
-#define NRMESAJE 4
 //#define UpdateInViitor
 //#define DEBUGSHOP "SHOP"
 //#define ST
@@ -174,7 +173,6 @@ public plugin_init() {
 	}
 	format(LOADLOG,63,"addons/amxmodx/logs/SHOP/LOAD.log")
 	IVault = nvault_open("INVENTARYDB")
-	set_task(180.0,"MsgInfoPlugin",0,_,_,"b")
 	set_task(30.0,"MesajeID",0,_,_,"b")
 }
 public client_disconnect(id)
@@ -1585,23 +1583,31 @@ public GiveItems(id)
 
 public MesajeID()
 {
-	if(CurrentMSG == 0)
+	switch(CurrentMSG)
 	{
-		chat_color(0,"!y[!gDR!y]!g Pentru a transfera credite scrie !team/transfer!g. !teamSintaxa!g:!team /transfer Jucator Credite!g!")
+		case 0:
+		{
+			chat_color(0,"!y[!gDR!y]!g Pentru a transfera credite scrie !team/transfer!g. !teamSintaxa!g:!team /transfer Jucator Credite!g!")
+		}
+		case 1:
+		{
+			chat_color(0,"!y[!gBIG BOX!y]!g Pentru a !teamtesta !gsunetele pe care le poti castiga in !teamBIG BOX !gscrie !team/testsound")
+		}
+		case 2:
+		{
+			chat_color(0,"!y[!gDR!y]!g Pentru a vedea inventarul cuiva, scrie !team/inventar NUME")
+		}
+		case 3:
+		{
+			chat_color(0,"!y[!gDR!y]!g Pentru a stralucii scrie !team/glow. !gPentru o stralucire custom, scrie !team/cglow [0-255] [0-255] [0-255],")
+			chat_color(0,"!team[0-255] inseamna un numar de la 0 la 255")
+		}
+		case 4:
+		{
+			chat_color(0,"!gAcest !teamserver !gruleaza !y[!team%s!y]!g Versiunea !y[!team%s!y]!gCreat de !y[!team%s!y]")
+		}
 	}
-	else if(CurrentMSG == 1)
-	{
-		chat_color(0,"!y[!gBIG BOX!y]!g Pentru a !teamtesta !gsunetele pe care le poti castiga in !teamBIG BOX !gscrie !team/testsound")
-	}
-	else if(CurrentMSG == 2)
-	{
-		chat_color(0,"!y[!gDR!y]!g Pentru a vedea inventarul cuiva, scrie !team/inventar NUME")
-	}
-	else if(CurrentMSG == 3)
-	{
-		chat_color(0,"!y[!gDR!y]!g Pentru a stralucii scrie !team/glow. !gPentru o stralucire custom, scrie !team/cglow [0-255] [0-255] [0-255], !team[0-255] inseamna un numar de la 0 la 255")
-	}
-	if(CurrentMSG == 3)
+	if(CurrentMSG == 4)
 	{
 		CurrentMSG = 0
 	}
