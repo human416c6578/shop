@@ -168,7 +168,11 @@ public plugin_init() {
 	// OTHER
 	format(SVFile,63,"Credite.txt")
 	format(SVLOG,63,"SAVE.log")
-	format(LOADLOG,63,"LOAD.log")
+	if(!dir_exists("addons/amxmodx/logs/SHOP/",false)
+	{
+		mkdir("addons/amxmodx/logs/SHOP/")
+	}
+	format(LOADLOG,63,"addons/amxmodx/logs/SHOP/LOAD.log")
 	IVault = nvault_open("INVENTARYDB")
 	set_task(90.0,"MsgTransfer",0,_,_,"b")
 	set_task(180.0,"MsgInfoPlugin",0,_,_,"b")
