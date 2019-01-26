@@ -462,7 +462,7 @@ public KillEvent()
 		}
 }
 public ClientUserInfoChanged(id) 
-{ 
+{
 	new newname[64],oldname[64]
 	get_user_info(id, "name", newname,63)
 	get_user_name(id,oldname,63)
@@ -1525,7 +1525,6 @@ public StartCountDown()
 public CrediteTask(taskid)
 {
 	new id = taskid - TASKID2
-	
 	chat_color(id,"!y[!gDR!y]!g Ai primit !team100 credite !gpentru activitatea pe server!")
 	Credite[id] += 100
 }
