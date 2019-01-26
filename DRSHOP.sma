@@ -167,11 +167,7 @@ public plugin_init() {
 	// OTHER
 	format(SVFile,63,"Credite.txt")
 	format(SVLOG,63,"SAVE.log")
-<<<<<<< HEAD
 	if(!dir_exists("addons/amxmodx/logs/SHOP/"))
-=======
-	if(!dir_exists("addons/amxmodx/logs/SHOP/",true)
->>>>>>> 47462a31f286cc0e774b1e8e72887df8e874576c
 	{
 		mkdir("addons/amxmodx/logs/SHOP/")
 	}
