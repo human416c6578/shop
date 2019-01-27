@@ -930,6 +930,9 @@ public SMenu(id, Menu, item)
 				chat_color(0,"!y[!gDR!y]!g Jucatorul !team%s !gsi-a cumparat !teamKnife Special!", Name)
 				SetKnife(id,4)
 				allowKnife[id] = 1
+				new path[128]
+				format(path,127,"addons/amxmodx/DRSHOP/%s.txt",Name)
+				write_file(path,"CUMPARATKNIFE:1",2)
 				log_to_file(SVFile,"%s si-a cumparat KNIFE Special", Name)
 			}
 			else

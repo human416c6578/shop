@@ -47,6 +47,7 @@ public LoadData(id){
       write_file(path,"CREDITE:500000",0)
       write_file(path,"KNIFECURENT:0",1)
       write_file(path,"CUMPARATKNIFE:0",2)
+      write_file(path,"TRAIL:0",3)
       SetKnife(id,3)
     }
     new f = fopen(path,"r")
