@@ -15,15 +15,38 @@ public CheckFiles()
 }
 // Save credite / Load credite
 public SaveCredite(id){
-	
+	new Name[33]
+    get_user_name(id,Name,charsmax(Name))
+    new path[128]
+    format(path,127,"%s%s.txt",gPathMaster,Name)
+    new sData[128]
+    format(sData,127,"CREDITE:%d",Credite[id])
+    write_file(path,sData,1)
 }
 
 public LoadCredite(id){
 	new Name[33]
-	get_user_name(id,Name,charsmax(Name))
-	new vaultkey[64], vaultdata[64]
-	format(vaultkey, 63, "%s", Name)
-	format(vaultdata,63, "%s", GetCredits(vaultkey))
-	Credite[id] = str_to_num(vaultdata)
-	log_to_file(LOADLOG,"DATE : %d Am incarcat %s credite pentru %s", get_systime(0), vaultdata, vaultkey );
+    get_user_name(id,Name,charsmax(Name))
+    new path[128]
+    format(path,127,"%s%s.txt",gPathMaster,Name)
+    if(!file_exists(path))
+    {
+      Credite[id] = 500000
+      write_file(path,Name,2)
+      write_file(path,"CREDITE:500000",1)
+      return PLUGIN_HANDLED
+    }
+    new f = fopen(path,"r")
+    new szLine[128]
+    while(!feof(f))
+    {
+        fgets(f,szLine,charsmax(szLine))
+        if(contain(szLine,"CREDITE:") >-1)
+        {
+            replace_all(szLine,127,"CREDITE:","")
+            Credite[id] = str_to_num(szLine)
+            break;
+        }
+    }
+    return PLUGIN_HANDLED
 }

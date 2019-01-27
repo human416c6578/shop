@@ -8,8 +8,7 @@
 #include <engine>
 #include <dhudmessage>
 
-//#include "drshop/db.inl"
-#include "drshop/filesistem.inl"
+#include "drshop/db.inl"
 
 #pragma tabsize 0
 
@@ -136,8 +135,9 @@ new TransferAllow[33] = 0
 new TransferCool[33] = 0
 new DisconnectIP[33][32]
 new DisconnectCool[33] = 0
-// INVENTORY
+// Custom Include
 #include "drshop/inventar.inl"
+#include "drshop/filesistem.inl"
 public plugin_init() {
 	register_plugin(PLUGIN, VERSION, AUTHOR)
 	// DB
@@ -175,9 +175,6 @@ public plugin_init() {
 	format(LOADLOG,63,"addons/amxmodx/logs/SHOP/LOAD.log")
 	IVault = nvault_open("INVENTARYDB")
 	set_task(30.0,"MesajeID",0,_,_,"b")
-	// INVENTAR
-	skinTrie = TrieCreate()
-	soundTrie = TrieCreate()
 }
 public client_disconnect(id)
 {
@@ -193,7 +190,7 @@ public client_disconnect(id)
 	get_user_ip(id,ip,32,1)
 	new Name[33]
 	get_user_name(id, Name, 32)
-	Save(id)
+	SaveCredite(id)
 	SaveInventar(id)
 	log_to_file("LogSave.txt","Am salvat %d credite pentru %s [%s]", Credite[id], Name, ip)
 	removetasks(id)
@@ -251,7 +248,7 @@ public plugin_end()
 		if(!is_user_bot(players[i]))
 		{
 			get_user_name(players[i],Name,32)
-			Save(players[i])
+			SaveCredite(players[i])
 			SaveInventar(players[i])
 			removetasks(players[i])
 		}
@@ -268,7 +265,7 @@ public client_putinserver(id)
 	new Name[64]
 	get_user_name(id, Name, charsmax(Name))
 	AddUser(Name)
-	Load(id)
+	LoadCredite(id)
 	set_task(300.0, "CrediteTask", id + TASKID2, _, _, "b")
 	set_task(62.0, "TransferTask", id + TASKID)
 	new ip[33]
