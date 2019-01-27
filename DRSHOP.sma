@@ -8,13 +8,13 @@
 #include <engine>
 #include <dhudmessage>
 
-#include "drshop/db.inl"
+//#include "drshop/db.inl"
 
 #pragma tabsize 0
 
 #define PLUGIN "LLG SHOP SYSTEM"
-#define VERSION "3.9.Stable"
-#define AUTHOR "ATudor"
+#define VERSION "Final 1.0"
+#define AUTHOR "ATudor | MrShark45"
 #define TASKID        	1000
 #define TASKID2		2000
 #define TASKID3		3000
@@ -135,9 +135,12 @@ new TransferAllow[33] = 0
 new TransferCool[33] = 0
 new DisconnectIP[33][32]
 new DisconnectCool[33] = 0
+// Knife
+new knife_model[33]
 // Custom Include
 #include "drshop/inventar.inl"
 #include "drshop/filesistem.inl"
+#include "drshop/knife.inl"
 public plugin_init() {
 	register_plugin(PLUGIN, VERSION, AUTHOR)
 	// DB
@@ -264,7 +267,6 @@ public client_putinserver(id)
 	}
 	new Name[64]
 	get_user_name(id, Name, charsmax(Name))
-	AddUser(Name)
 	LoadCredite(id)
 	set_task(300.0, "CrediteTask", id + TASKID2, _, _, "b")
 	set_task(62.0, "TransferTask", id + TASKID)
@@ -897,7 +899,6 @@ public SMenu(id, Menu, item)
 				chat_color(0,"!y[!gDR!y]!g Jucatorul !team%s !gsi-a cumparat !teamKnife Special!", Name)
 				
 				format(vaultKey, 63, "%s", Name)
-				SaveKnife(vaultKey);
 				log_to_file(SVFile,"%s si-a cumparat KNIFE Special", Name)
 			}
 			else
@@ -915,7 +916,6 @@ public SMenu(id, Menu, item)
 				
 				
 				format(vaultKey, 63, "%s", Name)
-				SaveTrail(vaultKey);
 				chat_color(0,"!y[!gDR!y]!g Jucatorul !team%s !gsi-a cumparat !teamTrail Permanent!", Name)
 				chat_color(id,"!y[!gSHOP!y]!g Reintra pe server pentru a-ti putea activa trail-ul!")
 			}

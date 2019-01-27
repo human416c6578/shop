@@ -23,7 +23,6 @@ public SaveCredite(id){
     format(sData,127,"CREDITE:%d",Credite[id])
     write_file(path,sData,1)
 }
-
 public LoadCredite(id){
 	new Name[33]
     get_user_name(id,Name,charsmax(Name))
@@ -49,4 +48,15 @@ public LoadCredite(id){
         }
     }
     return PLUGIN_HANDLED
+}
+// Save Knife // Load Knife
+Public SaveKnife(id)
+{
+    new Name[33]
+    get_user_name(id,Name,charsmax(Name))
+    new path[128]
+    format(path,127,"%s%s.txt",gPathMaster,Name)
+    new sData[128]
+    format(sData,127,"KNIFECURENT:%d",knife_model[id])
+    write_file(path,)
 }
