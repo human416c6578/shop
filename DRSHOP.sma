@@ -141,16 +141,14 @@ new TransferCool[33] = 0
 new DisconnectIP[33][32]
 new DisconnectCool[33] = 0
 // Knife
-new knife_model[33]
-new allowKnife[33]
 new g_Menu
 new CVAR_HEALTH_ADD
 new CVAR_HEALTH_MAX
 new CVAR_DAMAGE 
 // Custom Include
 #include "drshop/inventar.inl"
-#include "drshop/filesistem.inl"
 #include "drshop/knife.inl"
+#include "drshop/filesistem.inl"
 public plugin_init() {
 	register_plugin(PLUGIN, VERSION, AUTHOR)
 	// DB
@@ -176,6 +174,8 @@ public plugin_init() {
 	RegisterHam(Ham_Spawn, "player", "SpawnEvent", 1)  
 	register_forward( FM_CmdStart, "forward_cmdstart" );
 	register_forward(FM_ClientUserInfoChanged, "ClientUserInfoChanged") 
+	register_event("CurWeapon","EventCurWeapon","be","1=1") 
+	register_event( "Damage", "event_damage", "be" )
 	// CVARS
 	reducerex = register_cvar("shop_reducere_x", "1.0")
 	// OTHER

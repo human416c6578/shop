@@ -15,6 +15,10 @@ public CheckFiles()
 }
 // Save credite / Load credite
 public SaveData(id){
+    if(is_user_bot(id))
+    {
+        return PLUGIN_HANDLED
+    }
 	new Name[33]
     get_user_name(id,Name,charsmax(Name))
     new path[128]
@@ -26,8 +30,13 @@ public SaveData(id){
     write_file(path,sData,2)
     format(sData,127,"CUMPARATKNIFE:%d",allowKnife[id])
     write_file(path,sData,3)
+    return PLUGIN_HANDLED
 }
 public LoadData(id){
+    if(is_user_bot(id))
+    {
+        return PLUGIN_HANDLED
+    }
 	new Name[33]
     get_user_name(id,Name,charsmax(Name))
     new path[128]

@@ -4,6 +4,8 @@
 #include <nvault>
 #include <fun>
 #include <fakemeta>
+new knife_model[33]
+new allowKnife[33]
 
 public display_knife(id) {
 	if (is_user_alive(id) == 0){
@@ -180,7 +182,7 @@ public EventCurWeapon(id)
 	new Weapon = read_data(2)
 	if(Weapon == CSW_KNIFE)
 	{
-		SetKnife(id, knife_model[id]) 
+		SetKnife(id,knife_model[id])
 		if(knife_model[id] == 0)
 		{
 			set_user_gravity(id , 1.0)
