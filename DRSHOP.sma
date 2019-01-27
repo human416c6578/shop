@@ -1607,7 +1607,7 @@ public MesajeID()
 		}
 		case 4:
 		{
-			chat_color(0,"!gAcest !teamserver !gruleaza !y[!team%s!y]!g Versiunea !y[!team%s!y]!gCreat de !y[!team%s!y]")
+			chat_color(0,"!gAcest !teamserver !gruleaza !y[!team%s!y]!g Versiunea !y[!team%s!y]!gCreat de !y[!team%s!y]", PLUGIN, VERSION, AUTHOR)
 		}
 	}
 	if(CurrentMSG == 4)
