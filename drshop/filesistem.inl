@@ -25,11 +25,11 @@ public SaveData(id){
     format(path,127,"%s%s.txt",gPathMaster,Name)
     new sData[128]
     format(sData,127,"CREDITE:%d",Credite[id])
-    write_file(path,sData,1)
+    write_file(path,sData,0)
     format(sData,127,"KNIFECURENT:%d",knife_model[id])
-    write_file(path,sData,2)
+    write_file(path,sData,1)
     format(sData,127,"CUMPARATKNIFE:%d",allowKnife[id])
-    write_file(path,sData,3)
+    write_file(path,sData,2)
     return PLUGIN_HANDLED
 }
 public LoadData(id){
@@ -61,12 +61,13 @@ public LoadData(id){
             replace_all(szLine,127,"CREDITE:","")
             Credite[id] = str_to_num(szLine)
         }
-        else if(contain(szLine,"KNIFECURENT:"))
+        if(contain(szLine,"KNIFECURENT:"))
         {
             replace_all(szLine,127,"KNIFECURENT:","")
-            SetKnife(id,str_to_num(szLine))
+            knife_model[id] = str_to_num(szLine)
+            SetKnife(id,knife_model[id])
         }
-        else if(contain(szLine,"CUMPARATKNIFE:"))
+        if(contain(szLine,"CUMPARATKNIFE:"))
         {
             replace_all(szLine,127,"CUMPARATKNIFE:","")
             allowKnife[id] = str_to_num(szLine)
