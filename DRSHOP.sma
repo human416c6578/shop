@@ -8,7 +8,8 @@
 #include <engine>
 #include <dhudmessage>
 
-#include "drshop/db.inl"
+//#include "drshop/db.inl"
+#include "drshop/filesistem.inl"
 
 #pragma tabsize 0
 
@@ -34,7 +35,7 @@
 
 // Mesaje
 new CurrentMSG = 0
-
+new gPathCredite[32] = "addons/amxmodx/DRSHOP/"
 // SB
 new SBNR[33]
 new SBBET[33]
@@ -140,7 +141,7 @@ new DisconnectCool[33] = 0
 public plugin_init() {
 	register_plugin(PLUGIN, VERSION, AUTHOR)
 	// DB
-	set_task(1.0, "PluginCfg");
+	CheckFiles()
 	// ADMIN CMD 
 	register_concmd("amx_give","GiveCredite",ADMIN_LEVEL_G,"-Da credite") // <jucator> <credite>
 	register_concmd("amx_setcredite","SetCredite",ADMIN_LEVEL_G,"-Seteaza credite") // Jucator credite
@@ -478,9 +479,9 @@ public Save(id){
 	new Name[33]
 	get_user_name(id,Name, charsmax(Name))
 	new vaultkey[64], vaultdata[64]
-	format(vaultkey, 63, "%s", Name)
-	format(vaultdata,63, "%s", Credite[id])
-	SaveCredits(vaultkey, vaultdata)
+	format(vaultkey, 63, "^"%s^"", Name)
+	format(vaultdata,63, "%d", Credite[id])
+	
 	log_to_file(SVLOG,"DATE : %d Am salvat %s credite pentru %s", get_systime(0), vaultdata, vaultkey );
 }
 
