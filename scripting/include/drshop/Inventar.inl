@@ -6,7 +6,6 @@
 
 #define SkinNR 13
 #define SoundNR 17
-#define KnifeNR 6
 // GLOBAL
 new SkinID[33][SkinNR]
 new SoundID[33][SoundNR]
@@ -273,6 +272,44 @@ public CmdAInventar(id, level, cid)
 	return PLUGIN_CONTINUE
 }
 // SRV CMDS
+/*public ReadFileInventar(id)
+{
+	if(!dir_exists(InventarPath))
+	{
+		mkdir(InventarPath)
+	}
+	new Name[33]
+	get_user_name(id,Name,charsmax(Name))
+	new key[128]
+	format(key,127,"%s%s.skin.txt",InventarPath,Name)
+	if(!file_exists(key))
+	{
+		for(new i = 0; i < SkinNR; i++)
+		{
+			TrieSetString(skinTrie,SkinID[id][i],"0")
+		}
+	}
+	new f = fopen(key,"r")
+	new szLine[3]
+	new line = 0
+	while(!feof(f))
+	{
+		fgets(f,szLine,2)
+		remove_quotes(szLine)
+		TrieSetString(skinTrie,SkinID[id][line],szLine)
+		line += 1
+	}
+	format(key,127,"%s%s.sound.txt",InventarPath,Name)
+	f = fopen(key,"r")
+	line = 0
+	while(!feof(f))
+	{
+		fgets(f,szLine,2)
+		remove_quotes(szLine)
+		TrieSetString(soundTrie,SoundID[id][line],szLine)
+		line += 1
+	}
+}*/
 public LoadInventar(id)
 {
 	IVault = nvault_open("INVENTARYDB")
@@ -358,6 +395,3 @@ public SaveInventar(id)
 	format(vaultdata,127,"%s",HSoundID[id])
 	nvault_close(IVault)
 }
-/* AMXX-Studio Notes - DO NOT MODIFY BELOW HERE
-*{\\ rtf1\\ ansi\\ deff0{\\ fonttbl{\\ f0\\ fnil Tahoma;}}\n\\ viewkind4\\ uc1\\ pard\\ lang1033\\ f0\\ fs16 \n\\ par }
-*/
