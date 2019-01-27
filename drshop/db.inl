@@ -12,10 +12,10 @@ public PluginCfg()
 
 	SQL_SetAffinity("sqlite");
 
-	get_cvar_string("amx_drstats_host", szHost, 31);
-	get_cvar_string("amx_drstats_user", szUser, 31);
-	get_cvar_string("amx_drstats_pass", szPass, 31);
-	get_cvar_string("amx_drstats_db", szDB, 31);
+	get_cvar_string("amx_timer_host", szHost, 31);
+	get_cvar_string("amx_timer_user", szUser, 31);
+	get_cvar_string("amx_timer_pass", szPass, 31);
+	get_cvar_string("amx_timer_db", szDB, 31);
 
 	g_SqlTuple = SQL_MakeDbTuple(szHost,szUser,szPass,szDB);
 

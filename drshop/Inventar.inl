@@ -204,7 +204,7 @@ public SoundMenu(id, Menu, item)
 	} 
 	new Name[33]
 	get_user_name(id,Name,charsmax(Name))
-	if(str_to_num(SoundID[id][item]) == 1)
+	if(SoundID[id][item] == 1)
 	{
 		chat_color(id,"!y[!gSOUNDS!y]!g Ai ales !team%s !gsunetul va fi aplicat!",SoundNames[item])
 		client_cmd( id, "spk ^"%s^"", SoundNamesID[item] );
@@ -223,7 +223,7 @@ public CmdTestSound(id)
 	new Menu = menu_create("LALEAGANE SOUND TESTER","SoundMenuTest")
 	for(new i = 0; i < SoundNR; i++)
 	{
-		if(str_to_num(SoundID[id][i]) == 1)
+		if(SoundID[id][i] == 1)
 		{
 			new txt[128]
 			format(txt,charsmax(txt),"%s - IN INVENTAR", SoundNames[i])
