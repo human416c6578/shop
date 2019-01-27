@@ -59,12 +59,10 @@ public LoadData(id){
         {
             replace_all(szLine,127,"CREDITE:","")
             Credite[id] = str_to_num(szLine)
-            log_amx("DEBUG CREDITE: %s string || %d int",szLine,Credite[id])
         }
         if(contain(szLine,"KNIFECURENT:") >-1 )
         {
             replace_all(szLine,127,"KNIFECURENT:","")
-            log_amx("DEBUG KNIFE: %d int || %s string",knife_model[id],szLine)
             knife_model[id] = str_to_num(szLine)
             SetKnife(id,knife_model[id])
         }
