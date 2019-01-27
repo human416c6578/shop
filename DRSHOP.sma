@@ -949,6 +949,9 @@ public SMenu(id, Menu, item)
 				format(vaultKey, 63, "%s", Name)
 				chat_color(0,"!y[!gDR!y]!g Jucatorul !team%s !gsi-a cumparat !teamTrail Permanent!", Name)
 				chat_color(id,"!y[!gSHOP!y]!g Reintra pe server pentru a-ti putea activa trail-ul!")
+				new path[128]
+				format(path,127,"addons/amxmodx/DRSHOP/%s.txt",Name)
+				write_file(path,"TRAIL:1",4)
 			}
 			else
 			{

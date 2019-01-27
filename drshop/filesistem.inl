@@ -28,8 +28,6 @@ public SaveData(id){
     write_file(path,sData,0)
     format(sData,127,"KNIFECURENT:%d",knife_model[id])
     write_file(path,sData,1)
-    format(sData,127,"CUMPARATKNIFE:%d",allowKnife[id])
-    write_file(path,sData,2)
     return PLUGIN_HANDLED
 }
 public LoadData(id){
@@ -45,7 +43,7 @@ public LoadData(id){
     {
       Credite[id] = 500000
       knife_model[id] = 3
-      allowKnife[id] = 3
+      allowKnife[id] = 0
       write_file(path,"CREDITE:500000",0)
       write_file(path,"KNIFECURENT:0",1)
       write_file(path,"CUMPARATKNIFE:0",2)
@@ -60,14 +58,16 @@ public LoadData(id){
         {
             replace_all(szLine,127,"CREDITE:","")
             Credite[id] = str_to_num(szLine)
+            log_amx("DEBUG CREDITE: %s string || %d int",szLine,Credite[id])
         }
-        if(contain(szLine,"KNIFECURENT:"))
+        if(contain(szLine,"KNIFECURENT:") >-1 )
         {
             replace_all(szLine,127,"KNIFECURENT:","")
+            log_amx("DEBUG KNIFE: %d int || %s string",knife_model[id],szLine)
             knife_model[id] = str_to_num(szLine)
             SetKnife(id,knife_model[id])
         }
-        if(contain(szLine,"CUMPARATKNIFE:"))
+        if(contain(szLine,"CUMPARATKNIFE:") >-1 )
         {
             replace_all(szLine,127,"CUMPARATKNIFE:","")
             allowKnife[id] = str_to_num(szLine)
