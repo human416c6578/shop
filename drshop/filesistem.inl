@@ -48,6 +48,7 @@ public LoadData(id){
       write_file(path,"KNIFECURENT:0",1)
       write_file(path,"CUMPARATKNIFE:0",2)
       write_file(path,"TRAIL:0",3)
+      write_file(path,"PAROLA:",4)
       SetKnife(id,3)
     }
     new f = fopen(path,"r")
@@ -60,16 +61,21 @@ public LoadData(id){
             replace_all(szLine,127,"CREDITE:","")
             Credite[id] = str_to_num(szLine)
         }
-        if(contain(szLine,"KNIFECURENT:") >-1 )
+        else if(contain(szLine,"KNIFECURENT:") >-1 )
         {
             replace_all(szLine,127,"KNIFECURENT:","")
             knife_model[id] = str_to_num(szLine)
             SetKnife(id,knife_model[id])
         }
-        if(contain(szLine,"CUMPARATKNIFE:") >-1 )
+        else if(contain(szLine,"CUMPARATKNIFE:") >-1 )
         {
             replace_all(szLine,127,"CUMPARATKNIFE:","")
             allowKnife[id] = str_to_num(szLine)
+        }
+        else if(contain(szLine,"PAROLA:") >-1 )
+        {
+            replace_all(szLine,127,"PAROLA:","")
+            
         }
     }
     if(Credite[id] == 0)

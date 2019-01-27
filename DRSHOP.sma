@@ -148,6 +148,7 @@ new CVAR_DAMAGE
 // Custom Include
 #include "drshop/inventar.inl"
 #include "drshop/knife.inl"
+#include "drshop/autentificare.inl"
 #include "drshop/filesistem.inl"
 public plugin_init() {
 	register_plugin(PLUGIN, VERSION, AUTHOR)
