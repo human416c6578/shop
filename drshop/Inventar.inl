@@ -6,10 +6,6 @@
 
 #define SkinNR 13
 #define SoundNR 17
-// SALVARE
-new Trie:skinTrie
-new Trie:soundTrie
-new InventarPath[32] = "addons/amxmodx/configs/inv/"
 // GLOBAL
 new SkinID[33][SkinNR]
 new SoundID[33][SoundNR]
