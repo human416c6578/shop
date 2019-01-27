@@ -34,7 +34,7 @@ stock LogInUser(id,givenpass[65])
 {
     if(gLoggedin[id] == 0){
         new userid = get_user_userid(id)  
-        if(equali(gPassword[id], givenpass, strlen(gPassword[id])))
+        if(equali(gPassword[id], givenpass, strlen(givenpass)))
         {
             chat_color(id,"!y[!gDR!y]!g Te-ai logat cu succes!")
             gLoggedin[id] = 1
