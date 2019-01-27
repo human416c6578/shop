@@ -137,6 +137,11 @@ new DisconnectIP[33][32]
 new DisconnectCool[33] = 0
 // Knife
 new knife_model[33]
+new allowKnife[33]
+new g_Menu
+new CVAR_HEALTH_ADD
+new CVAR_HEALTH_MAX
+new CVAR_DAMAGE 
 // Custom Include
 #include "drshop/inventar.inl"
 #include "drshop/filesistem.inl"
@@ -178,6 +183,14 @@ public plugin_init() {
 	format(LOADLOG,63,"addons/amxmodx/logs/SHOP/LOAD.log")
 	IVault = nvault_open("INVENTARYDB")
 	set_task(30.0,"MesajeID",0,_,_,"b")
+	// KNIFE
+	g_Menu = register_menuid("Knife Mod")
+	register_menucmd(g_Menu, 1023, "knifemenu")
+	register_clcmd("say /knife", "display_knife")
+	CVAR_HEALTH_ADD = register_cvar("km_addhealth", "3")
+	CVAR_HEALTH_MAX = register_cvar("km_maxhealth", "75")
+	CVAR_DAMAGE = register_cvar("km_damage", "2")
+	set_task(480.0, "kmodmsg", 0, _, _, "b")
 }
 public client_disconnect(id)
 {
@@ -268,13 +281,13 @@ public client_putinserver(id)
 	new Name[64]
 	get_user_name(id, Name, charsmax(Name))
 	LoadCredite(id)
+	LoadKnife(id)
 	set_task(300.0, "CrediteTask", id + TASKID2, _, _, "b")
 	set_task(62.0, "TransferTask", id + TASKID)
 	new ip[33]
 	get_user_ip(id,ip,32,1)
 	log_to_file("LogLoad.txt","Am incarcat %d credite pentru %s [%s]", Credite[id], Name, ip)
 	LoadInventar(id)
-	//ReadFileInventar(id)
 	for(new i = 0; i < 32; i++)
 	{
 		if(strcmp(ip,DisconnectIP[i]) == 0)
@@ -298,6 +311,20 @@ public client_putinserver(id)
 	return PLUGIN_CONTINUE
 }
 public plugin_precache() { 
+	// KNIFE
+	precache_model("models/knife-mod/v_butcher.mdl") 
+	precache_model("models/knife-mod/p_butcher.mdl") 
+	precache_model("models/knife-mod/v_machete.mdl")
+	precache_model("models/knife-mod/p_machete.mdl")
+	precache_model("models/knife-mod/v_bak.mdl")
+	precache_model("models/knife-mod/p_bak.mdl")
+	precache_model("models/knife-mod/v_pocket.mdl")
+	precache_model("models/knife-mod/p_pocket.mdl")
+	precache_model("models/v_knife.mdl") 
+	precache_model("models/p_knife.mdl")
+	precache_model("models/knife-mod/v_knifeadminV2.mdl")
+	precache_model("models/knife-mod/v_super.mdl")
+	precache_model("models/knife-mod/p_super.mdl")
 	// Inventar
 	precache_model("models/player/buzzlightyear/buzzlightyear.mdl")
 	precache_model("models/player/Jill/Jill.mdl")
