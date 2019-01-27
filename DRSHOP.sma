@@ -218,6 +218,7 @@ public client_disconnect(id)
 	SaveInventar(id)
 	log_to_file("LogSave.txt","Am salvat %d credite pentru %s [%s]", Credite[id], Name, ip)
 	removetasks(id)
+	remove_task(id)
 	if(TransferCool[id] > 0)
 	{
 		for(new i = 1; i <= 32; i++)
