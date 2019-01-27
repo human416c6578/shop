@@ -32,14 +32,20 @@ public CheckPassword(id)
 }
 stock LogInUser(id,givenpass[65])
 {
-    new userid = get_user_userid(id)  
-    if(equali(gPassword[id], givenpass, strlen(givenpass)))
-    {
-        chat_color(id,"!y[!gDR!y]!g Te-ai logat cu succes!")
-        gLoggedin[id] = 1
+    if(gLoggedin[id] == 0){
+        new userid = get_user_userid(id)  
+        if(equali(gPassword[id], givenpass, strlen(givenpass)))
+        {
+            chat_color(id,"!y[!gDR!y]!g Te-ai logat cu succes!")
+            gLoggedin[id] = 1
+        }
+        else{
+            server_cmd("kick #%d parola incorecta!",userid)
+        }
     }
     else{
-        server_cmd("kick #%d parola incorecta!",userid)
+        chat_color(id,"!y[!gDR!y]!g Esti deja logat!")
+        return PLUGIN_CONTINUE
     }
 }
 
