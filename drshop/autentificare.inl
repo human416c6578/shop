@@ -7,28 +7,39 @@ new gLoggedin[33]
 
 public CheckPassword(id)
 {
+    new data[65]
+    if(strcmp(gPassword[id],"") == 0)
+        gHasUserPass[id] = 0
+    else
+        gHasUserPass[id] = 1
     if(gHasUserPass[id] == 0)
     {
-        set_task(10.0,"MSGREGISTER",id)
+        if(!is_user_admin(id))
+            set_task(10.0,"MSGREGISTER",id)
     }
     else
     {
-        new lPassword[65]
-	    get_user_info(id,"DEATHRUNPASS",lPassword,64)
-        LogInUser(id, lPassword)
+        get_user_info(id, "_dr", data, 64)
+        log_amx("setinfo _dr = %s", data)
+
+        if (!data[0]){
+            set_task(3.0,"MSGLOGIN",id)
+            set_task(15.0,"kick",id)
+        }
+        else
+            LogInUser(id, data)
     }
 }
 stock LogInUser(id,givenpass[65])
 {
     new userid = get_user_userid(id)  
-    if(strcmp(gPassword[id],givenpass) == 0)
+    if(equali(gPassword[id], givenpass, strlen(givenpass)))
     {
         chat_color(id,"!y[!gDR!y]!g Te-ai logat cu succes!")
         gLoggedin[id] = 1
     }
-    else
-    {
-        server_cmd("kick #%d Incorrect Password!",userid)  
+    else{
+        server_cmd("kick #%d parola incorecta!",userid)
     }
 }
 
@@ -45,7 +56,21 @@ stock RegisterUser(id, givenpass[65]){
     set_user_info(id,"_dr",gPassword[id])
     return PLUGIN_CONTINUE
 }
-public MSGREGISTER(id)
-{
-    chat_color(id,"!y[!gDR!y]!g Pentru o protectie sporita, recomand folosirea comenzi /reg")
+
+public MSGREGISTER(id){
+    chat_color(id,"!y[!gDR!y]!g Foloseste comanda !y[/reg parola] !gpentru a te inregistra!")
+}
+
+public MSGLOGIN(id){
+    chat_color(id,"!y[!gDR!y]!g Foloseste comanda !y[/login parola] !gpentru a te loga!")
+}
+
+public kick(id){
+    if(gLoggedin[id] == 1){
+       return PLUGIN_CONTINUE
+    }
+    else{
+        new userid = get_user_userid(id) 
+	    server_cmd("kick #%d Nu esti logat!",userid)
+    }
 }

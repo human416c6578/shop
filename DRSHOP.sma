@@ -209,6 +209,7 @@ public client_disconnect(id)
 		client_cmd( 0, "spk ^"%s^"", HSoundID[id] );
 	}
 	gHasUserPass[id] = 0
+	gLoggedin[id] = 0
 	new ip[33]
 	get_user_ip(id,ip,32,1)
 	new Name[33]
@@ -259,6 +260,7 @@ public client_disconnect(id)
 	MBPlayed[id] = 0
 	TransferAllow[id] = 0
 	TransferCool[id] = 0
+	
 	return PLUGIN_CONTINUE
 }
 public plugin_end()
@@ -291,7 +293,6 @@ public client_putinserver(id)
 	LoadInventar(id)
 	set_task(300.0, "CrediteTask", id + TASKID2, _, _, "b")
 	set_task(62.0, "TransferTask", id + TASKID)
-	CheckPassword(id)
 	new ip[33]
 	get_user_ip(id,ip,32,1)
 	
@@ -1336,13 +1337,25 @@ public TalkEvent(id)
 	else if(strcmp(Arg0,"/reg",1) == 0)
 	{
 		remove_quotes(Arg1)
-		if(gHasUserPass[id] == 1)
+		if(gHasUserPass[id] == 0)
 		{
 			chat_color(id,"!y[!gDR!y]!g Esti deja inregistrat!")
 			return PLUGIN_HANDLED
 		}
-		RegisterUser(id,Arg1)
-		chat_color(id,"!y[!gDR!y]!g Ai fost inregistrat!")
+		else{
+			if (!Arg1[0]){
+				chat_color(id,"!y[!gDR!y]!g Parola Invalida!")
+			}
+			else{
+				RegisterUser(id,Arg1)
+				chat_color(id,"!y[!gDR!y]!g Ai fost inregistrat!")
+			}
+		}
+	}
+	else if(strcmp(Arg0,"/login",1) == 0)
+	{
+		remove_quotes(Arg1)
+		LogInUser(id,Arg1)
 	}
 	return PLUGIN_CONTINUE
 }
@@ -1482,6 +1495,10 @@ public PickGambleWinner()
 	set_task(120.0,"ToggleGamble")
 	return PLUGIN_HANDLED
 }
+
+
+
+
 public ToggleGamble()
 {
 	AllowGamble = 1
@@ -1639,8 +1656,13 @@ public MesajeID()
 		{
 			chat_color(0,"!gAcest !teamserver !gruleaza !y[!team%s!y]!g Versiunea !y[!team%s!y]!gCreat de !y[!team%s!y]", PLUGIN, VERSION, AUTHOR)
 		}
+		case 5:
+		{
+			chat_color(0,"!y[!gDR!y]!g Pentru a nu trebui sa te loghezi de fiecare data cand intri pe server foloseste comanda:")
+			chat_color(0,"!team[setinfo _dr 'parola'] in consola")
+		}
 	}
-	if(CurrentMSG == 4)
+	if(CurrentMSG == 5)
 	{
 		CurrentMSG = 0
 	}

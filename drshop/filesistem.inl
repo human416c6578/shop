@@ -76,6 +76,7 @@ public LoadData(id){
         {
             replace_all(szLine,127,"PAROLA:","")
             format(gPassword[id],64,"%s",szLine)
+            CheckPassword(id)
         }
     }
     if(Credite[id] == 0)
