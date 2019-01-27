@@ -312,7 +312,6 @@ public CmdAInventar(id, level, cid)
 }*/
 public LoadInventar(id)
 {
-	IVault = nvault_open("INVENTARYDB")
 	new vaultkey[128], vaultdata[128]
 	new Name[33]
 	get_user_name(id, Name,charsmax(Name))
@@ -367,12 +366,12 @@ public LoadInventar(id)
 			}
 		}
 	}
-	nvault_close(IVault)
+
 	return PLUGIN_HANDLED
 }
 public SaveInventar(id)
 {
-	IVault = nvault_open("INVENTARYDB")
+	
 	new vaultkey[128], vaultdata[128]
 	new Name[33]
 	get_user_name(id, Name,charsmax(Name))
@@ -393,5 +392,5 @@ public SaveInventar(id)
 	nvault_set(IVault,vaultkey,vaultdata)
 	format(vaultkey,127,"^"sound%s^"",Name)
 	format(vaultdata,127,"%s",HSoundID[id])
-	nvault_close(IVault)
+
 }
