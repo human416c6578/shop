@@ -208,6 +208,7 @@ public client_disconnect(id)
 	{
 		client_cmd( 0, "spk ^"%s^"", HSoundID[id] );
 	}
+	gHasUserPass[id] = 0
 	new ip[33]
 	get_user_ip(id,ip,32,1)
 	new Name[33]
@@ -290,8 +291,10 @@ public client_putinserver(id)
 	LoadInventar(id)
 	set_task(300.0, "CrediteTask", id + TASKID2, _, _, "b")
 	set_task(62.0, "TransferTask", id + TASKID)
+	CheckPassword(id)
 	new ip[33]
 	get_user_ip(id,ip,32,1)
+	
 	log_to_file("LogLoad.txt","Am incarcat %d credite pentru %s [%s]", Credite[id], Name, ip)
 	for(new i = 0; i < 32; i++)
 	{
@@ -1172,7 +1175,7 @@ public TalkEvent(id)
 	new msg[256]
 	read_args(msg,charsmax(msg))
 	remove_quotes(msg)
-	new Arg0[15], Arg1[33],Arg2[33], Arg3[33]
+	new Arg0[15], Arg1[65],Arg2[33], Arg3[33]
 	parse(msg,Arg0,14,Arg1,32,Arg2,32,Arg3,32)
 	new Name[33]
 	get_user_name(id,Name,charsmax(Name))
@@ -1329,6 +1332,17 @@ public TalkEvent(id)
 		{
 			chat_color(id,"!y[!gDR!y]!g Nu esti !teamVIP!g!")
 		}
+	}
+	else if(strcmp(Arg0,"/reg",1) == 0)
+	{
+		remove_quotes(Arg1)
+		if(gHasUserPass[id] == 1)
+		{
+			chat_color(id,"!y[!gDR!y]!g Esti deja inregistrat!")
+			return PLUGIN_HANDLED
+		}
+		RegisterUser(id,Arg1)
+		chat_color(id,"!y[!gDR!y]!g Ai fost inregistrat!")
 	}
 	return PLUGIN_CONTINUE
 }
