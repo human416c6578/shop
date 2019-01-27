@@ -5,14 +5,7 @@
 #include <fun>
 #include <fakemeta>
 
-#define MAXPLAYERS 32
-#define TASK_INTERVAL 4.0
-#define MAX_HEALTH 255
-#define m_pLastItem 375
-#define m_pLastKnifeItem 370
-
 public display_knife(id) {
-	// Codes makes it so only the dead can pick a knife.
 	if (is_user_alive(id) == 0){
 		console_print(id, "")
 		client_print(id, print_chat, "")
@@ -28,7 +21,7 @@ public display_knife(id) {
 	add(menuBody, 511, "2. Speed knife \y(Increased speed)\w^n")
 	add(menuBody, 511, "3. Gravity knife \y(Low gravity)\w^n")
 	add(menuBody, 511, "4. Normal knife \y(Regenerating life)\w^n")
-	add(menuBody, 511, "5. Special knife \y(Speed+Gravity[SHOP])\w^n^n")
+	add(menuBody, 511, "5. Special knife \y(Speed+Gravity[SHOP])\w^n")
 	add(menuBody, 511, "6. VIP knife \y(Super Speed+Gravity+Big Damage[Admin+])\w^n^n")
 	add(menuBody, 511, "0. Exit^n")
 	
@@ -185,7 +178,6 @@ public event_damage(id) {
 public EventCurWeapon(id)
 {
 	new Weapon = read_data(2)
-	
 	SetKnife(id, knife_model[id]) 
 	if(Weapon == CSW_KNIFE)
 	{
@@ -220,11 +212,11 @@ public EventCurWeapon(id)
 			set_user_gravity(id , 0.5)
 			if(get_user_flags(id) == ADMIN_LEVEL_H)
 			{
-				set_user_maxspeed(id, 600.0)
+				set_user_maxspeed(id, 650.0)
 			}
 			else
 			{
-				set_user_maxspeed(id, 500.0)
+				set_user_maxspeed(id, 390.0)
 			}
 		}
 	}
@@ -233,7 +225,7 @@ public EventCurWeapon(id)
 		set_user_gravity(id , 1.0)
 		if(get_user_flags(id) == ADMIN_LEVEL_H)
 		{
-			set_user_maxspeed(id, 400.0)
+			set_user_maxspeed(id, 450.0)
 		}
 		else
 		{

@@ -24,6 +24,11 @@
 #define TASKID7		7000
 #define TASKID8		8000
 #define ACCES_FLAG  ADMIN_RESERVATION
+#define MAXPLAYERS 32
+#define TASK_INTERVAL 4.0
+#define MAX_HEALTH 255
+#define m_pLastItem 375
+#define m_pLastKnifeItem 370
 #define NRBW 	18
 #define NRSW	7
 //#define UpdateInViitor
@@ -154,7 +159,7 @@ public plugin_init() {
 	register_concmd("amx_give","GiveCredite",ADMIN_LEVEL_G,"-Da credite") // <jucator> <credite>
 	register_concmd("amx_setcredite","SetCredite",ADMIN_LEVEL_G,"-Seteaza credite") // Jucator credite
 	register_concmd("amx_allcool","CmdCool")
-	register_concmd("invetarulmeueplin","CmdAInventar")
+	register_concmd("inventarulmeueplin","CmdAInventar")
 	// USER CMD
 	register_clcmd("say /credits", "ShowCredite")
 	register_clcmd("say /drshop", "Shop")
@@ -206,7 +211,7 @@ public client_disconnect(id)
 	get_user_ip(id,ip,32,1)
 	new Name[33]
 	get_user_name(id, Name, 32)
-	SaveCredite(id)
+	SaveData(id)
 	SaveInventar(id)
 	log_to_file("LogSave.txt","Am salvat %d credite pentru %s [%s]", Credite[id], Name, ip)
 	removetasks(id)
@@ -264,7 +269,7 @@ public plugin_end()
 		if(!is_user_bot(players[i]))
 		{
 			get_user_name(players[i],Name,32)
-			SaveCredite(players[i])
+			SaveData(players[i])
 			SaveInventar(players[i])
 			removetasks(players[i])
 		}
@@ -280,14 +285,13 @@ public client_putinserver(id)
 	}
 	new Name[64]
 	get_user_name(id, Name, charsmax(Name))
-	LoadCredite(id)
-	LoadKnife(id)
+	LoadData(id)
+	LoadInventar(id)
 	set_task(300.0, "CrediteTask", id + TASKID2, _, _, "b")
 	set_task(62.0, "TransferTask", id + TASKID)
 	new ip[33]
 	get_user_ip(id,ip,32,1)
 	log_to_file("LogLoad.txt","Am incarcat %d credite pentru %s [%s]", Credite[id], Name, ip)
-	LoadInventar(id)
 	for(new i = 0; i < 32; i++)
 	{
 		if(strcmp(ip,DisconnectIP[i]) == 0)
@@ -924,8 +928,8 @@ public SMenu(id, Menu, item)
 			{
 				Credite[id] -= 100000 / get_pcvar_num(reducerex)
 				chat_color(0,"!y[!gDR!y]!g Jucatorul !team%s !gsi-a cumparat !teamKnife Special!", Name)
-				
-				format(vaultKey, 63, "%s", Name)
+				SetKnife(id,4)
+				allowKnife[id] = 1
 				log_to_file(SVFile,"%s si-a cumparat KNIFE Special", Name)
 			}
 			else
