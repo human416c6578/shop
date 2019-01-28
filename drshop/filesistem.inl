@@ -75,6 +75,8 @@ public LoadData(id){
         else if(contain(szLine,"PAROLA:") >-1 )
         {
             replace_all(szLine,127,"PAROLA:","")
+            gLoggedin[id] = 0
+            trim(szLine)
             format(gPassword[id],64,"%s",szLine)
             CheckPassword(id)
         }

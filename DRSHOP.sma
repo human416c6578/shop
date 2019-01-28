@@ -210,6 +210,7 @@ public client_disconnect(id)
 	}
 	gHasUserPass[id] = 0
 	gLoggedin[id] = 0
+	gPassword[id] = ""
 	new ip[33]
 	get_user_ip(id,ip,32,1)
 	new Name[33]

@@ -8,19 +8,22 @@ new gLoggedin[33]
 public CheckPassword(id)
 {
     new data[65]
-    if(strcmp(gPassword[id],"") == 0)
+    if(strcmp(gPassword[id],"",1) == 0)
+    {
         gHasUserPass[id] = 0
-    else
+    }
+    else{
         gHasUserPass[id] = 1
+    }
     if(gHasUserPass[id] == 0)
     {
-        if(!is_user_admin(id))
-            set_task(10.0,"MSGREGISTER",id)
+        set_task(10.0,"MSGREGISTER",id)
     }
     else
     {
         get_user_info(id, "_dr", data, 64)
-
+        trim(data)
+        remove_quotes(data)
         if (!data[0]){
             set_task(3.0,"MSGLOGIN",id)
             set_task(15.0,"kick",id)
@@ -33,9 +36,9 @@ stock LogInUser(id,givenpass[65])
 {
     if(gLoggedin[id] == 0){
         new userid = get_user_userid(id)  
-        log_amx("%s - gpass || %s - user pass",givenpass,gPassword[id])
-      //  if(IsPasswordTheSame(id,givenpass) == 1)
-        if(strcmp(gPassword[id],givenpass,1) == 0)
+        trim(givenpass)
+        trim(gPassword[id])
+        if(strcmp(gPassword[id],givenpass,0) == 0)
         {
             chat_color(id,"!y[!gDR!y]!g Te-ai logat cu succes!")
             gLoggedin[id] = 1
