@@ -1338,7 +1338,7 @@ public TalkEvent(id)
 	else if(strcmp(Arg0,"/reg",1) == 0)
 	{
 		remove_quotes(Arg1)
-		if(gHasUserPass[id] == 0)
+		if(gHasUserPass[id] == 1)
 		{
 			chat_color(id,"!y[!gDR!y]!g Esti deja inregistrat!")
 			return PLUGIN_HANDLED

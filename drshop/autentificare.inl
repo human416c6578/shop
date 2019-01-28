@@ -20,7 +20,6 @@ public CheckPassword(id)
     else
     {
         get_user_info(id, "_dr", data, 64)
-        log_amx("setinfo _dr = %s", data)
 
         if (!data[0]){
             set_task(3.0,"MSGLOGIN",id)
@@ -34,7 +33,9 @@ stock LogInUser(id,givenpass[65])
 {
     if(gLoggedin[id] == 0){
         new userid = get_user_userid(id)  
-        if(equali(gPassword[id], givenpass, strlen(givenpass)))
+        log_amx("%s - gpass || %s - user pass",givenpass,gPassword[id])
+      //  if(IsPasswordTheSame(id,givenpass) == 1)
+        if(strcmp(gPassword[id],givenpass,1) == 0)
         {
             chat_color(id,"!y[!gDR!y]!g Te-ai logat cu succes!")
             gLoggedin[id] = 1
@@ -47,8 +48,29 @@ stock LogInUser(id,givenpass[65])
         chat_color(id,"!y[!gDR!y]!g Esti deja logat!")
         return PLUGIN_CONTINUE
     }
+    return PLUGIN_CONTINUE
 }
-
+stock IsPasswordTheSame(id, password[65])
+{
+    new Match = 1
+    for(new i = 0; i < strlen(gPassword[id]); i++)
+    {
+        if(gPassword[id][i] == password[i])
+        {
+            log_amx("MATCH - %s",gPassword[id][i])
+            Match = 1
+        }
+        else{
+            if(!gPassword[id][i])
+            {
+                Match = 1
+            }
+            log_amx("NOT MATCH - %s || %s",gPassword[id][i],password[i])
+            Match = 0
+        }
+    }
+    return Match
+}
 stock RegisterUser(id, givenpass[65]){
     new Name[33]
     get_user_name(id,Name,charsmax(Name))
@@ -79,4 +101,5 @@ public kick(id){
         new userid = get_user_userid(id) 
 	    server_cmd("kick #%d Nu esti logat!",userid)
     }
+    return PLUGIN_CONTINUE
 }
