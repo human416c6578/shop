@@ -17,7 +17,8 @@ public CheckPassword(id)
     }
     if(gHasUserPass[id] == 0)
     {
-        set_task(10.0,"MSGREGISTER",id)
+        if(!is_user_admin(id))
+            set_task(10.0,"MSGREGISTER",id)
     }
     else
     {
@@ -53,27 +54,8 @@ stock LogInUser(id,givenpass[65])
     }
     return PLUGIN_CONTINUE
 }
-stock IsPasswordTheSame(id, password[65])
-{
-    new Match = 1
-    for(new i = 0; i < strlen(gPassword[id]); i++)
-    {
-        if(gPassword[id][i] == password[i])
-        {
-            log_amx("MATCH - %s",gPassword[id][i])
-            Match = 1
-        }
-        else{
-            if(!gPassword[id][i])
-            {
-                Match = 1
-            }
-            log_amx("NOT MATCH - %s || %s",gPassword[id][i],password[i])
-            Match = 0
-        }
-    }
-    return Match
-}
+
+
 stock RegisterUser(id, givenpass[65]){
     new Name[33]
     get_user_name(id,Name,charsmax(Name))

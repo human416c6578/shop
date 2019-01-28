@@ -1357,7 +1357,8 @@ public TalkEvent(id)
 	else if(strcmp(Arg0,"/login",1) == 0)
 	{
 		remove_quotes(Arg1)
-		LogInUser(id,Arg1)
+		if(gHasUserPass[id] == 0)
+			LogInUser(id,Arg1)
 	}
 	return PLUGIN_CONTINUE
 }
