@@ -504,7 +504,7 @@ public ClientUserInfoChanged(id)
 	if(!equali(newname, oldname))
 	{
 		set_user_info(id,"name",oldname)
-		chat_color(id,"!y[!gDR!y]!g Daca iti schimbi numele, poti sa iti pierzi creditele!")
+		chat_color(id,"!y[!gDR!y]!g Daca iti schimbi numele, iti poti pierde creditele!")
 		return PLUGIN_HANDLED;
 	}
 	return PLUGIN_CONTINUE
@@ -1661,8 +1661,8 @@ public MesajeID()
 		}
 		case 5:
 		{
-			chat_color(0,"!y[!gDR!y]!g Pentru a nu trebui sa te loghezi de fiecare data cand intri pe server foloseste comanda:")
-			chat_color(0,"!team[setinfo _dr 'parola'] in consola")
+			chat_color(0,"!y[!gDR!y]!team Pentru a nu trebui sa te loghezi de fiecare data cand intri pe server foloseste comanda:")
+			chat_color(0,"!g[setinfo _dr 'parola'] !teamin consola")
 		}
 	}
 	if(CurrentMSG == 5)
