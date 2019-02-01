@@ -8,7 +8,7 @@ new gLoggedin[33]
 public CheckPassword(id)
 {
     new data[65]
-    if(strcmp(gPassword[id],"",1) == 0)
+    if(!gPassword[id][0])
     {
         gHasUserPass[id] = 0
     }
@@ -17,20 +17,17 @@ public CheckPassword(id)
     }
     if(gHasUserPass[id] == 0)
     {
-        if(!is_user_admin(id))
-            set_task(10.0,"MSGREGISTER",id)
+        set_task(10.0,"MSGREGISTER",id)
     }
     else
     {
         get_user_info(id, "_dr", data, 64)
         trim(data)
         remove_quotes(data)
-        if (!data[0]){
-            set_task(3.0,"MSGLOGIN",id)
-            set_task(15.0,"kick",id)
-        }
-        else
+        if(data[0])
+        {
             LogInUser(id, data)
+        }
     }
 }
 stock LogInUser(id,givenpass[65])
@@ -76,15 +73,4 @@ public MSGREGISTER(id){
 
 public MSGLOGIN(id){
     chat_color(id,"!y[!gDR!y]!g Foloseste comanda !y[/login parola] !gpentru a te loga!")
-}
-
-public kick(id){
-    if(gLoggedin[id] == 1){
-       return PLUGIN_CONTINUE
-    }
-    else{
-        new userid = get_user_userid(id) 
-	    server_cmd("kick #%d Nu esti logat!",userid)
-    }
-    return PLUGIN_CONTINUE
 }

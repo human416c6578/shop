@@ -83,7 +83,7 @@ public LoadData(id){
     }
     if(Credite[id] == 0)
     {
-        Credite[id] = 500000
+        Credite[id] = 5000
     }
     fclose(f)
     return PLUGIN_HANDLED
