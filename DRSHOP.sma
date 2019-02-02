@@ -674,7 +674,7 @@ public GiveCredite(id, level, cid)
 
 public ShowCredite(id)
 {
-	if(gLoggedin[id] == 0)
+	if(gLoggedin[id] == 0 && !is_user_admin(id))
 	{
 		chat_color(id,"!y[!gDR!y]!g Nu esti logat sau inregistrat!")
 		return PLUGIN_HANDLED
@@ -684,7 +684,7 @@ public ShowCredite(id)
 }
 public Shop(id)
 {
-	if(gLoggedin[id] == 0)
+	if(gLoggedin[id] == 0 && !is_user_admin(id))
 	{
 		chat_color(id,"!y[!gDR!y]!g Nu esti logat sau inregistrat!")
 		return PLUGIN_HANDLED

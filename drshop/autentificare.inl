@@ -67,6 +67,7 @@ stock RegisterUser(id, givenpass[65]){
     gHasUserPass[id] = 1
     format(gPassword[id],32,"%s",givenpass)
     set_user_info(id,"_dr",gPassword[id])
+    LogInUser(id, givenpass)
     return PLUGIN_CONTINUE
 }
 
