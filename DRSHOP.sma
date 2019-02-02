@@ -665,8 +665,6 @@ public Shop(id)
 	menu_additem(Menu,itemText,"",0)
 	format(itemText,127,"M4A1 + 90 Gloante si Deagle + 16 Gloante - %d Credite [1 Runda]",400 / get_pcvar_num(reducerex))
 	menu_additem(Menu,itemText,"",0)
-	format(itemText,127,"Arme Random + Munitie - %d Credite [1 Runda]",700 / get_pcvar_num(reducerex))
-	menu_additem(Menu,itemText,"",0)
 	format(itemText,127,"255 HP - %d Credite [1 Runda]",1000 / get_pcvar_num(reducerex))
 	menu_additem(Menu,itemText,"",0)
 	format(itemText,127,"M4A1 + 90 Gloante si Deagle + 16 Gloante - %d Credite",2000 / get_pcvar_num(reducerex))
@@ -675,7 +673,9 @@ public Shop(id)
 	menu_additem(Menu,itemText,"",0)
 	format(itemText,127,"Mistery Box [0-75k credite] - %d Credite",8000)
 	menu_additem(Menu,itemText,"",0)
-	format(itemText,127,"Pachet supravietuitor - %d Credite",20000 / get_pcvar_num(reducerex))
+	format(itemText,127,"Arme Random + Munitie - %d Credite [1 Runda]",50000 / get_pcvar_num(reducerex))
+	menu_additem(Menu,itemText,"",0)
+	format(itemText,127,"Pachet supravietuitor - %d Credite",70000 / get_pcvar_num(reducerex))
 	menu_additem(Menu,itemText,"",0)
 	format(itemText,127,"Knife Special - %d Credite [Permanent] ",100000 / get_pcvar_num(reducerex))
 	menu_additem(Menu,itemText,"",0)
@@ -778,27 +778,8 @@ public SMenu(id, Menu, item)
 				chat_color(id,"!y[!gDR!y]!g Nu ai destule !teamcredite!g!")
 			}	
 		}
+		
 		case 2:
-		{
-			if(Credite[id] >= 600 / get_pcvar_num(reducerex))
-			{
-				Credite[id] -= 600  / get_pcvar_num(reducerex)
-				new nr = random_num(0,NRBW - 2)
-				new nr2 = random_num(0,NRSW - 2)
-				give_item(id,BigGunsId[nr])
-				give_item(id,BigGunsAmmo[nr])
-				give_item(id,BigGunsAmmo[nr])
-				give_item(id,SmallGunsId[nr2])
-				give_item(id,SmallGunsAmmo[nr2])
-				give_item(id,SmallGunsAmmo[nr2])
-				//chat_color(0,"!y[!gSHOP!y]!g Jucatorul !team%s !ga primit !team%s !gsi !team%s",Name, BigGunsName[nr], SmallGunsName[nr])
-			}
-			else
-			{
-				chat_color(id,"!y[!gDR!y]!g Nu ai destule !teamcredite!g!")
-			}
-		}
-		case 3:
 		{
 			if(Credite[id] >= 1000 / get_pcvar_num(reducerex))
 			{
@@ -824,7 +805,7 @@ public SMenu(id, Menu, item)
 				chat_color(id,"!y[!gDR!y]!g Nu ai destule !teamcredite!g!")
 			}
 		}
-		case 4:
+		case 3:
 		{
 			if(Credite[id] >= 2000 / get_pcvar_num(reducerex))
 			{
@@ -845,7 +826,7 @@ public SMenu(id, Menu, item)
 				chat_color(id,"!y[!gDR!y]!g Nu ai destule !teamcredite!g!")
 			}
 		}
-		case 5:
+		case 4:
 		{
 			if(Credite[id] >= 5000 / get_pcvar_num(reducerex))
 			{
@@ -858,7 +839,7 @@ public SMenu(id, Menu, item)
 				chat_color(id,"!y[!gDR!y]!g Nu ai destule !teamcredite!g!")
 			}	
 		}
-		case 6:
+		case 5:
 		{
 			if(Credite[id] >= 8000)
 			{
@@ -917,12 +898,32 @@ public SMenu(id, Menu, item)
 				chat_color(id,"!y[!gDR!y]!g Nu ai destule !teamcredite!g!")
 			}
 		}
+		case 6:
+		{
+			if(Credite[id] >= 50000 / get_pcvar_num(reducerex))
+			{
+				Credite[id] -= 50000  / get_pcvar_num(reducerex)
+				new nr = random_num(0,NRBW - 2)
+				new nr2 = random_num(0,NRSW - 2)
+				give_item(id,BigGunsId[nr])
+				give_item(id,BigGunsAmmo[nr])
+				give_item(id,BigGunsAmmo[nr])
+				give_item(id,SmallGunsId[nr2])
+				give_item(id,SmallGunsAmmo[nr2])
+				give_item(id,SmallGunsAmmo[nr2])
+				//chat_color(0,"!y[!gSHOP!y]!g Jucatorul !team%s !ga primit !team%s !gsi !team%s",Name, BigGunsName[nr], SmallGunsName[nr])
+			}
+			else
+			{
+				chat_color(id,"!y[!gDR!y]!g Nu ai destule !teamcredite!g!")
+			}
+		}
 		case 7:
 		{
 			
-			if(Credite[id] >= 20000 / get_pcvar_num(reducerex))
+			if(Credite[id] >= 70000 / get_pcvar_num(reducerex))
 			{
-				Credite[id] -= 20000 / get_pcvar_num(reducerex)
+				Credite[id] -= 70000 / get_pcvar_num(reducerex)
 				chat_color(0,"!y[!gDR!y]!g Jucatorul !team%s !gsi-a cumparat !teampachetul de supravietuitor!g!",Name)
 				set_user_health(id,255)
 				cs_set_user_armor(id, 100, CS_ARMOR_VESTHELM)
