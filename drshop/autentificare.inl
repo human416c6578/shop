@@ -38,7 +38,10 @@ stock LogInUser(id,givenpass[65])
         trim(gPassword[id])
         if(strcmp(gPassword[id],givenpass,0) == 0)
         {
-            chat_color(id,"!y[!gDR!y]!g Te-ai logat cu succes!")
+            new Name[33]
+            get_user_name(id,Name,charsmax(Name))
+            //chat_color(id,"!y[!gDR!y]!g Te-ai logat cu succes!")
+            chat_color(0,"!y[!gDR!y]!g Jucatorul !team%s !gs-a logat cu succes!",Name)
             gLoggedin[id] = 1
         }
         else{

@@ -631,9 +631,9 @@ public GiveCredite(id, level, cid)
 
 public ShowCredite(id)
 {
-	if(gLoggedin[id] == 0 && gHasUserPass[id] == 1)
+	if(gLoggedin[id] == 0)
 	{
-		chat_color(id,"!y[!gDR!y]!g Nu esti logat!")
+		chat_color(id,"!y[!gDR!y]!g Nu esti logat sau inregistrat!")
 		return PLUGIN_HANDLED
 	}
 	chat_color(id,"!y[!gDR!y]!g Ai !team%d !gcredite!", Credite[id])
@@ -641,9 +641,9 @@ public ShowCredite(id)
 }
 public Shop(id)
 {
-	if(gLoggedin[id] == 0 && gHasUserPass[id] == 1)
+	if(gLoggedin[id] == 0)
 	{
-		chat_color(id,"!y[!gDR!y]!g Nu esti logat!")
+		chat_color(id,"!y[!gDR!y]!g Nu esti logat sau inregistrat!")
 		return PLUGIN_HANDLED
 	}
 	#if defined DEBUGSHOP
@@ -1003,9 +1003,9 @@ public SMenu(id, Menu, item)
 }
 public ShowAll(id)
 {
-	if(gLoggedin[id] == 0 && gHasUserPass[id] == 1)
+	if(gLoggedin[id] == 0)
 	{
-		chat_color(id,"!y[!gDR!y]!g Nu esti logat!")
+		chat_color(id,"!y[!gDR!y]!g Nu esti logat sau inregistrat!")
 		return PLUGIN_HANDLED
 	}
 	console_print(id,"================ CREDITE DR LLG ===============")
@@ -1025,9 +1025,9 @@ public ShowAll(id)
 }
 public CmdTransfer(id,Tinta,Credits)
 {
-	if(gLoggedin[id] == 0 && gHasUserPass[id] == 1)
+	if(gLoggedin[id] == 0)
 	{
-		chat_color(id,"!y[!gDR!y]!g Nu esti logat!")
+		chat_color(id,"!y[!gDR!y]!g Nu esti logat sau inregistrat!")
 		return PLUGIN_HANDLED
 	}
 	#if defined ST 
@@ -1095,9 +1095,9 @@ public CmdTransfer(id,Tinta,Credits)
 }
 public CmdGlow(id)
 {
-	if(gLoggedin[id] == 0 && gHasUserPass[id] == 1)
+	if(gLoggedin[id] == 0)
 	{
-		chat_color(id,"!y[!gDR!y]!g Nu esti logat!")
+		chat_color(id,"!y[!gDR!y]!g Nu esti logat sau inregistrat!")
 		return PLUGIN_HANDLED
 	}
 	if(get_user_flags(id) & ADMIN_LEVEL_H)
@@ -1210,9 +1210,9 @@ public TalkEvent(id)
 	get_user_name(id,Name,charsmax(Name))
 	if(strcmp(Arg0,"/gamble",1) == 0)
 	{
-		if(gLoggedin[id] == 0 && gHasUserPass[id] == 1)
+		if(gLoggedin[id] == 0)
 		{
-			chat_color(id,"!y[!gDR!y]!g Nu esti logat!")
+			chat_color(id,"!y[!gDR!y]!g Nu esti logat sau inregistrat!")
 			return PLUGIN_HANDLED
 		}
 		new Creditex = str_to_num(Arg1)
@@ -1294,9 +1294,9 @@ public TalkEvent(id)
 	}
 	else if(strcmp(Arg0,"/sb",1) == 0)
 	{
-		if(gLoggedin[id] == 0 && gHasUserPass[id] == 1)
+		if(gLoggedin[id] == 0)
 		{
-			chat_color(id,"!y[!gDR!y]!g Nu esti logat!")
+			chat_color(id,"!y[!gDR!y]!g Nu esti logat sau inregistrat!")
 			return PLUGIN_HANDLED
 		}
 		new Creditex = str_to_num(Arg1)
@@ -1342,9 +1342,9 @@ public TalkEvent(id)
 	}
 	else if(strcmp(Arg0,"/transfer",1) == 0)
 	{
-		if(gLoggedin[id] == 0 && gHasUserPass[id] == 1)
+		if(gLoggedin[id] == 0)
 		{
-			chat_color(id,"!y[!gDR!y]!g Nu esti logat!")
+			chat_color(id,"!y[!gDR!y]!g Nu esti logat sau inregistrat!")
 			return PLUGIN_HANDLED
 		}
 		new Tintax = cmd_target(id,Arg1,CMDTARGET_NO_BOTS)
@@ -1353,9 +1353,9 @@ public TalkEvent(id)
 	}
 	else if(strcmp(Arg0,"/inventar",1) == 0)
 	{
-		if(gLoggedin[id] == 0 && gHasUserPass[id] == 1)
+		if(gLoggedin[id] == 0)
 		{
-			chat_color(id,"!y[!gDR!y]!g Nu esti logat!")
+			chat_color(id,"!y[!gDR!y]!g Nu esti logat sau inregistrat!")
 			return PLUGIN_HANDLED
 		}
 		new tinta = cmd_target(id,Arg1,CMDTARGET_NO_BOTS)
@@ -1368,9 +1368,9 @@ public TalkEvent(id)
 	}
 	else if(strcmp(Arg0,"/cglow",1) == 0 || strcmp(Arg0,"/customglow",1) == 0)
 	{
-		if(gLoggedin[id] == 0 && gHasUserPass[id] == 1)
+		if(gLoggedin[id] == 0)
 		{
-			chat_color(id,"!y[!gDR!y]!g Nu esti logat!")
+			chat_color(id,"!y[!gDR!y]!g Nu esti logat sau inregistrat!")
 			return PLUGIN_HANDLED
 		}
 		if(get_user_flags(id) & ADMIN_LEVEL_H)
@@ -1402,7 +1402,10 @@ public TalkEvent(id)
 			else{
 				trim(Arg1)
 				RegisterUser(id,Arg1)
-				chat_color(id,"!y[!gDR!y]!g Ai fost inregistrat!")
+				new Name[33]
+				get_user_name(id,Name,charsmax(Name))
+				chat_color(id,"!y[!gDR!y]!g Ai fost inregistrat, parola ta e: !team%s!",Arg1)
+				chat_color(0,"!y[!gDR!y]!g Jucatorul !team%s !ga fost inregistrat cu succes!",Name)
 			}
 		}
 	}
