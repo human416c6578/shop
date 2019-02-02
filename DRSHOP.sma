@@ -220,7 +220,7 @@ public client_disconnect(id)
 	gHasUserPass[id] = 0
 	gLoggedin[id] = 0
 	gPassword[id] = ""
-	gAllowSound[id] = 0
+	gAllowSound[id] = 1
 	new ip[33]
 	get_user_ip(id,ip,32,1)
 	new Name[33]
@@ -304,6 +304,7 @@ public client_putinserver(id)
 	get_user_name(id, Name, charsmax(Name))
 	LoadData(id)
 	LoadInventar(id)
+	gAllowSound[id] = 1
 	set_task(300.0, "CrediteTask", id + TASKID2, _, _, "b")
 	set_task(62.0, "TransferTask", id + TASKID)
 	new ip[33]
@@ -1438,19 +1439,31 @@ public TalkEvent(id)
 			chat_color(id,"!y[!gDR!y]!g Nu esti !teamVIP!g!")
 		}
 	}
-	else if(strcmp(Arg0,"/reg",1) == 0)
+	else if(strcmp(Arg0,"/reg",1) == 0 || strcmp(Arg0,"/register",1) == 0)
 	{
 		remove_quotes(Arg1)
 		if(gHasUserPass[id] == 1)
 		{
-			chat_color(id,"!y[!gDR!y]!g Esti deja inregistrat!")
-			return PLUGIN_HANDLED
+			if(gLoggedin[id] == 1)
+			{
+				trim(Arg1)
+				RegisterUser(id,Arg1)
+				chat_color(id,"!y[!gDR!y]!g Ti-ai schimbat parola cu succes.")
+				chat_color(id,"!y[!gDR!y]!g Parola noua: !team%s",Arg1)
+				gLoggedin[id] = 0
+			}
+			else
+			{
+				chat_color(id,"!y[!gDR!y]!g Esti deja inregistrat!")
+				return PLUGIN_HANDLED
+			}
 		}
 		else{
 			if (!Arg1[0]){
 				chat_color(id,"!y[!gDR!y]!g Parola Invalida!")
 			}
-			else{
+			else
+			{
 				trim(Arg1)
 				RegisterUser(id,Arg1)
 				new Name[33]
