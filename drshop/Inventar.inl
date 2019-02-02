@@ -12,6 +12,7 @@ new SoundID[33][SoundNR]
 new SkinUsed[33]
 new SoundUsed[33]
 new IVault
+new gAllowSound[33] = 1
 new SkinNames[SkinNR][] =
 {
 	"Buzz Lightyear",

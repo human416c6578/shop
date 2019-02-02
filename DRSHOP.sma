@@ -206,11 +206,21 @@ public client_disconnect(id)
 	}
 	if(HasSound[id] == 1)
 	{
-		client_cmd( 0, "spk ^"%s^"", HSoundID[id] );
+		new iPlayer[32],iNum
+		get_players(iPlayer,iNum)
+		for(new i = 0; i <= iNum; i++)
+		{
+			if(gAllowSound[iPlayer[i]] == 1)
+			{
+				client_cmd( iPlayer[i], "spk ^"%s^"", HSoundID[id] );
+			}
+		}
+		
 	}
 	gHasUserPass[id] = 0
 	gLoggedin[id] = 0
 	gPassword[id] = ""
+	gAllowSound[id] = 0
 	new ip[33]
 	get_user_ip(id,ip,32,1)
 	new Name[33]
@@ -399,7 +409,15 @@ public KillEvent()
 						chat_color(atacator, "!y[!gDR!y]!g Ai primit !team800 !gcredite pentru uciderea lui !team%s!g!", Name)
 						if(HasSound[atacator] == 1)
 						{
-							client_cmd( 0, "spk ^"%s^"", HSoundID[atacator] );
+							new iPlayer[32],iNum
+							get_players(iPlayer,iNum)
+							for(new i = 0; i <= iNum; i++)
+							{
+								if(gAllowSound[iPlayer[i]] == 1)
+								{
+									client_cmd( iPlayer[i], "spk ^"%s^"", HSoundID[atacator] );
+								}
+							}
 						}
 					}
 				}
@@ -411,7 +429,15 @@ public KillEvent()
 							chat_color(atacator, "!y[!gDR!y]!g Ai primit !team1600 !gcredite pentru uciderea lui !team%s!g!", Name)
 							if(HasSound[atacator] == 1)
 							{
-								client_cmd( 0, "spk ^"%s^"", HSoundID[atacator] );
+								new iPlayer[32],iNum
+								get_players(iPlayer,iNum)
+								for(new i = 0; i <= iNum; i++)
+								{
+									if(gAllowSound[iPlayer[i]] == 1)
+									{
+										client_cmd( iPlayer[i], "spk ^"%s^"", HSoundID[atacator] );
+									}
+								}
 							}
 						}
 				}
@@ -452,7 +478,15 @@ public KillEvent()
 							{
 								if(HasSound[atacator] == 1)
 								{
-									client_cmd( 0, "spk ^"%s^"", HSoundID[atacator] );
+									new iPlayer[32],iNum
+									get_players(iPlayer,iNum)
+									for(new i = 0; i <= iNum; i++)
+									{
+										if(gAllowSound[iPlayer[i]] == 1)
+										{
+											client_cmd( iPlayer[i], "spk ^"%s^"", HSoundID[atacator] );
+										}
+									}
 								}
 								chat_color(atacator, "!y[!gDR!y]!g Ai primit !team200 !gcredite pentru uciderea lui !team%s!g!", Name)
 							}
@@ -464,7 +498,15 @@ public KillEvent()
 							{
 								if(HasSound[atacator] == 1)
 								{
-									client_cmd( 0, "spk ^"%s^"", HSoundID[atacator] );
+									new iPlayer[32],iNum
+									get_players(iPlayer,iNum)
+									for(new i = 0; i <= iNum; i++)
+									{
+										if(gAllowSound[iPlayer[i]] == 1)
+										{
+											client_cmd( iPlayer[i], "spk ^"%s^"", HSoundID[atacator] );
+										}
+									}
 								}
 								chat_color(atacator, "!y[!gDR!y]!g Ai primit !team400 !gcredite pentru uciderea lui !team%s!g!", Name)
 							}
@@ -856,7 +898,15 @@ public SMenu(id, Menu, item)
 						Credite[id] += nr2
 						if(HasSound[id] == 1)
 						{
-							client_cmd( 0, "spk ^"%s^"", HSoundID[id] );
+							new iPlayer[32],iNum
+							get_players(iPlayer,iNum)
+							for(new i = 0; i <= iNum; i++)
+							{
+								if(gAllowSound[iPlayer[i]] == 1)
+								{
+									client_cmd( iPlayer[i], "spk ^"%s^"", HSoundID[id] );
+								}
+							}
 						}
 					}
 					else if(Nr1 >= 6 && Nr1 <= 15)
@@ -1423,6 +1473,19 @@ public TalkEvent(id)
 			return PLUGIN_HANDLED
 		}
 	}
+	else if(strcmp(Arg0,"/sunet",1) == 0)
+	{
+		if(gAllowSound[id] == 0)
+		{
+			gAllowSound[id] = 1
+			chat_color(id,"!y[!gDR!y]!g Ti-ai activat sunetul cu succes!")
+		}
+		else
+		{
+			gAllowSound[id] = 0
+			chat_color(id,"!y[!gDR!y]!g Ti-ai dezactivat sunetul cu succes!")
+		}
+	}
 	return PLUGIN_CONTINUE
 }
 public SBMenu(id, Menu, item)
@@ -1727,8 +1790,12 @@ public MesajeID()
 			chat_color(0,"!y[!gDR!y]!team Pentru a nu trebui sa te loghezi de fiecare data cand intri pe server foloseste comanda:")
 			chat_color(0,"!g[setinfo _dr 'parola'] !teamin consola")
 		}
+		case 6:
+		{
+			chat_color(0,"!y[!gDR!y]!g Pentru a nu mai auzi sunetul de kill, scrie !y[!team/sunet!y]")
+		}
 	}
-	if(CurrentMSG == 5)
+	if(CurrentMSG == 6)
 	{
 		CurrentMSG = 0
 	}
