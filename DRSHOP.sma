@@ -1472,19 +1472,29 @@ public TalkEvent(id)
 				chat_color(0,"!y[!gDR!y]!g Jucatorul !team%s !ga fost inregistrat cu succes!",Name)
 			}
 		}
+		return PLUGIN_HANDLED
 	}
 	else if(strcmp(Arg0,"/login",1) == 0)
 	{
 		remove_quotes(Arg1)
+		if (!Arg1[0]){
+			chat_color(id,"!y[!gDR!y]!g Parola Invalida!")
+		}
 		if(gHasUserPass[id] == 1 && gLoggedin[id] == 0)
 		{
 			LogInUser(id,Arg1)
 		}
 		else
 		{
-			chat_color(id,"!y[!gDR!y]!g Nu esti inregistrat sau esti deja logat!")
+			trim(Arg1)
+			RegisterUser(id,Arg1)
+			new Name[33]
+			get_user_name(id,Name,charsmax(Name))
+			chat_color(id,"!y[!gDR!y]!g Ai fost inregistrat, parola ta e: !team%s!",Arg1)
+			chat_color(0,"!y[!gDR!y]!g Jucatorul !team%s !ga fost inregistrat cu succes!",Name)
 			return PLUGIN_HANDLED
 		}
+		return PLUGIN_HANDLED
 	}
 	else if(strcmp(Arg0,"/sunet",1) == 0)
 	{

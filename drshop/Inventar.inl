@@ -5,7 +5,7 @@
 #include <fakemeta>
 
 #define SkinNR 13
-#define SoundNR 17
+#define SoundNR 34
 // GLOBAL
 new SkinID[33][SkinNR]
 new SoundID[33][SoundNR]
@@ -61,9 +61,26 @@ new SoundNames[SoundNR][] =
 	"Every Thing",
 	"Let the bodies hit the floor",
 	"Beast",
-	"Some Day We will Rise",// Nou
+	"Some Day We will Rise",
 	"Rock #1",
-	"E V E"
+	"E V E",
+	"Adderal", // NOU
+	"Babylon",
+	"ColorBlind",
+	"Do you love me?",
+	"Droppin da bomb",
+	"Drug Addicts",
+	"LEH",
+	"Twerk it like Miley",
+	"Lock My Hips",
+	"Mi Cama",
+	"Score Suite",
+	"Shisha",
+	"Shooting Stars",
+	"Still Cold",
+	"TBC",
+	"You Don't Owe Me",
+	"Zooted"
 }
 new SoundNamesID[SoundNR][] =
 {
@@ -83,7 +100,24 @@ new SoundNamesID[SoundNR][] =
 	"misc/beast.wav",
 	"misc/rise.wav",
 	"misc/rock.wav",
-	"misc/eve.wav"
+	"misc/eve.wav",
+	"misc/adderal.mp3",
+	"misc/Babylon.mp3",
+	"misc/colorblind.mp3",
+	"misc/doyouloveme.mp3",
+	"misc/dropndabomb.mp3",
+	"misc/drugaddicts.mp3",
+	"misc/leh.mp3",
+	"misc/likemiley.mp3",
+	"misc/LockMyHips.mp3",
+	"misc/micama.mp3",
+	"misc/scoresuite.mp3",
+	"misc/shisha.mp3",
+	"misc/shootingstars.mp3",
+	"misc/StillCold.mp3",
+	"misc/tbc.mp3",
+	"misc/youdontoweme.mp3",
+	"misc/zooted.mp3"
 }
 new HasModel[33]
 new ModelID[33][32]
