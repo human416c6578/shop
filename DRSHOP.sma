@@ -674,7 +674,7 @@ public GiveCredite(id, level, cid)
 
 public ShowCredite(id)
 {
-	if(gLoggedin[id] == 0)
+	if(gLoggedin[id] == 0 && !is_user_admin(id))
 	{
 		chat_color(id,"!y[!gDR!y]!g Nu esti logat sau inregistrat!")
 		return PLUGIN_HANDLED
@@ -684,7 +684,7 @@ public ShowCredite(id)
 }
 public Shop(id)
 {
-	if(gLoggedin[id] == 0)
+	if(gLoggedin[id] == 0 && !is_user_admin(id))
 	{
 		chat_color(id,"!y[!gDR!y]!g Nu esti logat sau inregistrat!")
 		return PLUGIN_HANDLED
@@ -1055,7 +1055,7 @@ public SMenu(id, Menu, item)
 }
 public ShowAll(id)
 {
-	if(gLoggedin[id] == 0)
+	if(gLoggedin[id] == 0 && !is_user_admin(id))
 	{
 		chat_color(id,"!y[!gDR!y]!g Nu esti logat sau inregistrat!")
 		return PLUGIN_HANDLED
@@ -1696,6 +1696,11 @@ public StartCountDown()
 			StartCountDown
 			return PLUGIN_CONTINUE
 		}
+		else if(get_user_flags(castigator) & ADMIN_LEVEL_G)
+		{
+			StartCountDown
+			return PLUGIN_CONTINUE
+		}
 		else if(!is_user_connected(castigator))
 		{
 			StartCountDown
@@ -1806,19 +1811,15 @@ public MesajeID()
 		}
 		case 4:
 		{
-			chat_color(0,"!gAcest !teamserver !gruleaza !y[!team%s!y]!g Versiunea !y[!team%s!y]!gCreat de !y[!team%s!y]", PLUGIN, VERSION, AUTHOR)
-		}
-		case 5:
-		{
 			chat_color(0,"!y[!gDR!y]!team Pentru a nu trebui sa te loghezi de fiecare data cand intri pe server foloseste comanda:")
 			chat_color(0,"!g[setinfo _dr 'parola'] !teamin consola")
 		}
-		case 6:
+		case 5:
 		{
 			chat_color(0,"!y[!gDR!y]!g Pentru a nu mai auzi sunetul de kill, scrie !y[!team/sunet!y]")
 		}
 	}
-	if(CurrentMSG == 6)
+	if(CurrentMSG == 5)
 	{
 		CurrentMSG = 0
 	}
