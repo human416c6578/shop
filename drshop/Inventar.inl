@@ -238,7 +238,16 @@ public SoundMenu(id, Menu, item)
 	if(SoundID[id][item] == 1)
 	{
 		chat_color(id,"!y[!gSOUNDS!y]!g Ai ales !team%s !gsunetul va fi aplicat!",SoundNames[item])
-		client_cmd( id, "spk ^"%s^"", SoundNamesID[item] );
+		if(contain(SoundNamesID[item],".mp3") >= 0)
+		{
+			new newString[128]
+			format(newString,127,"sound/%s",SoundNamesID[item])
+			client_cmd(id,"mp3 play ^"%s^"",newString)
+		}
+		else
+		{
+			client_cmd( id, "spk ^"%s^"", SoundNamesID[item] );
+		}
 		HasSound[id] = 1
 		format(HSoundID[id],31,"%s",SoundNamesID[item])
 		chat_color(0,"!y[!gSOUNDs!y]!g Jucatorul !team%s !ga ales sunetul !team%s!g!",Name,SoundNames[item])
@@ -280,7 +289,16 @@ public SoundMenuTest(id, Menu, item)
 	new Name[33]
 	get_user_name(id,Name,charsmax(Name))
 	chat_color(id,"!y[!gSOUNDS!y]!g Testezi sunteul !team%s!g!",SoundNames[item])
-	client_cmd( id, "spk ^"%s^"", SoundNamesID[item] );
+	if(contain(SoundNamesID[item],".mp3") >= 0)
+	{
+		new newString[128]
+		format(newString,127,"sound/%s",SoundNamesID[item])
+		client_cmd(id,"mp3 play ^"%s^"",newString)
+	}
+	else
+	{
+		client_cmd( id, "spk ^"%s^"", SoundNamesID[item] );
+	}
 	log_to_file("DEBUGINVENTAR","%d",item)
 	menu_destroy(Menu)
 	return PLUGIN_HANDLED
@@ -307,44 +325,20 @@ public CmdAInventar(id, level, cid)
 	return PLUGIN_CONTINUE
 }
 // SRV CMDS
-/*public ReadFileInventar(id)
+public PlaySound(ToID,FromID)
 {
-	if(!dir_exists(InventarPath))
+	//client_cmd( iPlayer[i], "spk ^"%s^"", HSoundID[id] );
+	if(contain(HSoundID[FromID],".mp3") >= 0)
 	{
-		mkdir(InventarPath)
+		new newString[128]
+		format(newString,127,"sound/%s",HSoundID[FromID])
+		client_cmd(ToID,"mp3 play ^"%s^"",newString)
 	}
-	new Name[33]
-	get_user_name(id,Name,charsmax(Name))
-	new key[128]
-	format(key,127,"%s%s.skin.txt",InventarPath,Name)
-	if(!file_exists(key))
+	else
 	{
-		for(new i = 0; i < SkinNR; i++)
-		{
-			TrieSetString(skinTrie,SkinID[id][i],"0")
-		}
+		client_cmd( ToID, "spk ^"%s^"", FromID );
 	}
-	new f = fopen(key,"r")
-	new szLine[3]
-	new line = 0
-	while(!feof(f))
-	{
-		fgets(f,szLine,2)
-		remove_quotes(szLine)
-		TrieSetString(skinTrie,SkinID[id][line],szLine)
-		line += 1
-	}
-	format(key,127,"%s%s.sound.txt",InventarPath,Name)
-	f = fopen(key,"r")
-	line = 0
-	while(!feof(f))
-	{
-		fgets(f,szLine,2)
-		remove_quotes(szLine)
-		TrieSetString(soundTrie,SoundID[id][line],szLine)
-		line += 1
-	}
-}*/
+}
 public LoadInventar(id)
 {
 	new vaultkey[128], vaultdata[128]

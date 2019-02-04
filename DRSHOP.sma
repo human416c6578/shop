@@ -212,7 +212,7 @@ public client_disconnect(id)
 		{
 			if(gAllowSound[iPlayer[i]] == 1)
 			{
-				client_cmd( iPlayer[i], "spk ^"%s^"", HSoundID[id] );
+				PlaySound(iPlayer[i],id)
 			}
 		}
 		
@@ -416,7 +416,7 @@ public KillEvent()
 							{
 								if(gAllowSound[iPlayer[i]] == 1)
 								{
-									client_cmd( iPlayer[i], "spk ^"%s^"", HSoundID[atacator] );
+									PlaySound(iPlayer[i],atacator)
 								}
 							}
 						}
@@ -436,7 +436,7 @@ public KillEvent()
 								{
 									if(gAllowSound[iPlayer[i]] == 1)
 									{
-										client_cmd( iPlayer[i], "spk ^"%s^"", HSoundID[atacator] );
+										PlaySound(iPlayer[i],atacator)
 									}
 								}
 							}
@@ -485,7 +485,7 @@ public KillEvent()
 									{
 										if(gAllowSound[iPlayer[i]] == 1)
 										{
-											client_cmd( iPlayer[i], "spk ^"%s^"", HSoundID[atacator] );
+											PlaySound(iPlayer[i],atacator)
 										}
 									}
 								}
@@ -505,7 +505,7 @@ public KillEvent()
 									{
 										if(gAllowSound[iPlayer[i]] == 1)
 										{
-											client_cmd( iPlayer[i], "spk ^"%s^"", HSoundID[atacator] );
+											PlaySound(iPlayer[i],atacator)
 										}
 									}
 								}
@@ -905,7 +905,8 @@ public SMenu(id, Menu, item)
 							{
 								if(gAllowSound[iPlayer[i]] == 1)
 								{
-									client_cmd( iPlayer[i], "spk ^"%s^"", HSoundID[id] );
+									//client_cmd( iPlayer[i], "spk ^"%s^"", HSoundID[id] );
+									PlaySound(iPlayer[i],id)
 								}
 							}
 						}
@@ -1096,11 +1097,11 @@ public CmdTransfer(id,Tinta,Credits)
 		chat_color(id,"!y[!gDR!y]!g Mai trebuie sa astepti !team%d !gminute!",TransferCool[id])
 		return PLUGIN_HANDLED
 	}
-	if(Credits > 1000)
+	if(Credits > 2001)
 	{
 		if(!is_user_admin(id))
 		{
-			Credits = 1000
+			Credits = 2000
 		}
 	}
 	if(Credits <= 0)
