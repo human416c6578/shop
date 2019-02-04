@@ -706,15 +706,15 @@ public Shop(id)
 		format(itemText,127,"Big Box [Skins / Sounds] - 600000 Credite")
 	#endif
 	menu_additem(Menu,itemText,"",0)
-	format(itemText,127,"M4A1 + 90 Gloante si Deagle + 16 Gloante - %d Credite [1 Runda]",400 / get_pcvar_num(reducerex))
-	menu_additem(Menu,itemText,"",0)
-	format(itemText,127,"255 HP - %d Credite [1 Runda]",1000 / get_pcvar_num(reducerex))
-	menu_additem(Menu,itemText,"",0)
-	format(itemText,127,"M4A1 + 90 Gloante si Deagle + 16 Gloante - %d Credite",2000 / get_pcvar_num(reducerex))
-	menu_additem(Menu,itemText,"",0)
-	format(itemText,127,"50% Invizibilitate - %d Credite",5000 / get_pcvar_num(reducerex))
+	format(itemText,127,"M4A1 + 90 Gloante si Deagle + 16 Gloante - %d Credite [1 Runda]",4000 / get_pcvar_num(reducerex))
 	menu_additem(Menu,itemText,"",0)
 	format(itemText,127,"Mistery Box [0-75k credite] - %d Credite",8000)
+	menu_additem(Menu,itemText,"",0)
+	format(itemText,127,"255 HP - %d Credite [1 Runda]",10000 / get_pcvar_num(reducerex))
+	menu_additem(Menu,itemText,"",0)
+	format(itemText,127,"M4A1 + 90 Gloante si Deagle + 16 Gloante - %d Credite",20000 / get_pcvar_num(reducerex))
+	menu_additem(Menu,itemText,"",0)
+	format(itemText,127,"50% Invizibilitate - %d Credite",50000 / get_pcvar_num(reducerex))
 	menu_additem(Menu,itemText,"",0)
 	format(itemText,127,"Arme Random + Munitie - %d Credite [1 Runda]",50000 / get_pcvar_num(reducerex))
 	menu_additem(Menu,itemText,"",0)
@@ -821,68 +821,7 @@ public SMenu(id, Menu, item)
 				chat_color(id,"!y[!gDR!y]!g Nu ai destule !teamcredite!g!")
 			}	
 		}
-		
 		case 2:
-		{
-			if(Credite[id] >= 1000 / get_pcvar_num(reducerex))
-			{
-				if(HealthBought[id] == 1)
-				{
-					chat_color(id,"!y[!gDR!y]!g Deja ai cumparat viata in aceasta runda!")
-					return PLUGIN_HANDLED
-				}
-				Credite[id] -= 1000 / get_pcvar_num(reducerex)
-				chat_color(id,"!y[!gDR!y]!g Ti-ai cumparat !team255 HP!g!")
-				if(get_user_health(id) <= 255)
-				{
-					set_user_health(id,255)
-				}
-				else
-				{
-					chat_color(id,"!y[!gDR!y]!g Maximul de HP pe care poti sa il ai este de !team255!g!")
-				}
-				HealthBought[id] = 1
-			}
-			else
-			{
-				chat_color(id,"!y[!gDR!y]!g Nu ai destule !teamcredite!g!")
-			}
-		}
-		case 3:
-		{
-			if(Credite[id] >= 2000 / get_pcvar_num(reducerex))
-			{
-				Credite[id] -= 2000 / get_pcvar_num(reducerex)
-				give_item(id,"ammo_50ae")
-				give_item(id,"ammo_50ae")
-				give_item(id, "weapon_deagle")
-				give_item(id, "weapon_m4a1")
-				give_item(id,"ammo_556nato")
-				give_item(id,"ammo_556nato")
-				give_item(id,"ammo_556nato")
-				chat_color(0,"!y[!gDR!y]!g Jucatorul !team%s !gsi-a cumparat pachetul de arme!", Name)
-				Weapon[id] = 1
-				menu_destroy( Menu );
-			}
-			else
-			{
-				chat_color(id,"!y[!gDR!y]!g Nu ai destule !teamcredite!g!")
-			}
-		}
-		case 4:
-		{
-			if(Credite[id] >= 5000 / get_pcvar_num(reducerex))
-			{
-				Credite[id] -= 5000 / get_pcvar_num(reducerex)
-				chat_color(0,"!y[!gDR!y]!g Jucatorul !team%s !ga cumparat !team50 !gla suta !teaminvizibilitate!g!",Name)
-				set_user_rendering(id,kRenderFxGlowShell,0,0,0,kRenderTransAlpha,100)
-			}
-			else
-			{
-				chat_color(id,"!y[!gDR!y]!g Nu ai destule !teamcredite!g!")
-			}	
-		}
-		case 5:
 		{
 			if(Credite[id] >= 8000)
 			{
@@ -949,6 +888,66 @@ public SMenu(id, Menu, item)
 			{
 				chat_color(id,"!y[!gDR!y]!g Nu ai destule !teamcredite!g!")
 			}
+		}
+		case 3:
+		{
+			if(Credite[id] >= 10000 / get_pcvar_num(reducerex))
+			{
+				if(HealthBought[id] == 1)
+				{
+					chat_color(id,"!y[!gDR!y]!g Deja ai cumparat viata in aceasta runda!")
+					return PLUGIN_HANDLED
+				}
+				Credite[id] -= 10000 / get_pcvar_num(reducerex)
+				chat_color(id,"!y[!gDR!y]!g Ti-ai cumparat !team255 HP!g!")
+				if(get_user_health(id) <= 255)
+				{
+					set_user_health(id,255)
+				}
+				else
+				{
+					chat_color(id,"!y[!gDR!y]!g Maximul de HP pe care poti sa il ai este de !team255!g!")
+				}
+				HealthBought[id] = 1
+			}
+			else
+			{
+				chat_color(id,"!y[!gDR!y]!g Nu ai destule !teamcredite!g!")
+			}
+		}
+		case 4:
+		{
+			if(Credite[id] >= 20000 / get_pcvar_num(reducerex))
+			{
+				Credite[id] -= 20000 / get_pcvar_num(reducerex)
+				give_item(id,"ammo_50ae")
+				give_item(id,"ammo_50ae")
+				give_item(id, "weapon_deagle")
+				give_item(id, "weapon_m4a1")
+				give_item(id,"ammo_556nato")
+				give_item(id,"ammo_556nato")
+				give_item(id,"ammo_556nato")
+				chat_color(0,"!y[!gDR!y]!g Jucatorul !team%s !gsi-a cumparat pachetul de arme!", Name)
+				Weapon[id] = 1
+				menu_destroy( Menu );
+			}
+			else
+			{
+				chat_color(id,"!y[!gDR!y]!g Nu ai destule !teamcredite!g!")
+			}
+		}
+		case 5:
+		{
+			if(Credite[id] >= 50000 / get_pcvar_num(reducerex))
+			{
+				Credite[id] -= 50000 / get_pcvar_num(reducerex)
+				chat_color(0,"!y[!gDR!y]!g Jucatorul !team%s !ga cumparat !team50 !gla suta !teaminvizibilitate!g!",Name)
+				set_user_rendering(id,kRenderFxGlowShell,0,0,0,kRenderTransAlpha,100)
+			}
+			else
+			{
+				chat_color(id,"!y[!gDR!y]!g Nu ai destule !teamcredite!g!")
+			}	
 		}
 		case 6:
 		{
@@ -1097,11 +1096,11 @@ public CmdTransfer(id,Tinta,Credits)
 		chat_color(id,"!y[!gDR!y]!g Mai trebuie sa astepti !team%d !gminute!",TransferCool[id])
 		return PLUGIN_HANDLED
 	}
-	if(Credits > 2001)
+	if(Credits > 10000)
 	{
 		if(!is_user_admin(id))
 		{
-			Credits = 2000
+			Credits = 10000
 		}
 	}
 	if(Credits <= 0)
