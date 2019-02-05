@@ -1486,12 +1486,7 @@ public TalkEvent(id)
 		}
 		else
 		{
-			trim(Arg1)
-			RegisterUser(id,Arg1)
-			new Name[33]
-			get_user_name(id,Name,charsmax(Name))
-			chat_color(id,"!y[!gDR!y]!g Ai fost inregistrat, parola ta e: !team%s!",Arg1)
-			chat_color(0,"!y[!gDR!y]!g Jucatorul !team%s !ga fost inregistrat cu succes!",Name)
+			chat_color(id,"!y[!gDR!y]!g Nu esti inregistrat!")
 			return PLUGIN_HANDLED
 		}
 		return PLUGIN_HANDLED

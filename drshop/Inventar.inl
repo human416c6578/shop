@@ -5,7 +5,7 @@
 #include <fakemeta>
 
 #define SkinNR 13
-#define SoundNR 34
+#define SoundNR 42
 // GLOBAL
 new SkinID[33][SkinNR]
 new SoundID[33][SoundNR]
@@ -64,7 +64,7 @@ new SoundNames[SoundNR][] =
 	"Some Day We will Rise",
 	"Rock #1",
 	"E V E",
-	"Adderal", // NOU
+	"Adderal",
 	"Babylon",
 	"ColorBlind",
 	"Do you love me?",
@@ -80,7 +80,15 @@ new SoundNames[SoundNR][] =
 	"Still Cold",
 	"TBC",
 	"You Don't Owe Me",
-	"Zooted"
+	"Zooted",
+	"All This Love", // NOU
+	"Gasoline",
+	"Happier",
+	"Manele Manele",
+	"Psycho",
+	"Say My Name",
+	"Sweet But Psycho",
+	"Sunflower"
 }
 new SoundNamesID[SoundNR][] =
 {
@@ -117,7 +125,15 @@ new SoundNamesID[SoundNR][] =
 	"misc/StillCold.mp3",
 	"misc/tbc.mp3",
 	"misc/youdontoweme.mp3",
-	"misc/zooted.mp3"
+	"misc/zooted.mp3",
+	"misc/allthislove.mp3",
+	"misc/gaslone.mp3",
+	"misc/happier.mp3",
+	"misc/manele.mp3",
+	"misc/psycho.mp3",
+	"misc/saymyname.mp3",
+	"misc/sweetbutpsycho.mp3",
+	"misc/sunflower.mp3"
 }
 new HasModel[33]
 new ModelID[33][32]
