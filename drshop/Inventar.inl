@@ -127,12 +127,12 @@ new SoundNamesID[SoundNR][] =
 	"misc/youdontoweme.mp3",
 	"misc/zooted.mp3",
 	"misc/allthislove.mp3",
-	"misc/gaslone.mp3",
+	"misc/gasolinev2.mp3",
 	"misc/happier.mp3",
 	"misc/manele.mp3",
 	"misc/psycho.mp3",
 	"misc/saymyname.mp3",
-	"misc/sweetbutpsycho.mp3",
+	"misc/sweetbutpsychov2.mp3",
 	"misc/sunflower.mp3"
 }
 new HasModel[33]
