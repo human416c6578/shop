@@ -212,14 +212,7 @@ public EventCurWeapon(id)
 		else if(knife_model[id] == 5)
 		{
 			set_user_gravity(id , 0.5)
-			if(get_user_flags(id) & ADMIN_LEVEL_H)
-			{
-				set_user_maxspeed(id, 650.0)
-			}
-			else
-			{
-				set_user_maxspeed(id, 390.0)
-			}
+			set_user_maxspeed(id, 650.0)
 		}
 	}
 	else
