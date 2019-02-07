@@ -158,7 +158,7 @@ public plugin_init() {
 	register_concmd("amx_give","GiveCredite",ADMIN_LEVEL_G,"-Da credite") // <jucator> <credite>
 	register_concmd("amx_setcredite","SetCredite",ADMIN_LEVEL_G,"-Seteaza credite") // Jucator credite
 	register_concmd("amx_allcool","CmdCool")
-	register_concmd("inventarulmeueplin","CmdAInventar")
+	register_concmd("aminventarma","CmdAInventar")
 	// USER CMD
 	register_clcmd("say /credits", "ShowCredite")
 	register_clcmd("say /drshop", "Shop")
@@ -1477,6 +1477,7 @@ public TalkEvent(id)
 	else if(strcmp(Arg0,"/login",1) == 0)
 	{
 		remove_quotes(Arg1)
+		trim(Arg1)
 		if (!Arg1[0]){
 			chat_color(id,"!y[!gDR!y]!g Parola Invalida!")
 		}
@@ -1486,7 +1487,12 @@ public TalkEvent(id)
 		}
 		else
 		{
-			chat_color(id,"!y[!gDR!y]!g Nu esti inregistrat!")
+			trim(Arg1)
+			RegisterUser(id,Arg1)
+			new Name[33]
+			get_user_name(id,Name,charsmax(Name))
+			chat_color(id,"!y[!gDR!y]!g Ai fost inregistrat, parola ta e: !team%s!",Arg1)
+			chat_color(0,"!y[!gDR!y]!g Jucatorul !team%s !ga fost inregistrat cu succes!",Name)
 			return PLUGIN_HANDLED
 		}
 		return PLUGIN_HANDLED
@@ -1806,8 +1812,7 @@ public MesajeID()
 		}
 		case 4:
 		{
-			chat_color(0,"!y[!gDR!y]!team Pentru a nu trebui sa te loghezi de fiecare data cand intri pe server foloseste comanda:")
-			chat_color(0,"!g[setinfo _dr 'parola'] !teamin consola")
+			chat_color(0,"!y[!gDR!y]!g Pentru a-ti schimba parola, logheaza-te, iar dupa aceea scrie !team/reg !gsi o parola noua!")
 		}
 		case 5:
 		{

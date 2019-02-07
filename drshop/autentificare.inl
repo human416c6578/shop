@@ -7,12 +7,13 @@ new gLoggedin[33]
 
 public CheckPassword(id)
 {
-    new data[65]
+    trim(gPassword[id])
     if(!gPassword[id][0])
     {
         gHasUserPass[id] = 0
     }
-    else{
+    else
+    {
         gHasUserPass[id] = 1
     }
     if(gHasUserPass[id] == 0)
@@ -21,13 +22,7 @@ public CheckPassword(id)
     }
     else
     {
-        get_user_info(id, "_dr", data, 64)
-        trim(data)
-        remove_quotes(data)
-        if(data[0])
-        {
-            LogInUser(id, data)
-        }
+        set_task(10.0,"MSGLOGIN",id)
     }
 }
 stock LogInUser(id,givenpass[65])
@@ -67,7 +62,6 @@ stock RegisterUser(id, givenpass[65]){
     gHasUserPass[id] = 1
     format(gPassword[id],32,"%s",givenpass)
     set_user_info(id,"_dr",gPassword[id])
-    LogInUser(id, givenpass)
     return PLUGIN_CONTINUE
 }
 
