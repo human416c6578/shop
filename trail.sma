@@ -762,7 +762,7 @@ public CheckFiles()
         mkdir(gPathMaster)
     }
 }
-public SaveData(id){
+/*public SaveData(id){
     if(is_user_bot(id))
     {
         return PLUGIN_HANDLED
@@ -775,7 +775,7 @@ public SaveData(id){
     format(sData,127,"TRAIL:%d",AllowTrail[id])
     write_file(path,sData,4)
 	return PLUGIN_HANDLED
-}
+}*/
 public LoadData(id){
     if(is_user_bot(id))
     {
