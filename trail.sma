@@ -114,7 +114,7 @@ public plugin_precache() {
 }
 
 public client_putinserver(id) {
-	LoadData(id)
+	set_task(2.0,"LoadData",id)
 
 	gl_trail_type[id] = gl_sprite[0]
 	gl_trail_size[id] = gl_def_sprite_size[0]
@@ -762,20 +762,6 @@ public CheckFiles()
         mkdir(gPathMaster)
     }
 }
-public SaveData(id){
-    if(is_user_bot(id))
-    {
-        return PLUGIN_HANDLED
-    }
-	new Name[33]
-    get_user_name(id,Name,charsmax(Name))
-    new path[128]
-    format(path,127,"%s%s.txt",gPathMaster,Name)
-    new sData[128]
-    format(sData,127,"TRAIL:%d",AllowTrail[id])
-    write_file(path,sData,4)
-	return PLUGIN_HANDLED
-}
 public LoadData(id){
     if(is_user_bot(id))
     {
@@ -798,6 +784,8 @@ public LoadData(id){
         {
             replace_all(szLine,127,"TRAIL:","")
             AllowTrail[id] = str_to_num(szLine)
+			TrailP[id] = str_to_num(szLine)
+			client_print(id,print_chat,"[DR] Setarile pentru Trail au fost incarcate cu succes!")
         }
     }
     fclose(f)
