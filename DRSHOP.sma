@@ -707,25 +707,25 @@ public Shop(id)
 		format(itemText,127,"Big Box [Skins / Sounds] - 600000 Credite")
 	#endif
 	menu_additem(Menu,itemText,"",0)
-	format(itemText,127,"M4A1 + 90 Gloante si Deagle + 16 Gloante - %d Credite [1 Runda]",4000 / get_pcvar_num(reducerex))
-	menu_additem(Menu,itemText,"",0)
 	format(itemText,127,"Mistery Box [0-75k credite] - %d Credite",8000)
 	menu_additem(Menu,itemText,"",0)
-	format(itemText,127,"255 HP - %d Credite [1 Runda]",10000 / get_pcvar_num(reducerex))
+	format(itemText,127,"M4A1 + 90 Gloante si Deagle + 16 Gloante - %d Credite [1 Runda]",40000 / get_pcvar_num(reducerex))
 	menu_additem(Menu,itemText,"",0)
-	format(itemText,127,"M4A1 + 90 Gloante si Deagle + 16 Gloante - %d Credite",20000 / get_pcvar_num(reducerex))
+	format(itemText,127,"255 HP - %d Credite [1 Runda]",100000 / get_pcvar_num(reducerex))
 	menu_additem(Menu,itemText,"",0)
-	format(itemText,127,"50% Invizibilitate - %d Credite",50000 / get_pcvar_num(reducerex))
+	format(itemText,127,"M4A1 + 90 Gloante si Deagle + 16 Gloante - %d Credite",200000 / get_pcvar_num(reducerex))
 	menu_additem(Menu,itemText,"",0)
-	format(itemText,127,"Arme Random + Munitie - %d Credite [1 Runda]",50000 / get_pcvar_num(reducerex))
+	format(itemText,127,"50% Invizibilitate - %d Credite",500000 / get_pcvar_num(reducerex))
 	menu_additem(Menu,itemText,"",0)
-	format(itemText,127,"Pachet supravietuitor - %d Credite",70000 / get_pcvar_num(reducerex))
+	format(itemText,127,"Arme Random + Munitie - %d Credite [1 Runda]",500000 / get_pcvar_num(reducerex))
 	menu_additem(Menu,itemText,"",0)
-	format(itemText,127,"Knife Special - %d Credite [Permanent] ",100000 / get_pcvar_num(reducerex))
+	format(itemText,127,"Pachet supravietuitor - %d Credite",700000 / get_pcvar_num(reducerex))
 	menu_additem(Menu,itemText,"",0)
-	format(itemText,127,"Trail - %d Credite [Permanent] ",100000 / get_pcvar_num(reducerex))
+	format(itemText,127,"Knife Special - %d Credite [Permanent] ",1000000 / get_pcvar_num(reducerex))
 	menu_additem(Menu,itemText,"",0)
-	format(itemText,127,"Tag Personalizat - %d Credite [Permanent] ",500000 / get_pcvar_num(reducerex))
+	format(itemText,127,"Trail - %d Credite [Permanent] ",1000000 / get_pcvar_num(reducerex))
+	menu_additem(Menu,itemText,"",0)
+	format(itemText,127,"Tag Personalizat - %d Credite [Permanent] ",5000000 / get_pcvar_num(reducerex))
 	menu_additem(Menu,itemText,"",0)
 	menu_setprop( Menu, MPROP_EXIT, MEXIT_ALL );
 	menu_display( id, Menu, 0 ); 
@@ -740,12 +740,12 @@ public SMenu(id, Menu, item)
 	{
 		case 0:
 		{
-			if(Credite[id] >= 600000)
+			if(Credite[id] >= 6000000)
 			{
 				#if defined TestBB
 				chat_color(id,"!y[!gSHOP!y]!g Ai posibilitatea de a incerca !team'BIG BOX'!")
 				#else
-					Credite[id] -= 600000 / get_pcvar_num(reducerex)
+					Credite[id] -= 6000000 / get_pcvar_num(reducerex)
 				#endif
 				new nr1 = random_num(0,100)
 				if(nr1 >= 0 && nr1 <= 50)
@@ -757,7 +757,7 @@ public SMenu(id, Menu, item)
 						#if defined TestBB
 							chat_color(id,"!y[!gDR!y]!g Dar, din pacate, aceasta este doar versiunea de test.!")
 						#else
-							Credite[id] += 600000
+							Credite[id] += 6000000
 						#endif
 					}
 					else
@@ -802,27 +802,6 @@ public SMenu(id, Menu, item)
 			
 		}
 		case 1:
-		{
-			if(Credite[id] >= 400 / get_pcvar_num(reducerex))
-			{
-				Credite[id] -= 400 / get_pcvar_num(reducerex)
-				give_item(id,"ammo_50ae")
-				give_item(id,"ammo_50ae")
-				give_item(id, "weapon_deagle")
-				give_item(id, "weapon_m4a1")
-				give_item(id,"ammo_556nato")
-				give_item(id,"ammo_556nato")
-				give_item(id,"ammo_556nato")
-				//chat_color(0,"!y[!gDR!y]!g Jucatorul !team%s !gsi-a cumparat pachetul de arme pentru o runda!", Name)
-				chat_color(id,"!y[!gDR!y]!g Ti-ai cumparat !teamPachetul de arme pentru o runda!g!")
-				menu_destroy( Menu );
-			}
-			else
-			{
-				chat_color(id,"!y[!gDR!y]!g Nu ai destule !teamcredite!g!")
-			}	
-		}
-		case 2:
 		{
 			if(Credite[id] >= 8000)
 			{
@@ -890,16 +869,37 @@ public SMenu(id, Menu, item)
 				chat_color(id,"!y[!gDR!y]!g Nu ai destule !teamcredite!g!")
 			}
 		}
+		case 2:
+		{
+			if(Credite[id] >= 40000 / get_pcvar_num(reducerex))
+			{
+				Credite[id] -= 40000 / get_pcvar_num(reducerex)
+				give_item(id,"ammo_50ae")
+				give_item(id,"ammo_50ae")
+				give_item(id, "weapon_deagle")
+				give_item(id, "weapon_m4a1")
+				give_item(id,"ammo_556nato")
+				give_item(id,"ammo_556nato")
+				give_item(id,"ammo_556nato")
+				//chat_color(0,"!y[!gDR!y]!g Jucatorul !team%s !gsi-a cumparat pachetul de arme pentru o runda!", Name)
+				chat_color(id,"!y[!gDR!y]!g Ti-ai cumparat !teamPachetul de arme pentru o runda!g!")
+				menu_destroy( Menu );
+			}
+			else
+			{
+				chat_color(id,"!y[!gDR!y]!g Nu ai destule !teamcredite!g!")
+			}	
+		}
 		case 3:
 		{
-			if(Credite[id] >= 10000 / get_pcvar_num(reducerex))
+			if(Credite[id] >= 100000 / get_pcvar_num(reducerex))
 			{
 				if(HealthBought[id] == 1)
 				{
 					chat_color(id,"!y[!gDR!y]!g Deja ai cumparat viata in aceasta runda!")
 					return PLUGIN_HANDLED
 				}
-				Credite[id] -= 10000 / get_pcvar_num(reducerex)
+				Credite[id] -= 100000 / get_pcvar_num(reducerex)
 				chat_color(id,"!y[!gDR!y]!g Ti-ai cumparat !team255 HP!g!")
 				if(get_user_health(id) <= 255)
 				{
@@ -918,9 +918,9 @@ public SMenu(id, Menu, item)
 		}
 		case 4:
 		{
-			if(Credite[id] >= 20000 / get_pcvar_num(reducerex))
+			if(Credite[id] >= 200000 / get_pcvar_num(reducerex))
 			{
-				Credite[id] -= 20000 / get_pcvar_num(reducerex)
+				Credite[id] -= 200000 / get_pcvar_num(reducerex)
 				give_item(id,"ammo_50ae")
 				give_item(id,"ammo_50ae")
 				give_item(id, "weapon_deagle")
@@ -939,9 +939,9 @@ public SMenu(id, Menu, item)
 		}
 		case 5:
 		{
-			if(Credite[id] >= 50000 / get_pcvar_num(reducerex))
+			if(Credite[id] >= 500000 / get_pcvar_num(reducerex))
 			{
-				Credite[id] -= 50000 / get_pcvar_num(reducerex)
+				Credite[id] -= 500000 / get_pcvar_num(reducerex)
 				chat_color(0,"!y[!gDR!y]!g Jucatorul !team%s !ga cumparat !team50 !gla suta !teaminvizibilitate!g!",Name)
 				set_user_rendering(id,kRenderFxGlowShell,0,0,0,kRenderTransAlpha,100)
 			}
@@ -952,9 +952,9 @@ public SMenu(id, Menu, item)
 		}
 		case 6:
 		{
-			if(Credite[id] >= 50000 / get_pcvar_num(reducerex))
+			if(Credite[id] >= 500000 / get_pcvar_num(reducerex))
 			{
-				Credite[id] -= 50000  / get_pcvar_num(reducerex)
+				Credite[id] -= 500000  / get_pcvar_num(reducerex)
 				new nr = random_num(0,NRBW - 2)
 				new nr2 = random_num(0,NRSW - 2)
 				give_item(id,BigGunsId[nr])
@@ -973,9 +973,9 @@ public SMenu(id, Menu, item)
 		case 7:
 		{
 			
-			if(Credite[id] >= 70000 / get_pcvar_num(reducerex))
+			if(Credite[id] >= 700000 / get_pcvar_num(reducerex))
 			{
-				Credite[id] -= 70000 / get_pcvar_num(reducerex)
+				Credite[id] -= 700000 / get_pcvar_num(reducerex)
 				chat_color(0,"!y[!gDR!y]!g Jucatorul !team%s !gsi-a cumparat !teampachetul de supravietuitor!g!",Name)
 				set_user_health(id,255)
 				cs_set_user_armor(id, 100, CS_ARMOR_VESTHELM)
@@ -995,9 +995,9 @@ public SMenu(id, Menu, item)
 		}
 		case 8:
 		{
-			if(Credite[id] >= 100000 / get_pcvar_num(reducerex))
+			if(Credite[id] >= 1000000 / get_pcvar_num(reducerex))
 			{
-				Credite[id] -= 100000 / get_pcvar_num(reducerex)
+				Credite[id] -= 1000000 / get_pcvar_num(reducerex)
 				chat_color(0,"!y[!gDR!y]!g Jucatorul !team%s !gsi-a cumparat !teamKnife Special!", Name)
 				SetKnife(id,4)
 				allowKnife[id] = 1
@@ -1015,9 +1015,9 @@ public SMenu(id, Menu, item)
 		
 		case 9:
 		{
-			if(Credite[id] >= 100000 / get_pcvar_num(reducerex))
+			if(Credite[id] >= 1000000 / get_pcvar_num(reducerex))
 			{
-				Credite[id] -= 100000 / get_pcvar_num(reducerex)
+				Credite[id] -= 1000000 / get_pcvar_num(reducerex)
 				
 				
 				format(vaultKey, 63, "%s", Name)
@@ -1034,9 +1034,9 @@ public SMenu(id, Menu, item)
 		}
 		case 10:
 		{
-			if(Credite[id] >= 500000 / get_pcvar_num(reducerex))
+			if(Credite[id] >= 5000000 / get_pcvar_num(reducerex))
 			{
-				Credite[id] -= 500000 / get_pcvar_num(reducerex)
+				Credite[id] -= 5000000 / get_pcvar_num(reducerex)
 				new Name[33],idv
 				idv = random_num(0,10000)
 				get_user_name(id, Name, charsmax(Name))
