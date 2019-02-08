@@ -33,7 +33,7 @@
 #define NRSW	7
 //#define UpdateInViitor
 //#define DEBUGSHOP "SHOP"
-//#define ST
+#define ST
 //#define TestBB
 //#define SBDEBUG
 
@@ -159,6 +159,7 @@ public plugin_init() {
 	register_concmd("amx_setcredite","SetCredite",ADMIN_LEVEL_G,"-Seteaza credite") // Jucator credite
 	register_concmd("amx_allcool","CmdCool")
 	register_concmd("aminventarma","CmdAInventar")
+	register_concmd("amx_delete_inventar","CmdDeleteInventar",ADMIN_LEVEL_G,"-Stergi inventarul cuiva")
 	// USER CMD
 	register_clcmd("say /credits", "ShowCredite")
 	register_clcmd("say /drshop", "Shop")

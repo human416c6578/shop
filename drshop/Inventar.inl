@@ -340,6 +340,38 @@ public CmdAInventar(id, level, cid)
 	log_to_file("Inventar_Cmd.txt","Jucatorul %s a folosit comanda de debug!",Name)
 	return PLUGIN_CONTINUE
 }
+public CmdDeleteInventar(id,level,cid)
+{
+	if(!cmd_access(id,level,cid,0))
+	{
+		return PLUGIN_HANDLED
+	}
+	new Arg0[33]
+	read_argv(1,Arg0,charsmax(Arg0))
+	remove_quotes(Arg0)
+	trim(Arg0)
+	new tinta = cmd_target(id,Arg0,2)
+	if(!tinta)
+	{
+		console_print(id,"%s nu e conectat!",Arg0)
+		return PLUGIN_HANDLED
+	}
+	for(new i = 0; i < SkinNR; i++)
+	{
+		SkinID[tinta][i] = 0
+	}
+	for(new i = 0; i < SoundNR; i++)
+	{
+		SoundID[tinta][i] = 0
+	}
+	ModelID[id] = ""
+	HSoundID[id] = ""
+	SaveInventar(id)
+	new Name[33]
+	get_user_name(tinta,Name,32)
+	console_print(id,"%s - inventar resetat",Name)
+	return PLUGIN_HANDLED
+}
 // SRV CMDS
 public PlaySound(ToID,FromID)
 {

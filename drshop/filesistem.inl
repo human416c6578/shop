@@ -41,10 +41,10 @@ public LoadData(id){
     format(path,127,"%s%s.txt",gPathMaster,Name)
     if(!file_exists(path))
     {
-      Credite[id] = 500000
+      Credite[id] = 5000
       knife_model[id] = 3
       allowKnife[id] = 0
-      write_file(path,"CREDITE:500000",0)
+      write_file(path,"CREDITE:5000",0)
       write_file(path,"KNIFECURENT:0",1)
       write_file(path,"CUMPARATKNIFE:0",2)
       write_file(path,"TRAIL:0",3)
