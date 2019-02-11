@@ -125,7 +125,6 @@ new Countdown = 6
 new IsCountDown = 0
 new GiveArg = 0
 new SVFile[64]
-new SVLOG[64]
 new LOADLOG[64]
 new Credite[33] = 0
 new Weapon[33] = 0
@@ -181,8 +180,8 @@ public plugin_init() {
 	// CVARS
 	reducerex = register_cvar("shop_reducere_x", "1.0")
 	// OTHER
-	format(SVFile,63,"Credite.txt")
-	format(SVLOG,63,"SAVE.log")
+	format(SVFile,63,"SHOP/Credite.txt")
+
 	if(!dir_exists("addons/amxmodx/logs/SHOP/"))
 	{
 		mkdir("addons/amxmodx/logs/SHOP/")
@@ -228,7 +227,7 @@ public client_disconnect(id)
 	get_user_name(id, Name, 32)
 	SaveData(id)
 	SaveInventar(id)
-	log_to_file("LogSave.txt","Am salvat %d credite pentru %s [%s]", Credite[id], Name, ip)
+	log_to_file("SHOP/LogSave.txt","Am salvat %d credite pentru %s [%s]", Credite[id], Name, ip)
 	removetasks(id)
 	remove_task(id)
 	if(TransferCool[id] > 0)
@@ -311,7 +310,7 @@ public client_putinserver(id)
 	new ip[33]
 	get_user_ip(id,ip,32,1)
 	
-	log_to_file("LogLoad.txt","Am incarcat %d credite pentru %s [%s]", Credite[id], Name, ip)
+	log_to_file("SHOP/LogLoad.txt","Am incarcat %d credite pentru %s [%s]", Credite[id], Name, ip)
 	for(new i = 0; i < 32; i++)
 	{
 		if(strcmp(ip,DisconnectIP[i]) == 0)
@@ -855,7 +854,7 @@ public SMenu(id, Menu, item)
 						nr2 = random_num(5,100)
 						Credite[id] += nr2
 					}
-					log_to_file("MisteryBox.txt","Jucatorul %s a scos %d credite din mistery box [Credite Inainte %d] [Credite Dupa %d]",Name,nr2,xCredite,Credite[id])
+					log_to_file("SHOP/MisteryBox.txt","Jucatorul %s a scos %d credite din mistery box [Credite Inainte %d] [Credite Dupa %d]",Name,nr2,xCredite,Credite[id])
 					chat_color(0,"!y[!gSHOP!y]!g Jucatorul !team%s !ga castigat !team%d !gcredite la !teamMistery Box!g!",Name,nr2)
 				}
 				else
@@ -1026,6 +1025,7 @@ public SMenu(id, Menu, item)
 				new path[128]
 				format(path,127,"addons/amxmodx/DRSHOP/%s.txt",Name)
 				write_file(path,"TRAIL:1",4)
+				log_to_file(SVFile,"%s si-a cumparat Trail", Name)
 			}
 			else
 			{
@@ -1044,7 +1044,7 @@ public SMenu(id, Menu, item)
 				chat_color(id,"!y[!gDR!y] !gDepune o cerere pe forum pentru !teamTAG !gin care sa precizezi !teamTAG!y-!teamUL !gdorit!")
 				chat_color(id,"!y[!gDR!y] !gSau anunta un !teamOWNER !gonline!")
 				chat_color(id,"!y[!gDR!y] !gID VERIFICARE !team%d!g!",idv)
-				log_to_file("TAGFILE","%s si-a cumparat TAG, [ID VERIFICARE %d]",Name,idv)
+				log_to_file("SHOP/TAGFILE","%s si-a cumparat TAG, [ID VERIFICARE %d]",Name,idv)
 			}
 			else
 			{
