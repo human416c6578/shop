@@ -703,7 +703,7 @@ public Shop(id)
 	#if defined TestBB
 		format(itemText,127,"Big Box [Skins / Sounds] - Gratis")
 	#else
-		format(itemText,127,"Big Box [Skins / Sounds] - 600000 Credite")
+		format(itemText,127,"Big Box [Skins / Sounds] - 6000000 Credite")
 	#endif
 	menu_additem(Menu,itemText,"",0)
 	format(itemText,127,"Mistery Box [0-75k credite] - %d Credite",8000)
