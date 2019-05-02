@@ -561,7 +561,7 @@ public SaveInventar(id)
 	x += 1
     for(new i = 0; i < SoundNR; i++)
 	{
-		format(sData,127,"%s:%d",SoundNames[i], SkinID[id][i])
+		format(sData,127,"%s:%d",SoundNames[i], SoundID[id][i])
 		write_file(path,sData, x + i)
 		y = x + i
 	}
