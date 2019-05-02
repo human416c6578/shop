@@ -153,6 +153,9 @@ new TrailP[33] = 0
 new ClanID[33] = 0
 new gPathClan[32] = "addons/amxmodx/DRSHOP/clan/"
 new CreateClan[33] = 0
+new ClanLeader[33] = 0
+// BETA TESTER
+new bTester[33] = 0
 // Custom Include
 #include "drshop/inventar.inl"
 #include "drshop/knife.inl"
@@ -191,6 +194,7 @@ public plugin_init() {
 	register_clcmd("say /clanhelp","CmdClanHelp")
 	register_clcmd("say /clancreatehelp","CmdClanCreateHelp")
 	register_clcmd("say /cch","CmdClanCreateHelp")
+	
 	// EVENT 
 	register_event("DeathMsg", "KillEvent", "a")
 	RegisterHam(Ham_Spawn, "player", "SpawnEvent", 1)  
@@ -260,6 +264,9 @@ public client_disconnect(id)
 	log_to_file("SHOP/LogSave.txt","Am salvat %d credite pentru %s [%s]", Credite[id], Name, ip)
 	CreateClan[id] = 0
 	ClanID[id] = 0
+	ClanLeader[id] = 0
+	Invited[id] = -1
+	bTester[id] = 0
 	removetasks(id)
 	remove_task(id)
 	if(TransferCool[id] > 0)
@@ -352,7 +359,7 @@ public client_putinserver(id)
 	set_task(62.0, "TransferTask", id + TASKID)
 	new ip[33]
 	get_user_ip(id,ip,32,1)
-	
+	CheckIfLeader(id)
 	log_to_file("SHOP/LogLoad.txt","Am incarcat %d credite pentru %s [%s]", Credite[id], Name, ip)
 	for(new i = 0; i < 32; i++)
 	{
@@ -739,18 +746,18 @@ public ShowCredite(id)
 }
 public Shop(id)
 {
-	if(gLoggedin[id] == 0 && !is_user_admin(id))
+	if(gLoggedin[id] == 0)
 	{
 		chat_color(id,"!y[!gDR!y]!g Nu esti logat sau inregistrat!")
 		return PLUGIN_HANDLED
 	}
-	#if defined DEBUGSHOP
-		if(!is_user_admin(id)) 
-		{
+	if(bTester[id] == 0)
+	{
+		#if defined DEBUGSHOP
 			chat_color(id,"!y[!gSHOP!y]!team Shop-ul !geste in mentenanta momentan. Intreaba un owner pentru a afla motivele.")
 			return PLUGIN_HANDLED
-		}
-	#endif
+		#endif
+	}
 	new title[128]
 	format(title,127,"DR LLG SHOP [%d CREDITS]",Credite[id])
 	new Menu = menu_create(title,"SMenu")
@@ -761,11 +768,7 @@ public Shop(id)
 		format(itemText,127,"Clan [X Locuri] - 5000000")
 	#endif
 	menu_additem(Menu,itemText,"",0)
-	#if defined TestBB
-		format(itemText,127,"Big Box [Skins / Sounds] - Gratis")
-	#else
-		format(itemText,127,"Big Box [Skins / Sounds] - 300000 Credite")
-	#endif
+	format(itemText,127,"Big Box [Skins / Sounds] - 300000 Credite")
 	menu_additem(Menu,itemText,"",0)
 	format(itemText,127,"Mistery Box [0-75k credite] - %d Credite",8000)
 	menu_additem(Menu,itemText,"",0)
@@ -800,7 +803,9 @@ public SMenu(id, Menu, item)
 	{
 		case 0:
 		{
-			#if defined ClanDEBUG
+			if(bTester[id] == 0)
+			{
+				#if defined ClanDEBUG
 				chat_color(id,"!y[!gDR!y]!g Felicitari, ai cumparat un clan cu succes!")
 				chat_color(id,"!y[!gCLAN!y]!g Scrie !team/clancreatehelp !gsau !team/cch !gpentru informatii privind crearea clanului!")
 				chat_color(id,"!y[!gDR!y]!g Sistemul de Clanuri este in lucru!")
@@ -812,14 +817,23 @@ public SMenu(id, Menu, item)
 				console_print(id,">>> 4. Mai multe chestii vor urma!")
 				console_print(id,"========== CLAN SYSTEM ==========")
 				return PLUGIN_CONTINUE
-			#endif
+				#endif
+			}
 			if(Credite[id] >= 5000000)
 			{
+				if(strcmp(ClanID[id],"") != 0)
+				{
+					chat_color(id,"!y[!gDR!y]!g Deja apartii unui !teamclan!")
+					return PLUGIN_HANDLED
+				}
 				Credite[id] -= 5000000
 				chat_color(id,"!y[!gDR!y]!g Felicitari, ai cumparat un clan cu succes!")
 				chat_color(id,"!y[!gCLAN!y]!g Scrie !team/clancreatehelp !gsau !team/cch !gpentru informatii privind crearea clanului!")
 				chat_color(0,"!y[!gDR!y]!g %s a cumparat un !teamclan!", Name)
 				CreateClan[id] = 1
+				new path[128]
+    			format(path,127,"%s%s.txt",gPathMaster,Name)
+				write_file(path,"CREATEC:1",6)
 			}
 			else
 			{
@@ -830,11 +844,14 @@ public SMenu(id, Menu, item)
 		{
 			if(Credite[id] >= 300000)
 			{
-				#if defined TestBB
-				chat_color(id,"!y[!gSHOP!y]!g Ai posibilitatea de a incerca !team'BIG BOX'!")
-				#else
-					Credite[id] -= 300000 / get_pcvar_num(reducerex)
-				#endif
+				if(bTester[id] == 0)
+				{	
+					#if defined TestBB
+						chat_color(id,"!y[!gSHOP!y] !teamBigBox este in lucru!")
+						return PLUGIN_HANDLED
+					#endif
+				}
+				Credite[id] -= 300000 / get_pcvar_num(reducerex)
 				new nr1 = random_num(0,100)
 				if(nr1 >= 0 && nr1 <= 50)
 				{
@@ -842,21 +859,13 @@ public SMenu(id, Menu, item)
 					if(SoundID[id][nr2] == 1)
 					{
 						chat_color(id,"!y[!gDR!y]!g Ai deja acest sunet, vei primii creditele inapoi!")
-						#if defined TestBB
-							chat_color(id,"!y[!gDR!y]!g Dar, din pacate, aceasta este doar versiunea de test.!")
-						#else
-							Credite[id] += 600000
-						#endif
+						Credite[id] += 600000
 					}
 					else
 					{
 						chat_color(id,"!y[!gBIG BOX!y]!g Ai castigat sunetul: !team%s !gFELICITARI!",SoundNames[nr2])
-						#if defined TestBB
-							chat_color(id,"!y[!gDR!y]!g Dar din pacate este versiunea de testare!")
-						#else
-							chat_color(0,"!y[!gBIG BOX!y]!g Jucatorul !team%s !ga castigat Sunetul: !team%s !g!",Name,SoundNames[nr2])
-							SoundID[id][nr2] = 1
-						#endif
+						chat_color(0,"!y[!gBIG BOX!y]!g Jucatorul !team%s !ga castigat Sunetul: !team%s !g!",Name,SoundNames[nr2])
+						SoundID[id][nr2] = 1
 					}
 				}
 				else if(nr1 >= 46 && nr1 <= 100)
@@ -865,21 +874,13 @@ public SMenu(id, Menu, item)
 					if(SkinID[id][nr2] == 1)
 					{
 						chat_color(id,"!y[!gDR!y]!g Ai deja acest skin, vei primii creditele inapoi!")
-						#if defined TestBB
-							chat_color(id,"!y[!gDR!y]!g Dar, din pacate, aceasta este doar versiunea de test.!")
-						#else
-							Credite[id] += 600000
-						#endif
+						Credite[id] += 600000
 					}
 					else
 					{
 						chat_color(id,"!y[!gBIG BOX!y]!g Ai castigat skin-ul: !team%s !gFELICITARI!",SkinNames[nr2])
-						#if defined TestBB
-							chat_color(id,"!y[!gDR!y]!g Dar din pacate este versiunea de testare!")
-						#else
-							chat_color(0,"!y[!gBIG BOX!y]!g Jucatorul !team%s !ga castigat SKIN-UL: !team%s !g!",Name,SkinNames[nr2])
-							SkinID[id][nr2] = 1
-						#endif
+						chat_color(0,"!y[!gBIG BOX!y]!g Jucatorul !team%s !ga castigat SKIN-UL: !team%s !g!",Name,SkinNames[nr2])
+						SkinID[id][nr2] = 1
 					}
 				}
 			}
@@ -1171,10 +1172,13 @@ public CmdTransfer(id,Tinta,Credits)
 		chat_color(id,"!y[!gDR!y]!g Nu esti logat sau inregistrat!")
 		return PLUGIN_HANDLED
 	}
-	#if defined ST 
-		chat_color(id,"!y[!gDR!y]!g Sistemul de !teamtransfer !geste in !teammentenanta!g!")
-		return PLUGIN_HANDLED
-	#endif
+	if(bTester[id] == 0)
+	{
+		#if defined ST 
+			chat_color(id,"!y[!gDR!y]!g Sistemul de !teamtransfer !geste in !teammentenanta!g!")
+			return PLUGIN_HANDLED
+		#endif
+	}
 	if(TransferAllow[id] == 0)
 	{
 		chat_color(id,"!y[!gCREDITE!y]!g Nu poti sa transferi inca credite!")
@@ -1545,11 +1549,9 @@ public TalkEvent(id)
 		}
 		new Creditex = str_to_num(Arg1)
 		#if defined SBDEBUG
-			new name[33]
-			get_user_name(id,name,charsmax(name))
-			if(strcmp(name,"ATudor",1) != 0)
+			if(bTester[id] = 0)
 			{
-				chat_color(id,"!y[!gDR!y]!g Acest sistem este in lucru. Doar !teamATudor !gare acces!")
+				chat_color(id,"!y[!gDR!y]!g Acest sistem este in mentenanta!")
 				return PLUGIN_HANDLED
 			}
 		#endif
@@ -1702,6 +1704,45 @@ public TalkEvent(id)
 			chat_color(id,"!y[!gDR!y]!g Ti-ai dezactivat sunetul cu succes!")
 		}
 	}
+	else if(strcmp(Arg0,"/createclan",1) == 0)
+	{
+		if(gLoggedin[id] == 0)
+		{
+			chat_color(id,"!y[!gDR!y]!g Nu esti logat sau inregistrat!")
+			return PLUGIN_HANDLED
+		}
+		remove_quotes(Arg1)
+		trim(Arg1)
+		if(!Arg1[0])
+		{
+			chat_color(id, "!y[!gCLAN!y]!g Nume invalid!")
+			return PLUGIN_HANDLED
+		}
+		CmdClanCreate(id,Arg1)
+	}
+	else if(strcmp(Arg0,"/inviteclan",1) == 0)
+	{
+		if(gLoggedin[id] == 0)
+		{
+			chat_color(id,"!y[!gDR!y]!g Nu esti logat sau inregistrat!")
+			return PLUGIN_HANDLED
+		}
+		remove_quotes(Arg1)
+		trim(Arg1)
+		if(!Arg1[0])
+		{
+			chat_color(id,"!y[!gCLAN!y]!g Nume invalid!")
+			return PLUGIN_HANDLED
+		}
+		new tinta = cmd_target(id,Arg1,CMDTARGET_NO_BOTS)
+		if(!tinta)
+		{
+			chat_color(id,"!y[!gCLAN!y]!g Jucator invalid!")
+			return PLUGIN_HANDLED
+		}
+		ClanInvite(id,tinta)
+	}
+	//register_clcmd("say /createclan","CmdClanCreate")
 	return PLUGIN_CONTINUE
 }
 public SBMenu(id, Menu, item)

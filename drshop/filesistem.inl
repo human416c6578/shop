@@ -65,6 +65,7 @@ public LoadData(id){
       write_file(path,"PAROLA:",4)
       write_file(path,"CLANID:",5)
       write_file(path,"CREATEC:",6)
+      write_file(path,"BTESTER:",7)
       SetKnife(id,3)
     }
     new f = fopen(path,"r")
@@ -112,6 +113,11 @@ public LoadData(id){
         {
             replace_all(szLine,127,"CREATEC:","")
             CreateClan[id] = str_to_num(szLine)
+        }
+        else if(contain(szLine,"BTESTER:") >-1)
+        {
+            replace_all(szLine,127,"BTESTER:","")
+            bTester[id] = str_to_num(szLine)
         }
     }
     if(Credite[id] == 0)
