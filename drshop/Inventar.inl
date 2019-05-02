@@ -389,7 +389,102 @@ public PlaySound(ToID,FromID)
 }
 public LoadInventar(id)
 {
-	new vaultkey[128], vaultdata[128]
+	if(is_user_bot(id))
+    {
+        return PLUGIN_HANDLED
+    }
+	new Name[33], x
+    get_user_name(id,Name,charsmax(Name))
+    new path[128], sData[127]
+    format(path,127,"%s%s.txt",gPathInventar,Name)
+    if(!file_exists(path))
+    {
+		for(new i = 0; i < SkinNR; i++)
+		{
+			SkinID[id][i] = 0
+			x = i
+			format(sData,127,"%s:0",SkinNamesID[i])
+			write_file(path,sData,i)
+		}
+		x+=1
+		for(new i = 0; i < SoundNR; i++)
+		{
+			SoundID[id][i] = 0
+			format(sData,127,"%s:0",SoundNamesID[i])
+			write_file(path,sData,x + i)
+		}
+	}
+	new f = fopen(path,"r")
+    new szLine[128]
+    while(!feof(f))
+	{
+		fgets(f,szLine,charsmax(szLine))
+		for(new i = 0; i < SkinNR; i++)
+		{
+			new data[128]
+			format(data,127,"%s:",SkinNamesID[i])
+			if(contain(szLine,data) >-1)
+			{
+				replace_all(szLine, 127,data,"")
+				SkinID[id][i] = str_to_num(szLine)
+			}
+		}
+		for(new i = 0; i < SoundNR; i++)
+		{
+			new data[128]
+			format(data,127,"%s:",SoundNames[i])
+			if(contain(szLine,data) >-1)
+			{
+				replace_all(szLine, 127,data,"")
+				SoundID[id][i] = str_to_num(szLine)
+			}
+		}
+		if(contain(szLine,"SKIN:") >-1 )
+		{
+			replace_all(szLine,127,"SKIN:","")
+			if(strcmp(szLine,"") != 0)
+			{
+				cs_reset_user_model(id)
+				cs_set_user_model(id,szLine)
+				format(ModelID[id],31,szLine)
+				HasModel[id] = 1
+				for(new i = 0; i < SkinNR; i++)
+				{
+					if(strcmp(szLine,SkinNamesID[i]) == 0)
+					{
+						SkinUsed[id] = i
+					}
+				}
+			}
+		}
+		else if(contain(szLine,"SOUND:") >-1)
+		{
+			replace_all(szLine,127,"SOUND:","")
+			if(strcmp(szLine,"") != 0)
+			{
+				HasSound[id] = 1
+				format(HSoundID[id],31,"%s",szLine)
+				for(new i = 0; i < SkinNR; i++)
+				{
+					if(strcmp(szLine,SoundNamesID[i]) == 0)
+					{
+						SoundUsed[id] = i
+					}
+				}
+			}
+		}
+	}
+	/*if(contain(SoundNamesID[item],".mp3") >= 0)
+		{
+			new newString[128]
+			format(newString,127,"sound/%s",SoundNamesID[item])
+			client_cmd(id,"mp3 play ^"%s^"",newString)
+		}
+		else
+		{
+			client_cmd( id, "spk ^"%s^"", SoundNamesID[item] );
+		}*/
+	/*new vaultkey[128], vaultdata[128]
 	new Name[33]
 	get_user_name(id, Name,charsmax(Name))
 	for(new i = 0; i <SkinNR; i++)
@@ -443,31 +538,37 @@ public LoadInventar(id)
 			}
 		}
 	}
-
+*/
 	return PLUGIN_HANDLED
 }
 public SaveInventar(id)
 {
-	
-	new vaultkey[128], vaultdata[128]
-	new Name[33]
-	get_user_name(id, Name,charsmax(Name))
+	 if(is_user_bot(id))
+    {
+        return PLUGIN_HANDLED
+    }
+	new Name[33], x,y
+    get_user_name(id,Name,charsmax(Name))
+    new path[128]
+    format(path,127,"%s%s.txt",gPathInventar,Name)
+    new sData[128]
 	for(new i = 0; i < SkinNR; i++)
 	{
-		format(vaultkey,127,"^"%sskinid%d^"",Name,i)
-		format(vaultdata,127,"%d",SkinID[id][i])
-		nvault_set(IVault,vaultkey,vaultdata)
+		format(sData,127,"%s:%d",SkinNamesID[i], SkinID[id][i])
+		write_file(path,sData,i)
+		x = i
 	}
-	for(new i = 0; i < SoundNR; i++)
+	x += 1
+    for(new i = 0; i < SoundNR; i++)
 	{
-		format(vaultkey,127,"^"%ssoundid%d^"",Name,i)
-		format(vaultdata,127,"%d",SoundID[id][i])
-		nvault_set(IVault,vaultkey,vaultdata)
+		format(sData,127,"%s:%d",SoundNames[i], SkinID[id][i])
+		write_file(path,sData, x + i)
+		y = x + i
 	}
-	format(vaultkey,127,"^"skin%s^"",Name)
-	format(vaultdata,127,"%s",ModelID[id])
-	nvault_set(IVault,vaultkey,vaultdata)
-	format(vaultkey,127,"^"sound%s^"",Name)
-	format(vaultdata,127,"%s",HSoundID[id])
-
+	y+=1
+	format(sData,127,"SKIN:%s",ModelID[id])
+	write_file(path,sData,y)
+	format(sData,127,"SOUND:%s",HSoundID[id])
+	write_file(path,sData,y+1)
+    return PLUGIN_HANDLED
 }

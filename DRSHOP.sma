@@ -9,13 +9,13 @@
 #include <dhudmessage>
 
 //#include "drshop/db.inl"
-
+new gPathInventar[32] = "addons/amxmodx/DRSHOP/inventar/"
 #pragma tabsize 0
 
-#define PLUGIN "LLG SHOP SYSTEM"
-#define VERSION "Final 1.0"
+#define PLUGIN "DEATHRUN MIX SYSTEM"
+#define VERSION "1.1"
 #define AUTHOR "ATudor | MrShark45"
-#define TASKID        	1000
+#define TASKID      1000
 #define TASKID2		2000
 #define TASKID3		3000
 #define TASKID4		4000
@@ -23,6 +23,7 @@
 #define TASKID6		6000
 #define TASKID7		7000
 #define TASKID8		8000
+#define TASKID9		9000
 #define ACCES_FLAG  ADMIN_RESERVATION
 #define MAXPLAYERS 32
 #define TASK_INTERVAL 4.0
@@ -33,9 +34,10 @@
 #define NRSW	7
 //#define UpdateInViitor
 //#define DEBUGSHOP "SHOP"
-#define ST
+//#define ST
 //#define TestBB
 //#define SBDEBUG
+#define ClanDEBUG
 
 // Mesaje
 new CurrentMSG = 0
@@ -144,11 +146,20 @@ new g_Menu
 new CVAR_HEALTH_ADD
 new CVAR_HEALTH_MAX
 new CVAR_DAMAGE 
+// TRAIL
+new AllowTrail[33] = 0
+new TrailP[33] = 0
+// CLAN
+new ClanID[33] = 0
+new gPathClan[32] = "addons/amxmodx/DRSHOP/clan/"
+new CreateClan[33] = 0
 // Custom Include
 #include "drshop/inventar.inl"
 #include "drshop/knife.inl"
 #include "drshop/autentificare.inl"
 #include "drshop/filesistem.inl"
+#include "drshop/trail.inl"
+#include "drshop/clan.inl"
 public plugin_init() {
 	register_plugin(PLUGIN, VERSION, AUTHOR)
 	// DB
@@ -159,6 +170,13 @@ public plugin_init() {
 	register_concmd("amx_allcool","CmdCool")
 	register_concmd("aminventarma","CmdAInventar")
 	register_concmd("amx_delete_inventar","CmdDeleteInventar",ADMIN_LEVEL_G,"-Stergi inventarul cuiva")
+	register_concmd("amx_trail","cmdTrail", ACCESS_LEVEL,  "- ['on'|'off'|'1'|'0'] : enable/disable trails.")
+	register_concmd("amx_trail_user","cmdUserTrail", ACCESS_LEVEL,  "- <name or #userid> <colorname | 'random' | 'off'> : set user trail.")
+	register_concmd("amx_trail_type", "cmdTrailType", ACCESS_LEVEL, "- <type> : set trail type for all players.")
+	register_concmd("amx_trail_life","cmdTrailLife", ACCESS_LEVEL,  "- [duration] : get/set trail duration, in seconds.")
+	register_concmd("amx_trail_size","cmdTrailSize", ACCESS_LEVEL,  "- [size] : get/set trail size.")
+	register_concmd("amx_trail_brightness","cmdTrailBrightness", ACCESS_LEVEL,  "- [brightness] : get/set trail brightness.")
+	register_concmd("amx_trail_reload", "cmdReload", ACCESS_LEVEL, ": reload colors configuration file.")
 	// USER CMD
 	register_clcmd("say /credits", "ShowCredite")
 	register_clcmd("say /drshop", "Shop")
@@ -170,6 +188,9 @@ public plugin_init() {
 	register_clcmd("say /sound","CmdSetSound")
 	register_clcmd("say","TalkEvent")
 	register_clcmd("say /glow","CmdGlow")
+	register_clcmd("say /clanhelp","CmdClanHelp")
+	register_clcmd("say /clancreatehelp","CmdClanCreateHelp")
+	register_clcmd("say /cch","CmdClanCreateHelp")
 	// EVENT 
 	register_event("DeathMsg", "KillEvent", "a")
 	RegisterHam(Ham_Spawn, "player", "SpawnEvent", 1)  
@@ -197,6 +218,13 @@ public plugin_init() {
 	CVAR_HEALTH_MAX = register_cvar("km_maxhealth", "75")
 	CVAR_DAMAGE = register_cvar("km_damage", "2")
 	set_task(480.0, "kmodmsg", 0, _, _, "b")
+	// TRAIL
+	gl_parsed = gl_trail = parse_file()
+	if (!gl_sprite[0]) {
+		gl_trail = false
+	} 
+	gl_trail_life = DEF_TRAIL_LIFE
+	gl_timer_limit = floatround(float(gl_trail_life)/TICK)
 }
 public client_disconnect(id)
 {
@@ -227,7 +255,11 @@ public client_disconnect(id)
 	get_user_name(id, Name, 32)
 	SaveData(id)
 	SaveInventar(id)
+	AllowTrail[id] = 0
+	TrailP[id] = 0
 	log_to_file("SHOP/LogSave.txt","Am salvat %d credite pentru %s [%s]", Credite[id], Name, ip)
+	CreateClan[id] = 0
+	ClanID[id] = 0
 	removetasks(id)
 	remove_task(id)
 	if(TransferCool[id] > 0)
@@ -272,7 +304,10 @@ public client_disconnect(id)
 	MBPlayed[id] = 0
 	TransferAllow[id] = 0
 	TransferCool[id] = 0
-	
+	// TRAIL
+	if (task_exists(TASKID9+id)) remove_task(TASKID9+id)
+		gl_player_colors[id][0] = gl_player_colors[id][1] = gl_player_colors[id][2] = 0
+
 	return PLUGIN_CONTINUE
 }
 public plugin_end()
@@ -292,6 +327,14 @@ public plugin_end()
 		
 	}
 	nvault_close(IVault)
+}
+public client_connect(id)
+{
+	if(is_user_admin(id))
+	{
+		AllowTrail[id] = 1;
+		TrailP[id] = 1;
+	}
 }
 public client_putinserver(id)
 {
@@ -330,7 +373,10 @@ public client_putinserver(id)
 			SBPlayed[id] = SBDisconnectPlayed[i]
 		}
 	}
-	
+	// TRAIL
+	gl_trail_type[id] = gl_sprite[0]
+	gl_trail_size[id] = gl_def_sprite_size[0]
+	gl_trail_brightness[id] = gl_def_sprite_brightness[0]
 	return PLUGIN_CONTINUE
 }
 public plugin_precache() { 
@@ -366,6 +412,15 @@ public plugin_precache() {
 	for(new i = 0; i < SoundNR; i++)
 	{
 		precache_sound(SoundNamesID[i])
+	}
+	// trail
+	if (check_map()) {
+		gl_not_this_map = true
+		return
+	}
+
+	for (new i=0; i<NUM_SPRITES; i++) {
+		gl_sprite[i] = precache_model(gl_sprite_name[i])
 	}
 } 
 public SpawnEvent(id)
@@ -700,10 +755,16 @@ public Shop(id)
 	format(title,127,"DR LLG SHOP [%d CREDITS]",Credite[id])
 	new Menu = menu_create(title,"SMenu")
 	new itemText[128]
+	#if defined ClanDEBUG
+		format(itemText,127,"Clan [X Locuri] - In lucru")
+	#else
+		format(itemText,127,"Clan [X Locuri] - 5000000")
+	#endif
+	menu_additem(Menu,itemText,"",0)
 	#if defined TestBB
 		format(itemText,127,"Big Box [Skins / Sounds] - Gratis")
 	#else
-		format(itemText,127,"Big Box [Skins / Sounds] - 600000 Credite")
+		format(itemText,127,"Big Box [Skins / Sounds] - 300000 Credite")
 	#endif
 	menu_additem(Menu,itemText,"",0)
 	format(itemText,127,"Mistery Box [0-75k credite] - %d Credite",8000)
@@ -739,12 +800,40 @@ public SMenu(id, Menu, item)
 	{
 		case 0:
 		{
-			if(Credite[id] >= 600000)
+			#if defined ClanDEBUG
+				chat_color(id,"!y[!gDR!y]!g Felicitari, ai cumparat un clan cu succes!")
+				chat_color(id,"!y[!gCLAN!y]!g Scrie !team/clancreatehelp !gsau !team/cch !gpentru informatii privind crearea clanului!")
+				chat_color(id,"!y[!gDR!y]!g Sistemul de Clanuri este in lucru!")
+				chat_color(id,"!y[!gDR!y]!g Deschide consola pentru a vedea ce va contine!")
+				console_print(id,"========== CLAN SYSTEM ==========")
+				console_print(id,">>> 1. Un chat special (/c)")
+				console_print(id,">>> 2. War-uri pentru diferite harti")
+				console_print(id,">>> 3. Seif cu credite")
+				console_print(id,">>> 4. Mai multe chestii vor urma!")
+				console_print(id,"========== CLAN SYSTEM ==========")
+				return PLUGIN_CONTINUE
+			#endif
+			if(Credite[id] >= 5000000)
+			{
+				Credite[id] -= 5000000
+				chat_color(id,"!y[!gDR!y]!g Felicitari, ai cumparat un clan cu succes!")
+				chat_color(id,"!y[!gCLAN!y]!g Scrie !team/clancreatehelp !gsau !team/cch !gpentru informatii privind crearea clanului!")
+				chat_color(0,"!y[!gDR!y]!g %s a cumparat un !teamclan!", Name)
+				CreateClan[id] = 1
+			}
+			else
+			{
+				chat_color(id,"!y[!gDR!y]!g Nu ai destule !teamcredite!g!")
+			}
+		}
+		case 1:
+		{
+			if(Credite[id] >= 300000)
 			{
 				#if defined TestBB
 				chat_color(id,"!y[!gSHOP!y]!g Ai posibilitatea de a incerca !team'BIG BOX'!")
 				#else
-					Credite[id] -= 600000 / get_pcvar_num(reducerex)
+					Credite[id] -= 300000 / get_pcvar_num(reducerex)
 				#endif
 				new nr1 = random_num(0,100)
 				if(nr1 >= 0 && nr1 <= 50)
@@ -800,7 +889,7 @@ public SMenu(id, Menu, item)
 			}
 			
 		}
-		case 1:
+		case 2:
 		{
 			if(Credite[id] >= 8000)
 			{
@@ -868,7 +957,7 @@ public SMenu(id, Menu, item)
 				chat_color(id,"!y[!gDR!y]!g Nu ai destule !teamcredite!g!")
 			}
 		}
-		case 2:
+		case 3:
 		{
 			if(Credite[id] >= 4000 / get_pcvar_num(reducerex))
 			{
@@ -889,7 +978,7 @@ public SMenu(id, Menu, item)
 				chat_color(id,"!y[!gDR!y]!g Nu ai destule !teamcredite!g!")
 			}	
 		}
-		case 3:
+		case 4:
 		{
 			if(Credite[id] >= 10000 / get_pcvar_num(reducerex))
 			{
@@ -915,7 +1004,7 @@ public SMenu(id, Menu, item)
 				chat_color(id,"!y[!gDR!y]!g Nu ai destule !teamcredite!g!")
 			}
 		}
-		case 4:
+		case 5:
 		{
 			if(Credite[id] >= 20000 / get_pcvar_num(reducerex))
 			{
@@ -936,7 +1025,7 @@ public SMenu(id, Menu, item)
 				chat_color(id,"!y[!gDR!y]!g Nu ai destule !teamcredite!g!")
 			}
 		}
-		case 5:
+		case 6:
 		{
 			if(Credite[id] >= 50000 / get_pcvar_num(reducerex))
 			{
@@ -949,7 +1038,7 @@ public SMenu(id, Menu, item)
 				chat_color(id,"!y[!gDR!y]!g Nu ai destule !teamcredite!g!")
 			}	
 		}
-		case 6:
+		case 7:
 		{
 			if(Credite[id] >= 50000 / get_pcvar_num(reducerex))
 			{
@@ -969,7 +1058,7 @@ public SMenu(id, Menu, item)
 				chat_color(id,"!y[!gDR!y]!g Nu ai destule !teamcredite!g!")
 			}
 		}
-		case 7:
+		case 8:
 		{
 			
 			if(Credite[id] >= 70000 / get_pcvar_num(reducerex))
@@ -992,7 +1081,7 @@ public SMenu(id, Menu, item)
 				chat_color(id,"!y[!gDR!y]!g Nu ai destule !teamcredite!g!")
 			}
 		}
-		case 8:
+		case 9:
 		{
 			if(Credite[id] >= 100000 / get_pcvar_num(reducerex))
 			{
@@ -1012,7 +1101,7 @@ public SMenu(id, Menu, item)
 		}
 		
 		
-		case 9:
+		case 10:
 		{
 			if(Credite[id] >= 100000 / get_pcvar_num(reducerex))
 			{
@@ -1022,9 +1111,8 @@ public SMenu(id, Menu, item)
 				format(vaultKey, 63, "%s", Name)
 				chat_color(0,"!y[!gDR!y]!g Jucatorul !team%s !gsi-a cumparat !teamTrail Permanent!", Name)
 				chat_color(id,"!y[!gSHOP!y]!g Reintra pe server pentru a-ti putea activa trail-ul!")
-				new path[128]
-				format(path,127,"addons/amxmodx/DRSHOP/%s.txt",Name)
-				write_file(path,"TRAIL:1",4)
+				AllowTrail[id] = 1
+				TrailP[id] = 1
 				log_to_file(SVFile,"%s si-a cumparat Trail", Name)
 			}
 			else
@@ -1032,7 +1120,7 @@ public SMenu(id, Menu, item)
 				chat_color(id,"!y[!gDR!y]!g Nu ai destule !teamcredite!g!")
 			}
 		}
-		case 10:
+		case 11:
 		{
 			if(Credite[id] >= 500000 / get_pcvar_num(reducerex))
 			{
@@ -1254,14 +1342,117 @@ public GlowMenuChoice(id,GlowMenu,key)
 
 public TalkEvent(id)
 {
-	new msg[256]
+	new msg[256], typenum
+	new Name2[34], arg2[34],arg3[34]
 	read_args(msg,charsmax(msg))
 	remove_quotes(msg)
 	new Arg0[15], Arg1[65],Arg2[33], Arg3[33]
 	parse(msg,Arg0,14,Arg1,32,Arg2,32,Arg3,32)
 	new Name[33]
 	get_user_name(id,Name,charsmax(Name))
-	if(strcmp(Arg0,"/gamble",1) == 0)
+	if (equali(msg, "trail", 5)) {
+		if(AllowTrail[id] == 1 || TrailP[id] == 1 || is_user_admin(id)){
+		if (!gl_trail) {
+			client_print(id, print_chat, "Trails have been disabled.")
+			return PLUGIN_HANDLED
+		}
+		if (gl_not_this_map) {
+			client_print(id, print_chat, "Trails have been disabled for this map.")
+			return PLUGIN_HANDLED
+		}
+
+		
+		if (!get_user_team(id) && !access(id, ADMIN_ADMIN)) {
+			client_print(id, print_chat, "You must be playing!")
+			return PLUGIN_HANDLED
+		}
+		
+		if (!msg[5]) {
+			do_trail(id, "", "")
+			return PLUGIN_HANDLED
+		} else {
+			
+			parse(msg[6], Name2, 33, arg2, 33, arg3, 33)
+//			console_print(id, "restline = '%s'", restline)
+			typenum = str_to_num(Name2)
+
+		}
+		
+		if (equali(Name2, "off")) {
+			if (!gl_player_colors[id][0] && !gl_player_colors[id][1] && !gl_player_colors[id][2]) {
+				client_print(id, print_chat, "Your trail is already off!")
+				return PLUGIN_HANDLED
+			}
+			kill_trail_task(id)
+			client_print(id, print_chat, "Your trail was removed.")
+			format(msg, 199, "%s's trail was removed.", Name)
+			say_to_all(msg, id)
+			return PLUGIN_HANDLED
+		} else if (equali(Name2, "random")) {
+			do_trail(id, "", "")
+			return PLUGIN_HANDLED
+		} else if (equali(Name2, "help")) {
+			trail_help(id)
+			return PLUGIN_HANDLED
+		}
+		
+		if (typenum) {
+			if (typenum<1 || typenum>NUM_SPRITES) {
+				client_print(id, print_chat, "Type must be in the range [1,%d].", NUM_SPRITES)
+				return PLUGIN_HANDLED
+			}
+			typenum--
+			gl_trail_type[id] = gl_sprite[typenum]
+			gl_trail_size[id] = gl_def_sprite_size[typenum]
+			gl_trail_brightness[id] = gl_def_sprite_brightness[typenum]
+			if (arg2[0]) {
+				Name2 = arg2
+				arg2 = arg3
+			} else {
+				if (!gl_player_colors[id][0] && !gl_player_colors[id][1] && !gl_player_colors[id][2]) {
+					do_trail(id, "", "")
+					return PLUGIN_HANDLED
+				}
+				new r = gl_player_colors[id][0]
+				new g = gl_player_colors[id][1]
+				new b = gl_player_colors[id][2]
+				kill_trail_task(id)
+				gl_player_colors[id][0] = r
+				gl_player_colors[id][1] = g
+				gl_player_colors[id][2] = b
+				get_user_origin(id, gl_player_position[id])
+				set_task(TICK, "check_position", TASKID9+id, "", 0, "b")
+				trail_msg(id)
+				client_print(id, print_chat, "You have a trail of type %d.", typenum+1)
+				format(msg, 199, "%s has a type %d trail.", Name, typenum+1)
+				say_to_all(msg, id)
+				return PLUGIN_HANDLED
+			}
+		}
+		
+		if (equali(Name2, "dark")) {
+			copy(Name2, MAX_NAME_LENGTH-1, arg2)
+			if (!Name2[0]) {
+				client_print(id, print_chat, "Specify a color name!")
+				return PLUGIN_HANDLED
+			}
+			do_trail(id, Name2, "dark")
+		} else if (equali(Name2, "light")) {
+			copy(Name2, MAX_NAME_LENGTH-1, arg2)
+			if (!Name2[0]) {
+				client_print(id, print_chat, "Specify a color name!")
+				return PLUGIN_HANDLED
+			}
+			do_trail(id, Name2, "light")
+		} 
+		else {
+			do_trail(id, Name2, "")
+		}
+		}
+		else
+		client_print( id, print_chat, "[Trail] Nu ai acces la aceasta comanda!" );
+	}
+	else if(strcmp(Arg0,"/gamble",1) == 0)
 	{
 		if(gLoggedin[id] == 0)
 		{

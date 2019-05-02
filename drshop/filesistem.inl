@@ -4,6 +4,7 @@
 
 // PATHS
 new gPathMaster[32] = "addons/amxmodx/DRSHOP/"
+
 // Check File
 public CheckFiles()
 {
@@ -11,6 +12,14 @@ public CheckFiles()
     if(!dir_exists(gPathMaster))
     {
         mkdir(gPathMaster)
+    }
+    if(!dir_exists(gPathInventar))
+    {
+        mkdir(gPathInventar)
+    }
+    if(!dir_exists(gPathClan))
+    {
+        mkdir(gPathClan)
     }
 }
 // Save credite / Load credite
@@ -28,6 +37,11 @@ public SaveData(id){
     write_file(path,sData,0)
     format(sData,127,"KNIFECURENT:%d",knife_model[id])
     write_file(path,sData,1)
+    if(AllowTrail[id] == 1 || TrailP[id] == 1)
+    {
+        format(sData,127,"TRAIL:1")
+        write_file(path,sData,3)
+    }
     return PLUGIN_HANDLED
 }
 public LoadData(id){
@@ -49,6 +63,8 @@ public LoadData(id){
       write_file(path,"CUMPARATKNIFE:0",2)
       write_file(path,"TRAIL:0",3)
       write_file(path,"PAROLA:",4)
+      write_file(path,"CLANID:",5)
+      write_file(path,"CREATEC:",6)
       SetKnife(id,3)
     }
     new f = fopen(path,"r")
@@ -80,10 +96,27 @@ public LoadData(id){
             format(gPassword[id],64,"%s",szLine)
             CheckPassword(id)
         }
+        else if(contain(szLine,"TRAIL:") >-1 )
+        {
+            replace_all(szLine,127,"TRAIL:","")
+            AllowTrail[id] = str_to_num(szLine)
+			TrailP[id] = str_to_num(szLine)
+			client_print(id,print_chat,"[FILESISTEM] Setarile pentru Trail au fost incarcate cu succes!")
+        }
+        else if(contain(szLine,"CLANID:") >-1)
+        {
+            replace_all(szLine,127,"CLANID:","")
+
+        }
+        else if(contain(szLine,"CREATEC:") >-1)
+        {
+            replace_all(szLine,127,"CREATEC:","")
+            CreateClan[id] = str_to_num(szLine)
+        }
     }
     if(Credite[id] == 0)
     {
-        Credite[id] = 5000
+        Credite[id] = 10000
     }
     fclose(f)
     return PLUGIN_HANDLED
