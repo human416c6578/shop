@@ -820,7 +820,7 @@ public SMenu(id, Menu, item)
 			}
 			if(Credite[id] >= 5000000)
 			{
-				if(strcmp(ClanID[id],"") != 0)
+				if(strlen(ClanID[id]) <= 1)
 				{
 					chat_color(id,"!y[!gDR!y]!g Deja apartii unui !teamclan!")
 					return PLUGIN_HANDLED
@@ -1712,9 +1712,9 @@ public TalkEvent(id)
 		}
 		remove_quotes(Arg1)
 		trim(Arg1)
-		if(!Arg1[0])
+		if(strlen(Arg1) <= 1)
 		{
-			chat_color(id, "!y[!gCLAN!y]!g Nume invalid!")
+			chat_color(id,"!y[!gDR!y]!g Nume clan invalid!")
 			return PLUGIN_HANDLED
 		}
 		CmdClanCreate(id,Arg1)
@@ -1752,10 +1752,15 @@ public TalkEvent(id)
 	}
 	else if(strcmp(Arg0,"/c",1) == 0)
 	{
-		if(strcmp(ClanID[id],"") != 0)
+		/*if(strlen(ClanID[id]) <= 1)
    		{
       		return PLUGIN_HANDLED
-    	}
+    	}*/
+		if(strlen(ClanID[id]) <= 1)
+		{
+			chat_color(id,"!y[!gCLAN!y]!g Nu apartii nici unui !teamCLAN!g!")
+			return PLUGIN_HANDLED
+		}
 		remove_quotes(msg)
 		replace(msg,255,"/c","")
 		new iPlayer[32], iNum
@@ -1767,9 +1772,38 @@ public TalkEvent(id)
 			format(sData2,63,"%s",ClanID[iPlayer[i]])
 			if(strcmp(sData,sData2) == 0)
 			{
-				chat_color(iPlayer[i],"!y[!g%s!y]!g %s!y:!g%s",ClanID[id],Name,msg)
+				if(ClanLeader[id] == 1)
+				{
+					chat_color(iPlayer[i],"!y[!gLEADER!y]!g %s!y:!g%s",Name,msg)
+				}
+				else
+				{
+					chat_color(iPlayer[i],"!y[!gMEMBER!y]!g %s!y:!g%s",Name,msg)
+				}
 			}
 		}
+	}
+	else if(strcmp(Arg0,"/removeclanplayer", 1) == 0)
+	{
+		if(gLoggedin[id] == 0)
+		{
+			chat_color(id,"!y[!gDR!y]!g Nu esti logat sau inregistrat!")
+			return PLUGIN_HANDLED
+		}
+		remove_quotes(Arg1)
+		trim(Arg1)
+		if(!Arg1[0])
+		{
+			chat_color(id,"!y[!gCLAN!y]!g Nume invalid!")
+			return PLUGIN_HANDLED
+		}
+		new tinta = cmd_target(id,Arg1,CMDTARGET_NO_BOTS)
+		if(!tinta)
+		{
+			chat_color(id,"!y[!gCLAN!y]!g Jucator invalid!")
+			return PLUGIN_HANDLED
+		}
+		CmdClanRemovePlayer(id,tinta)
 	}
 	return PLUGIN_CONTINUE
 }
