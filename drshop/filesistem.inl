@@ -55,7 +55,7 @@ public LoadData(id){
     format(path,127,"%s%s.txt",gPathMaster,Name)
     if(!file_exists(path))
     {
-      Credite[id] = 5000
+      Credite[id] = 10000
       knife_model[id] = 3
       allowKnife[id] = 0
       write_file(path,"CREDITE:5000",0)
@@ -66,6 +66,7 @@ public LoadData(id){
       write_file(path,"CLANID:",5)
       write_file(path,"CREATEC:",6)
       write_file(path,"BTESTER:",7)
+      write_file(path,"LEADER:",8)
       SetKnife(id,3)
     }
     new f = fopen(path,"r")
@@ -107,7 +108,7 @@ public LoadData(id){
         else if(contain(szLine,"CLANID:") >-1)
         {
             replace_all(szLine,127,"CLANID:","")
-
+            format(ClanID[id],63,"%s",szLine)
         }
         else if(contain(szLine,"CREATEC:") >-1)
         {
@@ -118,6 +119,11 @@ public LoadData(id){
         {
             replace_all(szLine,127,"BTESTER:","")
             bTester[id] = str_to_num(szLine)
+        }
+        else if(contain(szLine,"LEADER:") >-1)
+        {
+            replace_all(szLine,127,"LEADER:","")
+            ClanLeader[id] = str_to_num(szLine)
         }
     }
     if(Credite[id] == 0)

@@ -36,11 +36,34 @@ public CmdClanCreate(id, ClanName[65])
     format(sData,127,"CLANID:%s",ClanName)
     write_file(path,sData,5)
     write_file(path,"CREATEC:0",6)
+    write_file(path,"LEADER:1",8)
+    ClanLeader[id] = 1
+    return PLUGIN_HANDLED
+}
+public ClanDelete(id)
+{
+    if(ClanLeader[id] == 0)
+    {
+        chat_color(id,"!y[!gCLAN!y]!g Nu esti un lider de clan!")
+        return PLUGIN_HANDLED
+    }
+    chat_color(id,"!y[!gCLAN!y]!g Ai sters cu succes clanul !team%s!",ClanID[id])
+    new Name[33]
+    get_user_name(id,Name,32)
+    new path[256]
+    format(path,255,"%s%s.txt",gPathClan,ClanID[id])
+    delete_file(path)
+    ClanID[id] = ""
+    ClanLeader[id] = 0
+    format(path,255,"%s%s.txt",gPathMaster,Name)
+    write_file(path,"CLANID:",5)
+    write_file(path,"CREATEC:0",6)
+    write_file(path,"LEADER:0",8)
+    chat_color(0,"!y[!gCLAN!y]!g Jucatorul !team%s !gsi-a sters clanul unde era lider!", Name)
     return PLUGIN_HANDLED
 }
 public ClanInvite(id,invitedid)
 {
-    CheckIfLeader(id)
     if(ClanLeader[id] == 0)
     {
         chat_color(id,"!y[!gCLAN!y]!g Nu esti un lider!")
@@ -61,6 +84,10 @@ public ClanInvite(id,invitedid)
     menu_additem(IMenu,"Nu / NO","", 0)
     menu_setprop(IMenu, MPROP_EXIT, MEXIT_ALL );
 	menu_display(invitedid, IMenu, 0 ); 
+    return PLUGIN_HANDLED
+}
+public CmdClanRemovePlayer(id,idplayer)
+{
     return PLUGIN_HANDLED
 }
 // MENUS
@@ -115,36 +142,4 @@ public CmdClanCreateHelp(id)
     console_print(id,">>> 3. Inainte de a da ^"ENTER^" comenzii /createclan scrie numele clanului")
     console_print(id,">>> 4. Exemplu: /createclan TUDOR")
     console_print(id,"========== CLAN SYSTEM ==========")
-}
-
-// LOADING
-public CheckIfLeader(id)
-{
-    new Name[33]
-    get_user_name(id, Name, 32)
-    new path[256]
-    format(path,255,"%s%s.txt",gPathClan,ClanID[id])
-    log_to_file("CLANDEBUG.txt","Nume: %s || ClanID: %s",Name, ClanID[id])
-    if(file_exists(path) == 0)
-    {
-        ClanLeader[id] = 0
-    }
-    new f = fopen(path,"r")
-    new szLine[128]
-    while(!feof(f))
-    {
-        fgets(f,szLine,charsmax(szLine))
-        if(contain(szLine,"LEADER:") >-1)
-        {
-            replace_all(szLine,127,"LEADER:","")
-            trim(szLine)
-            remove_quotes(szLine)
-            if(strcmp(Name,szLine) == 0)
-            {
-                ClanLeader[id] = 1
-                chat_color(id,"!y[!gCLAN!y]!g Esti liderul clanului !team%s!g!",ClanID[id])
-            }
-        }
-    }
-    return PLUGIN_HANDLED
 }

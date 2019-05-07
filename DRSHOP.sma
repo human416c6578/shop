@@ -150,8 +150,8 @@ new CVAR_DAMAGE
 new AllowTrail[33] = 0
 new TrailP[33] = 0
 // CLAN
-new ClanID[33] = 0
-new gPathClan[32] = "addons/amxmodx/DRSHOP/clan/"
+new ClanID[33][64]
+new gPathClan[33] = "addons/amxmodx/DRSHOP/clan/"
 new CreateClan[33] = 0
 new ClanLeader[33] = 0
 // BETA TESTER
@@ -263,7 +263,7 @@ public client_disconnect(id)
 	TrailP[id] = 0
 	log_to_file("SHOP/LogSave.txt","Am salvat %d credite pentru %s [%s]", Credite[id], Name, ip)
 	CreateClan[id] = 0
-	ClanID[id] = 0
+	ClanID[id] = ""
 	ClanLeader[id] = 0
 	Invited[id] = -1
 	bTester[id] = 0
@@ -359,7 +359,6 @@ public client_putinserver(id)
 	set_task(62.0, "TransferTask", id + TASKID)
 	new ip[33]
 	get_user_ip(id,ip,32,1)
-	CheckIfLeader(id)
 	log_to_file("SHOP/LogLoad.txt","Am incarcat %d credite pentru %s [%s]", Credite[id], Name, ip)
 	for(new i = 0; i < 32; i++)
 	{
@@ -1742,7 +1741,36 @@ public TalkEvent(id)
 		}
 		ClanInvite(id,tinta)
 	}
-	//register_clcmd("say /createclan","CmdClanCreate")
+	else if(strcmp(Arg0,"/deleteclan",1) == 0)
+	{
+		if(gLoggedin[id] == 0)
+		{
+			chat_color(id,"!y[!gDR!y]!g Nu esti logat sau inregistrat!")
+			return PLUGIN_HANDLED
+		}
+		ClanDelete(id)
+	}
+	else if(strcmp(Arg0,"/c",1) == 0)
+	{
+		if(strcmp(ClanID[id],"") != 0)
+   		{
+      		return PLUGIN_HANDLED
+    	}
+		remove_quotes(msg)
+		replace(msg,255,"/c","")
+		new iPlayer[32], iNum
+		get_players(iPlayer,iNum)
+		for(new i = 0; i < iNum; i++)
+		{
+			new sData[64],sData2[64]
+			format(sData,63,"%s",ClanID[id])
+			format(sData2,63,"%s",ClanID[iPlayer[i]])
+			if(strcmp(sData,sData2) == 0)
+			{
+				chat_color(iPlayer[i],"!y[!g%s!y]!g %s!y:!g%s",ClanID[id],Name,msg)
+			}
+		}
+	}
 	return PLUGIN_CONTINUE
 }
 public SBMenu(id, Menu, item)
