@@ -762,9 +762,9 @@ public Shop(id)
 	new Menu = menu_create(title,"SMenu")
 	new itemText[128]
 	#if defined ClanDEBUG
-		format(itemText,127,"Clan [X Locuri] - In lucru")
+		format(itemText,127,"Clan [5 Locuri] - In lucru")
 	#else
-		format(itemText,127,"Clan [X Locuri] - 5000000")
+		format(itemText,127,"Clan [5 Locuri] - 5000000")
 	#endif
 	menu_additem(Menu,itemText,"",0)
 	format(itemText,127,"Big Box [Skins / Sounds] - 300000 Credite")
@@ -1712,9 +1712,9 @@ public TalkEvent(id)
 		}
 		remove_quotes(Arg1)
 		trim(Arg1)
-		if(strlen(Arg1) <= 1)
+		if(strlen(Arg1) <= 1 || strlen(Arg1) >= 5)
 		{
-			chat_color(id,"!y[!gDR!y]!g Nume clan invalid!")
+			chat_color(id,"!y[!gDR!y]!g Nume clan invalid sau mai mult de !team5 !gcaractere!")
 			return PLUGIN_HANDLED
 		}
 		CmdClanCreate(id,Arg1)
@@ -1752,10 +1752,6 @@ public TalkEvent(id)
 	}
 	else if(strcmp(Arg0,"/c",1) == 0)
 	{
-		/*if(strlen(ClanID[id]) <= 1)
-   		{
-      		return PLUGIN_HANDLED
-    	}*/
 		if(strlen(ClanID[id]) <= 1)
 		{
 			chat_color(id,"!y[!gCLAN!y]!g Nu apartii nici unui !teamCLAN!g!")
