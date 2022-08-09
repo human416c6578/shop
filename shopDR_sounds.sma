@@ -50,8 +50,12 @@ public plugin_init(){
 
 
 public plugin_precache(){
-	for(new i=1;i<SOUNDS_NUM;i++)
-		precache_sound(g_Sounds[i][szPath]);
+	new file[64];
+	for(new i=1;i<SOUNDS_NUM;i++){
+		format(file, charsmax(file), "sound/%s", g_Sounds[i][szPath]);
+		precache_generic(file);
+	}
+		
 }
 
 public client_putinserver(id){
@@ -162,13 +166,14 @@ public Event_TWin(){
 }
 
 stock PlaySound(id){
+	// Emit sound should not work if you precache sounds with precache_generic
 	//emit_sound(0, CHAN_AUTO, currentSound[id], 0.5, ATTN_NORM, 0, PITCH_NORM);
 	play_sound(0, currentSound[id]);
 }
 
 public PlaySoundRandom(){
 	new rNum = random_num(1, SOUNDS_NUM-1);
-	
+	// Emit sound should not work if you precache sounds with precache_generic
 	//emit_sound(0, CHAN_AUTO, g_Sounds[rNum][szPath], 1.0, ATTN_NORM, 0, PITCH_NORM);
 	play_sound(0, g_Sounds[rNum][szPath]);
 }

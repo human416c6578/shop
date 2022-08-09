@@ -85,10 +85,10 @@ public plugin_precache(){
 	new mdl[128];
 	for(new i=1;i<CHARS_NUM;i++){
 		format(mdl, charsmax(mdl), "models/player/%s/%s.mdl", g_Chars[i][szModel], g_Chars[i][szModel]);
-		precache_model(mdl);
+		precache_generic(mdl);
 		format(mdl, charsmax(mdl), "models/player/%s/%sT.mdl", g_Chars[i][szModel], g_Chars[i][szModel]);
 		if(file_exists(mdl))
-			precache_model(mdl);
+			precache_generic(mdl);
 	}
 		
 
@@ -119,7 +119,6 @@ public Changeweapon_Hook(id){
 public ResetModel_Hook(id, level, cid){
 	if(currentPlayer[id][0]){
 		cs_set_user_model(id, currentPlayer[id]);
-		server_print(currentPlayer[id]);
 		return PLUGIN_HANDLED;
 	}
 
