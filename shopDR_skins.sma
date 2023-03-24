@@ -14,7 +14,7 @@
 
 #pragma tabsize 0
 
-#define KNIFE_NUM 5
+#define KNIFE_NUM 7
 #define USP_NUM 3
 #define CHARS_NUM 5
 
@@ -28,17 +28,19 @@ enum _: eSkin
 
 new g_Knives[KNIFE_NUM][eSkin] = {
 	{201, "Default", "", 0},
-	{202, "Default Iridescent", "models/player/clan/clanT2.mdl", 12500},
-	{203, "Butcher Iridescent", "models/player/sonic/sonicT2.mdl", 12500},
-	{204, "Default Neo-Noir", "models/player/robi/robiT.mdl", 25000},
-	{205, "Butcher Neo-Noir", "models/player/tokyo/tokyoT.mdl", 25000}
+	{202, "Default Iridescent", "models/llg/shop/v_def_iridescent.mdl", 12500},
+	{203, "Butcher Iridescent", "models/llg/shop/v_but_iridescent.mdl", 12500},
+	{206, "Katana Iridescent", "models/llg/shop/v_kat_iridescent.mdl", 12500},
+	{204, "Default Neo-Noir", "models/llg/shop/v_def_neo-noir.mdl", 25000},
+	{205, "Butcher Neo-Noir", "models/llg/shop/v_but_neo-noir.mdl", 25000},
+	{207, "Katana Neo-Noir", "models/llg/shop/v_kat_neo-noir.mdl", 25000}
 }
 
 
 new g_Usps[USP_NUM][eSkin]={
 	{120, "Default", "", 0},
-	{121, "Iridescent", "models/player/boruto/borT.mdl", 12500},
-	{122, "Neo-Noir", "models/player/spider/spidermanT.mdl", 25000}
+	{121, "Iridescent", "models/llg/shop/v_usp_iridescent.mdl", 12500},
+	{122, "Neo-Noir", "models/llg/shop/v_usp_neo-noir.mdl", 25000}
 };
 
 new g_Chars[CHARS_NUM][eSkin]={
@@ -49,7 +51,7 @@ new g_Chars[CHARS_NUM][eSkin]={
 	{263, "Agent Ritsuka", "ritsuka", 15000},
 }
 
-new currentKnife[33][2][128];
+new currentKnife[33][3][128];
 new currentUsp[33][128];
 new currentPlayer[33][128];
 
@@ -68,7 +70,7 @@ public plugin_init(){
 
 	register_event("ResetHUD", "ResetModel_Hook", "b");
 
-	g_iVault = nvault_open( "skins" );
+	g_iVault = nvault_open( "skins2" );
 
 	register_item("Skins", "SkinsMenu", "shopDR_skins.amxx", 0);
 
@@ -93,6 +95,11 @@ public plugin_precache(){
 		
 
 }
+
+public plugin_end(){
+	nvault_close(g_iVault);
+}
+
 //Event Connect Player
 public client_putinserver(id){
 	Load(id);
@@ -109,15 +116,17 @@ public Changeweapon_Hook(id){
 	if(wpn_id == CSW_USP && strlen(currentUsp[id]))
 		set_pev(id,pev_viewmodel2, currentUsp[id]);
 	if(equali(model,"models/llg/v_knife.mdl") && strlen(currentKnife[id][0]))
-		set_pev(id,pev_viewmodel2,currentKnife[id][0]);
+		set_pev(id,pev_viewmodel2, currentKnife[id][0]);
 	if(equali(model,"models/llg/v_butcher.mdl") && strlen(currentKnife[id][1]))
-		set_pev(id,pev_viewmodel2,currentKnife[id][1]);
+		set_pev(id,pev_viewmodel2, currentKnife[id][1]);
+	if(equali(model,"models/llg/katana.mdl") && strlen(currentKnife[id][2]))
+		set_pev(id,pev_viewmodel2, currentKnife[id][2]);
 	
 	return PLUGIN_HANDLED;
 }
 
 public ResetModel_Hook(id, level, cid){
-	if(currentPlayer[id][0]){
+	if(currentPlayer[id][0] && is_user_connected(id)){
 		cs_set_user_model(id, currentPlayer[id]);
 		return PLUGIN_HANDLED;
 	}
@@ -164,7 +173,8 @@ public KnifeMenu(id){
 	new menu = menu_create( "\rChoose Knife To Set Skin To!:", "menu_handler" );
 
 	menu_additem( menu, "\wDefault Knife", "", 0 );
-	menu_additem( menu, "\wGravity Knife", "", 0 );
+	menu_additem( menu, "\wButcher Knife", "", 0 );
+	menu_additem( menu, "\wKatana Knife", "", 0 );
 
 	menu_setprop( menu, MPROP_EXIT, MEXIT_ALL );
 	menu_display( id, menu, 0 );
@@ -189,6 +199,11 @@ public menu_handler( id, menu, item ){
 		{
 			KnifeSkinMenu(id);
 			knifeId[id] = 1;
+		}
+		case 2:
+		{
+			KnifeSkinMenu(id);
+			knifeId[id] = 2;
 		}
 	}
 	menu_destroy( menu );
@@ -332,6 +347,7 @@ public BuyKnifeSkin(id, item){
 		inventory_add(id, g_Knives[item][iSkinId]);
 		formatex(currentKnife[id][knifeId[id]], 127, "%s", g_Knives[item][szModel]);
 		CC_SendMessage(id, "&x01Ai cumparat &x04%s &x01!", g_Knives[item][szName]);
+		Save(id);
 	}
 	else{
 		CC_SendMessage(id, "&x01Nu ai suficiente credite pentru a cumpara acest skin!");
@@ -346,6 +362,7 @@ public BuyUspSkin(id, item){
 		inventory_add(id, g_Usps[item][iSkinId]);
 		formatex(currentUsp[id], 127, "%s", g_Usps[item][szModel]);
 		CC_SendMessage(id, "&x01Ai cumparat &x04%s &x01!", g_Usps[item][szName]);
+		Save(id);
 	}
 	else{
 		CC_SendMessage(id, "&x01Nu ai suficiente credite pentru a cumpara acest skin!");
@@ -359,6 +376,7 @@ public BuyPlayerSkin(id, item){
 		inventory_add(id, g_Chars[item][iSkinId]);
 		formatex(currentPlayer[id], 127, "%s", g_Chars[item][szModel]);
 		CC_SendMessage(id, "&x01Ai cumparat &x04%s &x01!", g_Chars[item][szName]);
+		Save(id);
 	}
 	else{
 		CC_SendMessage(id, "&x01Nu ai suficiente credite pentru a cumpara acest skin!");
@@ -372,6 +390,7 @@ public Save(id){
 	new key2[30];
 	new key3[30];
 	new key4[30];
+	new key5[30];
 
 
 	get_user_name( id , name , charsmax( name ) );
@@ -380,9 +399,11 @@ public Save(id){
 	formatex(key2, charsmax(key2), "%s+1", name);
 	formatex(key3, charsmax(key2), "%s+3", name);
 	formatex(key4, charsmax(key2), "%s+5", name);
+	formatex(key5, charsmax(key2), "%s+6", name);
 	
 	nvault_set( g_iVault , key1 , currentKnife[id][0]);
 	nvault_set( g_iVault , key2 , currentKnife[id][1]);
+	nvault_set( g_iVault , key5 , currentKnife[id][2]);
 	nvault_set( g_iVault , key3 , currentUsp[id]);
 	nvault_set( g_iVault , key4 , currentPlayer[id]);
 
@@ -396,6 +417,7 @@ public Load(id){
 	new key2[30];
 	new key3[30];
 	new key4[30];
+	new key5[30];
 
 	get_user_name( id , name , charsmax( name ) );
 
@@ -403,9 +425,12 @@ public Load(id){
 	formatex(key2, charsmax(key2), "%s+1", name);
 	formatex(key3, charsmax(key2), "%s+3", name);
 	formatex(key4, charsmax(key2), "%s+5", name);
+	formatex(key5, charsmax(key2), "%s+6", name);
 
 	nvault_get( g_iVault , key1 , currentKnife[id][0] , 127 );  
 	nvault_get( g_iVault , key2 , currentKnife[id][1] , 127 );
+	nvault_get( g_iVault , key5 , currentKnife[id][1] , 127 );
 	nvault_get( g_iVault , key3 , currentUsp[id] , 127 );
 	nvault_get( g_iVault , key4 , currentPlayer[id] , 127 );
+
 }

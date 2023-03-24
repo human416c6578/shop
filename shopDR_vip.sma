@@ -53,7 +53,7 @@ public AddTag(id, szTag[], period){
 	get_time("%d.%b.%Y", expirationDate, 19) 
 	AddToDate(expirationDate, period, expirationDate, 19);
 	get_user_name(id, szName, sizeof(szName));
-	formatex(line, sizeof(line), "^n^"name^" ^"%s^" ^"%s^" [%s]",szName, szTag, expirationDate);
+	formatex(line, sizeof(line), "^n^"name^" ^"%s^" ^"%s^" ^"%s^"",szName, szTag, expirationDate);
 	AddTextAtLine("ChatManager.ini", "## PLAYER TAGS ##", line, szName);
 	server_cmd("cm_reload");
 	g_iTagType[id] = 0;
@@ -149,4 +149,4 @@ stock AddTextAtLine(const FileName[], const BeforeLine[], const Line[], const De
 		}
 	}
 	return 0
-} 
+}

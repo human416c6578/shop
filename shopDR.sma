@@ -27,12 +27,26 @@ enum _: eShopItem
 
 new Array: g_aItems;
 
+new g_szLogFile[64];
+
 public plugin_init(){
 	register_clcmd("say /shop", "shop_menu");
+	register_clcmd("chooseteam", "shop_menu");
 
 	g_aItems = ArrayCreate( eShopItem );
 
 	CC_SetPrefix("&x04[LLG]") 
+}
+
+public plugin_cfg(){
+	static datestr[11], FilePath[64];
+	get_localinfo("amxx_logs", FilePath, 63);
+	get_time("%Y.%m.%d", datestr, 10);
+	formatex(g_szLogFile, 63, "%s/shop/shop_%s.log", FilePath, datestr);
+	if (!file_exists(g_szLogFile))
+	{
+		write_file(g_szLogFile, "Shop LogFile");
+	}
 }
 
 public plugin_natives(){
@@ -84,7 +98,7 @@ public shop_menu(id, page){
 	
 	menu_display( id, menu, page );
 
-	return PLUGIN_CONTINUE;
+	return PLUGIN_HANDLED_MAIN;
 }
 
 public menu_handler(id, menu, item){
@@ -125,6 +139,7 @@ public menu_handler(id, menu, item){
 			return PLUGIN_HANDLED;
 		}
 		CC_SendMessage(id, "&x01Ai cumparat &x04%s &x01!", shopItem[szName]);
+		UTIL_LogBuy(id, "A cumparat %s", shopItem[szName]);
 		new newCredits = credits-shopItem[iCost];
 		set_user_credits(id, newCredits);
 	}
@@ -140,3 +155,21 @@ public menu_handler(id, menu, item){
 	return PLUGIN_HANDLED;
 }
 
+public UTIL_LogBuy(const id, const szCvar[], any:...)
+{
+	new iFile;
+	if( (iFile = fopen(g_szLogFile, "a")) )
+	{
+		new Name[32], Authid[32], Ip[32], Time[22];
+		
+		new message[128]; vformat(message, charsmax(message), szCvar, 3);
+
+		get_user_name(id, Name, charsmax(Name));
+		get_user_authid(id, Authid, charsmax(Authid));
+		get_user_ip(id, Time, charsmax(Time), 1);
+		get_time("%m/%d/%Y - %H:%M:%S", Time, charsmax(Time));
+
+		fprintf(iFile, "L %s: <%s><%s><%s> %s^n", Time, Name, Authid, Ip, message);
+		fclose(iFile);
+	}
+}
