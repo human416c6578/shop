@@ -14,7 +14,7 @@
 
 #pragma tabsize 0
 
-#define KNIFE_NUM 7
+#define KNIFE_NUM 5
 #define USP_NUM 3
 #define CHARS_NUM 5
 
@@ -30,10 +30,10 @@ new g_Knives[KNIFE_NUM][eSkin] = {
 	{201, "Default", "", 0},
 	{202, "Default Iridescent", "models/llg/shop/v_def_iridescent.mdl", 12500},
 	{203, "Butcher Iridescent", "models/llg/shop/v_but_iridescent.mdl", 12500},
-	{206, "Katana Iridescent", "models/llg/shop/v_kat_iridescent.mdl", 12500},
+	//{206, "Katana Iridescent", "models/llg/shop/v_kat_iridescent.mdl", 12500},
 	{204, "Default Neo-Noir", "models/llg/shop/v_def_neo-noir.mdl", 25000},
-	{205, "Butcher Neo-Noir", "models/llg/shop/v_but_neo-noir.mdl", 25000},
-	{207, "Katana Neo-Noir", "models/llg/shop/v_kat_neo-noir.mdl", 25000}
+	{205, "Butcher Neo-Noir", "models/llg/shop/v_but_neo-noir.mdl", 25000}
+	//{207, "Katana Neo-Noir", "models/llg/shop/v_kat_neo-noir.mdl", 25000}
 }
 
 
