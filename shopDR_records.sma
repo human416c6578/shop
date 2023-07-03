@@ -50,7 +50,6 @@ public plugin_init(){
     g_iVault = nvault_open("recordsounds");
 }
 
-
 public plugin_precache(){
     new file[64];
     for(new i=1;i<SOUNDS_NUM;i++){
@@ -123,12 +122,17 @@ public choosemenu_handler( id, menu, item ){
         menu_destroy( menu );
         return PLUGIN_HANDLED;
     }
-    currentType[id] = item;
+    
     switch(item){
-        case 0:
+        case 0:{
+            currentType[id] = szLocal;
             RecordsMenu(id);
-        case 1:
+        } 
+        case 1:{
+            currentType[id] = szSR;
             RecordsMenu(id);
+        }
+            
     }
     return PLUGIN_HANDLED;
 }
