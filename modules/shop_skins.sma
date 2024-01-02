@@ -18,7 +18,7 @@
 #define KNIFE_NUM 15
 #define USP_NUM 9
 
-enum _: eSkin
+enum eSkin
 {
 	iSkinId,
 	szName[64],
