@@ -72,10 +72,10 @@ new gl_sprite_name[NUM_SPRITES][] = {
 
 new gl_sprite[NUM_SPRITES]
 new gl_def_sprite_size[NUM_SPRITES] = {
-	5, 12, 4, 16, 16, 6, 9, 4, 15, 14, 15, 20
+	5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 20, 5, 5, 5, 5
 }
 new gl_def_sprite_brightness[NUM_SPRITES] = {
-	160, 255, 200, 255, 255, 230, 150, 150, 240, 220, 200, 200
+	160, 255, 200, 255, 255, 230, 150, 150, 240, 220, 200, 200, 200, 200, 200, 200
 }
 	
 new gl_players[MAX_PLAYERS]
