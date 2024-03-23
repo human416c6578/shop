@@ -4,7 +4,6 @@
 #include <cromchat>
 #include <nvault>
 
-#include <vip>
 #include <shop>
 #include <inventory>
 
@@ -22,7 +21,7 @@ new g_cRainbowSpeed;
 new g_iTaskEnt;
 
 public plugin_init(){
-	register_item("Rainbow Hud", "handleRainbow", "shop_vip_hud.amxx", RAINBOW_PRICE, RAINBOW_ID);
+	register_item("Rainbow Hud", "handleRainbow", "shop_hud.amxx", RAINBOW_PRICE, RAINBOW_ID);
 
 	register_clcmd("say /rainbow", "toggle_rainbow");
 
@@ -112,12 +111,6 @@ public rainbow_task()
 
 
 public handleRainbow(id){
-	/*
-	if(!isPlayerVip(id)){
-		CC_SendMessage(id, "&x01Trebuie sa fii &x04VIP pentru a cumpara acest item!");
-		return PLUGIN_HANDLED;
-	}
-	*/
 
 	inventory_add(id, RAINBOW_ID);
 

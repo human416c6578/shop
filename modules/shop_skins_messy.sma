@@ -16,8 +16,8 @@
 #pragma tabsize 0
 
 #define KNIFE_NUM 19
-#define BAYONET_NUM 3
-#define DAGGER_NUM 3
+#define VIP_KNIFE_NUM 3
+#define PREMIUM_KNIFE_NUM 3
 #define KATANA_NUM 3
 #define USP_NUM 9
 #define CHARS_NUM 5
@@ -28,17 +28,6 @@ enum eSkin
 	szName[64],
 	szModel[128],
 	iCost
-}
-
-enum eMenu
-{
-	iKnives = 0,
-	iButchers,
-	iBayonets,
-	iDaggers,
-	iKatanas,
-	iUsps,
-	iCharacters
 }
 
 new g_Knives[KNIFE_NUM][eSkin] = {
@@ -63,20 +52,20 @@ new g_Knives[KNIFE_NUM][eSkin] = {
 	{118, "Knife Ghost", 			"models/llg/shop/knife/v_def_ghost.mdl", 		2500}
 }
 
-new g_Bayonets[BAYONET_NUM][eSkin] = {
-	{400, "Tiger Tooth", 	"", 									0},
+new g_VipKnives[VIP_KNIFE_NUM][eSkin] = {
+	{400, "Tiger Tooth", 	"models/llg/v_vip_tigertooth.mdl", 		0},
 	{401, "Purple Haze", 	"models/llg/shop/v_vip_purple.mdl", 	2500},
 	{402, "Crimson Web", 	"models/llg/shop/v_vip_crimson.mdl", 	2500}
 }
 
-new g_Daggers[DAGGER_NUM][eSkin] = {
-	{500, "Default", 		"", 										0},
+new g_PremiumKnives[PREMIUM_KNIFE_NUM][eSkin] = {
+	{500, "Default", 		"models/llg/v_premium.mdl", 				0},
 	{501, "Ruby", 			"models/llg/shop/v_premium_red.mdl", 		2500},
 	{502, "Purple Vibe", 	"models/llg/shop/v_premium_purple.mdl", 	2500}
 }
 
-new g_Katanas[KATANA_NUM][eSkin] = {
-	{600, "Default", 		"", 									0},
+new g_Katana[KATANA_NUM][eSkin] = {
+	{600, "Default", 		"models/llg/v_katana.mdl", 				0},
 	{601, "Fade", 			"models/llg/shop/v_kat_fade.mdl", 		2500},
 	{602, "Sakura", 		"models/llg/shop/v_kat_sakura.mdl", 	2500}
 }
@@ -101,7 +90,7 @@ new g_Chars[CHARS_NUM][eSkin]={
 	{304, "Agent Ritsuka", "ritsuka", 15000},
 }
 
-new g_iMenuId[33];
+new knifeId[33];
 
 //Main
 public plugin_init(){
@@ -117,12 +106,6 @@ public plugin_init(){
 public plugin_precache(){
 	for(new i=1;i<KNIFE_NUM;i++)
 		precache_model(g_Knives[i][szModel]);
-	for(new i=1;i<BAYONET_NUM;i++)
-		precache_model(g_Bayonets[i][szModel]);
-	for(new i=1;i<DAGGER_NUM;i++)
-		precache_model(g_Daggers[i][szModel]);
-	for(new i=1;i<KATANA_NUM;i++)
-		precache_model(g_Katanas[i][szModel]);
 	for(new i=1;i<USP_NUM;i++)
 		precache_model(g_Usps[i][szModel]);
 	
@@ -162,15 +145,11 @@ public menu_handler1( id, menu, item ){
 		}
 		case 1:
 		{
-			//UspMenu(id);
-			g_iMenuId[id] = iUsps;
-			KnifeSkinMenu(id, g_Usps, USP_NUM);
+			UspMenu(id);
 		}
 		case 2:
 		{
-			//CharSkinMenu(id);
-			g_iMenuId[id] = iCharacters;
-			KnifeSkinMenu(id, g_Chars, CHARS_NUM);
+			CharSkinMenu(id);
 		}
 	}
 	menu_destroy( menu );
@@ -205,99 +184,18 @@ public menu_handler( id, menu, item ){
 	{
 		case 0:
 		{
-			g_iMenuId[id] = iKnives;
-			KnifeSkinMenu(id, g_Knives, KNIFE_NUM);
-			
+			KnifeSkinMenu(id);
+			knifeId[id] = 0;
 		}
 		case 1:
 		{
-			g_iMenuId[id] = iButchers;
-			KnifeSkinMenu(id, g_Knives, KNIFE_NUM);
-		}
-		case 2:
-		{
-			g_iMenuId[id] = iBayonets;
-			KnifeSkinMenu(id, g_Bayonets, BAYONET_NUM);
-		}
-		case 3:
-		{
-			g_iMenuId[id] = iDaggers;
-			KnifeSkinMenu(id, g_Daggers, DAGGER_NUM);
-		}
-		case 4:
-		{
-			g_iMenuId[id] = iKatanas;
-			KnifeSkinMenu(id, g_Katanas, KATANA_NUM);
+			KnifeSkinMenu(id);
+			knifeId[id] = 1;
 		}
 	}
 	menu_destroy( menu );
 	return PLUGIN_HANDLED;
 }
-
-//Second Menu
-public KnifeSkinMenu(id, items[][eSkin], num_items){
-	new itemText[128], title[128];
-	new credits = get_user_credits(id);
-	formatex(title, 127, "\rChoose Knife Skin\w - Credits : \y%d", credits);
-	new menu = menu_create( title, "knife_skin_handler" );
-	
-	for(new i = 0;i<num_items;i++){
-		if(inventory_get_item(id, items[i][iSkinId]) || !items[i][iCost])
-			formatex(itemText, 127, "\y%s", items[i][szName]);
-		else{
-			formatex(itemText, 127, "\w%s - %s%d", items[i][szName], credits>=items[i][iCost]?"\y":"\s", items[i][iCost]);	
-		}
-		
-		menu_additem( menu, itemText, "", 0 );
-	}
-	
-	menu_setprop( menu, MPROP_EXIT, MEXIT_ALL );
-	menu_setprop(menu, MPROP_EXITNAME, "Back");
-	menu_display( id, menu, 0 );
-}
-
-//Second Handler for the second menu
-public knife_skin_handler( id, menu, item){
-	if ( item == MENU_EXIT ){
-		menu_destroy( menu );
-		KnifeMenu(id);
-		return PLUGIN_HANDLED;
-	}
-
-	new skinItem[eSkin];
-	skinItem = g_Knives[item];
-	switch(g_iMenuId[id]) {
-		case iKnives:
-			skinItem = g_Knives[item];
-		case iButchers:
-			skinItem = g_Knives[item];
-		case iBayonets:
-			skinItem = g_Bayonets[item];
-		case iDaggers:
-			skinItem = g_Daggers[item];
-		case iKatanas:
-			skinItem = g_Katanas[item];
-		case iUsps:
-			skinItem = g_Usps[item];
-		case iCharacters:
-			skinItem = g_Chars[item];
-	}
-	
-	if(inventory_get_item(id, skinItem[iSkinId])){
-		set_user_weapon_skin(id, skinItem[szModel]);
-
-		menu_destroy( menu );
-		KnifeMenu(id);
-		return PLUGIN_HANDLED;
-
-	}
-
-	menu_destroy( menu );
-	BuySkin(id, skinItem);
-	KnifeMenu(id);
-	return PLUGIN_HANDLED;
-}
-
 //Menu to choose a custom knife skin
 public UspMenu(id){
 
@@ -326,7 +224,6 @@ public UspMenu(id){
 
 	return PLUGIN_CONTINUE;
 }
-
 //Handler for the knife skin menu
 public usp_menu_handler( id, menu, item ){
 	if ( item == MENU_EXIT ){
@@ -345,6 +242,214 @@ public usp_menu_handler( id, menu, item ){
 	menu_destroy( menu );
 	BuyUspSkin(id, item);
 	UspMenu(id);
+	return PLUGIN_HANDLED;
+}
+//Second Menu
+public KnifeSkinMenu(id){
+
+	new itemText[128], title[128];
+	new credits = get_user_credits(id);
+	formatex(title, 127, "\rChoose Knife Skin\w - Credits : \y%d", credits);
+	new menu = menu_create( title, "knife_skin_handler" );
+	
+	for(new i = 0;i<KNIFE_NUM;i++){
+		if(inventory_get_item(id, g_Knives[i][iSkinId]) || !g_Knives[i][iCost])
+			formatex(itemText, 127, "\y%s", g_Knives[i][szName]);
+		else{
+			if(credits>=g_Knives[i][iCost])
+				formatex(itemText, 127, "\w%s - \y%d", g_Knives[i][szName], g_Knives[i][iCost]);
+			else
+				formatex(itemText, 127, "\w%s - \r%d", g_Knives[i][szName], g_Knives[i][iCost]);
+		}
+		
+		menu_additem( menu, itemText, "", 0 );
+	}
+	
+	menu_setprop( menu, MPROP_EXIT, MEXIT_ALL );
+	menu_setprop(menu, MPROP_EXITNAME, "Back");
+	menu_display( id, menu, 0 );
+}
+
+//Second Handler for the second menu
+public knife_skin_handler( id, menu, item){
+	if ( item == MENU_EXIT ){
+		menu_destroy( menu );
+		KnifeMenu(id);
+		return PLUGIN_HANDLED;
+	}
+	
+	if(inventory_get_item(id, g_Knives[item][iSkinId])){
+
+		if(knifeId[id] == 0)
+			set_user_knife(id, g_Knives[item][szModel]);
+		else
+			set_user_butcher(id, g_Knives[item][szModel]);
+
+		menu_destroy( menu );
+		KnifeSkinMenu(id);
+		return PLUGIN_HANDLED;
+
+	}
+
+	menu_destroy( menu );
+	BuyKnifeSkin(id, item);
+	KnifeSkinMenu(id);
+	return PLUGIN_HANDLED;
+}
+
+//Third Menu
+public VipSkinMenu(id){
+
+	new itemText[128], title[128];
+	new credits = get_user_credits(id);
+	formatex(title, 127, "\rChoose Knife Skin\w - Credits : \y%d", credits);
+	new menu = menu_create( title, "vip_skin_handler" );
+	
+	for(new i = 0;i<VIP_KNIFE_NUM;i++){
+		if(inventory_get_item(id, g_VipKnives[i][iSkinId]) || !g_VipKnives[i][iCost])
+			formatex(itemText, 127, "\y%s", g_VipKnives[i][szName]);
+		else{
+			if(credits>=g_VipKnives[i][iCost])
+				formatex(itemText, 127, "\w%s - \y%d", g_VipKnives[i][szName], g_VipKnives[i][iCost]);
+			else
+				formatex(itemText, 127, "\w%s - \r%d", g_VipKnives[i][szName], g_VipKnives[i][iCost]);
+		}
+		
+		menu_additem( menu, itemText, "", 0 );
+	}
+	
+	menu_setprop( menu, MPROP_EXIT, MEXIT_ALL );
+	menu_setprop(menu, MPROP_EXITNAME, "Back");
+	menu_display( id, menu, 0 );
+}
+
+//Third Handler for the second menu
+public vip_skin_handler( id, menu, item){
+	if ( item == MENU_EXIT ){
+		menu_destroy( menu );
+		KnifeMenu(id);
+		return PLUGIN_HANDLED;
+	}
+	
+	if(inventory_get_item(id, g_VipKnives[item][iSkinId])){
+
+		set_user_bayonet(id, g_VipKnives[item][szModel]);
+
+		menu_destroy( menu );
+		KnifeSkinMenu(id);
+		return PLUGIN_HANDLED;
+
+	}
+
+	menu_destroy( menu );
+
+	BuyBayonetSkin(id, item);
+
+	KnifeSkinMenu(id);
+	return PLUGIN_HANDLED;
+}
+
+//Forth Menu
+public PremiumSkinMenu(id){
+
+	new itemText[128], title[128];
+	new credits = get_user_credits(id);
+	formatex(title, 127, "\rChoose Knife Skin\w - Credits : \y%d", credits);
+	new menu = menu_create( title, "premium_skin_handler" );
+	
+	for(new i = 0;i<VIP_KNIFE_NUM;i++){
+		if(inventory_get_item(id, g_PremiumKnives[i][iSkinId]) || !g_PremiumKnives[i][iCost])
+			formatex(itemText, 127, "\y%s", g_PremiumKnives[i][szName]);
+		else{
+			if(credits>=g_PremiumKnives[i][iCost])
+				formatex(itemText, 127, "\w%s - \y%d", g_PremiumKnives[i][szName], g_PremiumKnives[i][iCost]);
+			else
+				formatex(itemText, 127, "\w%s - \r%d", g_PremiumKnives[i][szName], g_PremiumKnives[i][iCost]);
+		}
+		
+		menu_additem( menu, itemText, "", 0 );
+	}
+	
+	menu_setprop( menu, MPROP_EXIT, MEXIT_ALL );
+	menu_setprop(menu, MPROP_EXITNAME, "Back");
+	menu_display( id, menu, 0 );
+}
+
+//Forth Handler for the second menu
+public premium_skin_handler( id, menu, item){
+	if ( item == MENU_EXIT ){
+		menu_destroy( menu );
+		KnifeMenu(id);
+		return PLUGIN_HANDLED;
+	}
+	
+	if(inventory_get_item(id, g_PremiumKnives[item][iSkinId])){
+
+		set_user_dagger(id, g_PremiumKnives[item][szModel]);
+
+		menu_destroy( menu );
+		KnifeSkinMenu(id);
+		return PLUGIN_HANDLED;
+
+	}
+
+	menu_destroy( menu );
+
+	BuyPremiumSkin(id, item);
+
+	KnifeSkinMenu(id);
+	return PLUGIN_HANDLED;
+}
+
+//Fifth Menu
+public KatanaSkinMenu(id){
+
+	new itemText[128], title[128];
+	new credits = get_user_credits(id);
+	formatex(title, 127, "\rChoose Knife Skin\w - Credits : \y%d", credits);
+	new menu = menu_create( title, "katana_skin_handler" );
+	
+	for(new i = 0;i<VIP_KNIFE_NUM;i++){
+		if(inventory_get_item(id, g_Katana[i][iSkinId]) || !g_Katana[i][iCost])
+			formatex(itemText, 127, "\y%s", g_Katana[i][szName]);
+		else{
+			if(credits>=g_Katana[i][iCost])
+				formatex(itemText, 127, "\w%s - \y%d", g_Katana[i][szName], g_Katana[i][iCost]);
+			else
+				formatex(itemText, 127, "\w%s - \r%d", g_Katana[i][szName], g_Katana[i][iCost]);
+		}
+		
+		menu_additem( menu, itemText, "", 0 );
+	}
+	
+	menu_setprop( menu, MPROP_EXIT, MEXIT_ALL );
+	menu_setprop(menu, MPROP_EXITNAME, "Back");
+	menu_display( id, menu, 0 );
+}
+
+//Fifth Handler for the second menu
+public katana_skin_handler( id, menu, item){
+	if ( item == MENU_EXIT ){
+		menu_destroy( menu );
+		KnifeMenu(id);
+		return PLUGIN_HANDLED;
+	}
+	
+	if(inventory_get_item(id, g_Katana[item][iSkinId])){
+
+		set_user_katana(id, g_Katana[item][szModel]);
+
+		menu_destroy( menu );
+		KnifeSkinMenu(id);
+		return PLUGIN_HANDLED;
+
+	}
+
+	menu_destroy( menu );
+
+	BuyKatanaSkin(id, item);
+
+	KnifeSkinMenu(id);
 	return PLUGIN_HANDLED;
 }
 
@@ -382,7 +487,7 @@ public player_skin_handler( id, menu, item){
 	}
 	
 	if(inventory_get_item(id, g_Chars[item][iSkinId])){
-		set_user_player_skin(id, g_Chars[item][szModel]);
+		set_user_skin(id, g_Chars[item][szModel]);
 		
 		menu_destroy( menu );
 		CharSkinMenu(id);
@@ -395,14 +500,62 @@ public player_skin_handler( id, menu, item){
 	return PLUGIN_HANDLED;
 }
 
-public BuySkin(id, itemSkin[eSkin]){
+public BuyKatanaSkin(id, item){
 	new credits = get_user_credits(id);
-	if(credits >= itemSkin[iCost]){
-		set_user_credits(id, credits - itemSkin[iCost])
-		inventory_add(id, itemSkin[iSkinId]);
-		CC_SendMessage(id, "&x01Ai cumparat &x04%s &x01!", itemSkin[szName]);
+	if(credits >= g_Katana[item][iCost]){
+		set_user_credits(id, credits - g_Katana[item][iCost])
+		inventory_add(id, g_Katana[item][iSkinId]);
+		CC_SendMessage(id, "&x01Ai cumparat &x04%s &x01!", g_Katana[item][szName]);
 
-		set_user_weapon_skin(id, itemSkin[szModel]);
+		set_user_katana(id, g_Katana[item][szModel]);
+	}		
+	else{
+		CC_SendMessage(id, "&x01Nu ai suficiente credite pentru a cumpara acest skin!");
+	}
+	
+}
+
+public BuyPremiumSkin(id, item){
+	new credits = get_user_credits(id);
+	if(credits >= g_PremiumKnives[item][iCost]){
+		set_user_credits(id, credits - g_PremiumKnives[item][iCost])
+		inventory_add(id, g_PremiumKnives[item][iSkinId]);
+		CC_SendMessage(id, "&x01Ai cumparat &x04%s &x01!", g_PremiumKnives[item][szName]);
+
+		set_user_dagger(id, g_PremiumKnives[item][szModel]);
+	}		
+	else{
+		CC_SendMessage(id, "&x01Nu ai suficiente credite pentru a cumpara acest skin!");
+	}
+	
+}
+
+public BuyBayonetSkin(id, item){
+	new credits = get_user_credits(id);
+	if(credits >= g_VipKnives[item][iCost]){
+		set_user_credits(id, credits - g_VipKnives[item][iCost])
+		inventory_add(id, g_VipKnives[item][iSkinId]);
+		CC_SendMessage(id, "&x01Ai cumparat &x04%s &x01!", g_VipKnives[item][szName]);
+
+		set_user_bayonet(id, g_VipKnives[item][szModel]);
+	}		
+	else{
+		CC_SendMessage(id, "&x01Nu ai suficiente credite pentru a cumpara acest skin!");
+	}
+	
+}
+
+public BuyKnifeSkin(id, item){
+	new credits = get_user_credits(id);
+	if(credits >= g_Knives[item][iCost]){
+		set_user_credits(id, credits - g_Knives[item][iCost])
+		inventory_add(id, g_Knives[item][iSkinId]);
+		CC_SendMessage(id, "&x01Ai cumparat &x04%s &x01!", g_Knives[item][szName]);
+
+		if(knifeId[id] == 0)
+			set_user_knife(id, g_Knives[item][szModel]);
+		else
+			set_user_butcher(id, g_Knives[item][szModel]);
 	}		
 	else{
 		CC_SendMessage(id, "&x01Nu ai suficiente credite pentru a cumpara acest skin!");
@@ -428,29 +581,10 @@ public BuyPlayerSkin(id, item){
 	if(credits >= g_Chars[item][iCost]){
 		set_user_credits(id, credits - g_Chars[item][iCost])
 		inventory_add(id, g_Chars[item][iSkinId]);
-		set_user_player_skin(id, g_Chars[item][szModel]);
+		set_user_skin(id, g_Chars[item][szModel]);
 		CC_SendMessage(id, "&x01Ai cumparat &x04%s &x01!", g_Chars[item][szName]);
 	}
 	else{
 		CC_SendMessage(id, "&x01Nu ai suficiente credite pentru a cumpara acest skin!");
-	}
-}
-
-public set_user_weapon_skin(id, model[]) {
-	switch(g_iMenuId[id]) {
-		case iKnives:
-			set_user_knife(id, model);
-		case iButchers:
-			set_user_butcher(id, model);
-		case iBayonets:
-			set_user_bayonet(id, model);
-		case iDaggers:
-			set_user_dagger(id, model);
-		case iKatanas:
-			set_user_katana(id, model);
-		case iUsps:
-			set_user_usp(id, model);
-		case iCharacters:
-			set_user_player_skin(id, model);
 	}
 }

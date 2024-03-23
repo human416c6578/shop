@@ -2,7 +2,6 @@
 #include <fakemeta>
 #include <cromchat>
 
-#include <vip>
 #include <shop>
 #include <inventory>
 
@@ -74,17 +73,10 @@ public plugin_init() {
 	register_concmd("say /trail", "Show_TrailMenu");
 	register_concmd("say_team /trail", "Show_TrailMenu");
 
-	register_item("Trail", "handleTrail", "shop_vip_trail.amxx", TRAIL_PRICE, TRAIL_ID);
+	register_item("Trail", "handleTrail", "shop_trail.amxx", TRAIL_PRICE, TRAIL_ID);
 }
 
 public handleTrail(id){
-	/*
-	if(!isPlayerVip(id)){
-		CC_SendMessage(id, "&x01Trebuie sa fii &x04VIP pentru a cumpara acest item!");
-		return PLUGIN_HANDLED;
-	}
-	*/
-
 	inventory_add(id, TRAIL_ID);
 
 	new szName[64];

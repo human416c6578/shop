@@ -5,7 +5,6 @@
 #include <cromchat>
 #include <nvault>
 
-#include <vip>
 #include <inventory>
 #include <shop>
 #include <credits>
@@ -52,7 +51,7 @@ new g_iVault;
 new currentSound[33][128];
 
 public plugin_init(){
-	register_item("Record Sounds", "RecordsMenu", "shop_vip_records.amxx", 0);
+	register_item("Record Sounds", "RecordsMenu", "shop_records.amxx", 0);
 
 	g_iVault = nvault_open("recordsounds");
 
@@ -131,13 +130,6 @@ public timer_player_world_record(id){
 }
 
 public RecordsMenu(id){
-	/*
-	if(!isPlayerVip(id)){
-		CC_SendMessage(id, "&x01Trebuie sa fii &x04VIP pentru a cumpara acest item!");
-		return PLUGIN_HANDLED;
-	}
-	*/
-
 	new itemText[128], title[128];
 	new credits = get_user_credits(id);
 	formatex(title, 127, "\rChoose Sound\w - Credits : \y%d", credits);

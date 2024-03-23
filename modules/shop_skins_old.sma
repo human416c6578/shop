@@ -15,9 +15,8 @@
 
 #pragma tabsize 0
 
-#define KNIFE_NUM 19
+#define KNIFE_NUM 15
 #define USP_NUM 9
-#define CHARS_NUM 5
 
 enum eSkin
 {
@@ -28,56 +27,46 @@ enum eSkin
 }
 
 new g_Knives[KNIFE_NUM][eSkin] = {
-	{100, "Default", "", 0},
-	{101, "Knife Iridescent", 		"models/fwo/shop/vip/knife/v_def_iridescent.mdl", 	2500},
-	{102, "Butcher Iridescent", 	"models/fwo/shop/vip/knife/v_but_iridescent.mdl", 	2500},
-	{103, "Knife Neo-Noir", 		"models/fwo/shop/vip/knife/v_def_neo-noir.mdl", 	2500},
-	{104, "Butcher Neo-Noir", 		"models/fwo/shop/vip/knife/v_but_neo-noir.mdl", 	2500},
-	{105, "Knife Blood", 			"models/fwo/shop/vip/knife/v_def_blood.mdl", 		2500},
-	{106, "Butcher Carbon", 		"models/fwo/shop/vip/knife/v_but_carbon.mdl", 		2500},
-	{107, "Knife Nexus", 			"models/fwo/shop/vip/knife/v_def_nexus.mdl", 		2500},
-	{108, "Butcher Gojo", 			"models/fwo/shop/vip/knife/v_but_gojo.mdl", 		2500},
-	{109, "Knife Moon", 			"models/fwo/shop/vip/knife/v_def_moon.mdl", 		2500},
-	{110, "Butcher Hyperbeast", 	"models/fwo/shop/vip/knife/v_but_hyperbeast.mdl", 	2500},
-	{111, "Knife King", 			"models/fwo/shop/vip/knife/v_def_king.mdl", 		2500},
-	{112, "Butcher Lion", 			"models/fwo/shop/vip/knife/v_but_lion.mdl", 		2500},
-	{113, "Knife Lightning", 		"models/fwo/shop/vip/knife/v_def_lightning.mdl", 	2500},
-	{114, "Butcher Xiao", 			"models/fwo/shop/vip/knife/v_but_xiao.mdl", 		2500},
-	{115, "Knife Ahegao", 			"models/fwo/shop/vip/knife/v_def_ahegao.mdl", 		2500},
-	{116, "Knife Sakura", 			"models/fwo/shop/vip/knife/v_def_sakura.mdl", 		2500},
-	{117, "Knife Grizzly", 			"models/fwo/shop/vip/knife/v_def_grizzly.mdl", 		2500},
-	{118, "Knife Ghost", 			"models/fwo/shop/vip/knife/v_def_ghost.mdl", 		2500}
+	{400, "Default", "", 0},
+	{401, "Knife Abstract", 		"models/fwo/shop/knife/v_def_abstract.mdl", 	1500},
+	{402, "Butcher Black Wolf", 	"models/fwo/shop/knife/v_but_black_wolf.mdl", 	1500},
+	{403, "Knife Thug Cat", 		"models/fwo/shop/knife/v_def_thug_cat.mdl", 	1500},
+	{404, "Butcher Boris", 			"models/fwo/shop/knife/v_but_boris.mdl", 		1500},
+	{405, "Knife Black", 			"models/fwo/shop/knife/v_def_black.mdl", 		1500},
+	{406, "Butcher Lion", 			"models/fwo/shop/knife/v_but_lion_blade.mdl", 	1500},
+	{407, "Knife Faded", 			"models/fwo/shop/knife/v_def_faded.mdl", 		1500},
+	{408, "Butcher Rainbow", 		"models/fwo/shop/knife/v_but_rainbow.mdl", 		1500},
+	{409, "Knife Color", 			"models/fwo/shop/knife/v_def_color.mdl", 		1500},
+	{410, "Butcher Red Ghost", 		"models/fwo/shop/knife/v_but_red_ghost.mdl", 	1500},
+	{411, "Knife Night", 			"models/fwo/shop/knife/v_def_night.mdl", 		1500},
+	{412, "Butcher Rias", 			"models/fwo/shop/knife/v_but_rias.mdl", 		1500},
+	{413, "Knife Ice Phoenix", 		"models/fwo/shop/knife/v_def_icephoenix.mdl", 	1500},
+	{414, "Knife Night Raid", 		"models/fwo/shop/knife/v_def_nightraid.mdl", 	1500}
+	
 }
 
 
 new g_Usps[USP_NUM][eSkin]={
-	{200, "Default", "", 0},
-	{201, "Iridescent", 	"models/fwo/shop/vip/usp/v_usp_iridescent.mdl", 	2500},
-	{202, "Neo-Noir", 		"models/fwo/shop/vip/usp/v_usp_neo-noir.mdl", 		2500},
-	{203, "Blue", 			"models/fwo/shop/vip/usp/v_usp_blue.mdl", 			2500},
-	{204, "Carbon", 		"models/fwo/shop/vip/usp/v_usp_carbon.mdl", 		2500},
-	{205, "Cortex", 		"models/fwo/shop/vip/usp/v_usp_cortex.mdl", 			2500},
-	{206, "Night Wolf", 	"models/fwo/shop/vip/usp/v_usp_night_wolf.mdl", 	2500},
-	{207, "Sakura", 		"models/fwo/shop/vip/usp/v_usp_sakura.mdl", 		2500},
-	{208, "Xiao", 			"models/fwo/shop/vip/usp/v_usp_xiao.mdl", 			2500}
+	{500, "Default", "", 0},
+	{501, "Abstract", 				"models/fwo/shop/usp/v_usp_abstract.mdl", 			1500},
+	{502, "Dark Red", 				"models/fwo/shop/usp/v_usp_dark_red.mdl", 			1500},
+	{503, "Fire Flower", 			"models/fwo/shop/usp/v_usp_fire_flower.mdl", 		1500},
+	{504, "Lightning Monster", 		"models/fwo/shop/usp/v_usp_lightning_monster.mdl", 	1500},
+	{505, "Green Night", 			"models/fwo/shop/usp/v_usp_night_wolf_green.mdl", 	1500},
+	{506, "Night Raid", 			"models/fwo/shop/usp/v_usp_nightraid.mdl", 			1500},
+	{507, "Shadow Knight", 			"models/fwo/shop/usp/v_usp_shadow_knight.mdl", 		1500},
+	{508, "Strong Blue", 			"models/fwo/shop/usp/v_usp_strong_blue.mdl", 		1500}
 };
 
-new g_Chars[CHARS_NUM][eSkin]={
-	{300, "Default", "", 0},
-	{301, "Arctic", "arctic2", 2000},
-	{302, "Hitman", "hitman", 5000},
-	{303, "Ema", "ema", 10000},
-	{304, "Agent Ritsuka", "ritsuka", 15000},
-}
-
 new knifeId[33];
+
 
 //Main
 public plugin_init(){
 	
 	register_plugin(PLUGIN,VERSION,AUTHOR);
 
-	register_item("Skins", "SkinsMenu", "shop_vip_skins.amxx", 0);
+	register_item("Skins", "SkinsMenu", "shop_skins.amxx", 0);
 
 	CC_SetPrefix("&x04[SHOP]") 
 
@@ -89,40 +78,24 @@ public plugin_precache(){
 	for(new i=1;i<USP_NUM;i++)
 		precache_model(g_Usps[i][szModel]);
 	
-	new mdl[128];
-	for(new i=1;i<CHARS_NUM;i++){
-		format(mdl, charsmax(mdl), "models/player/%s/%s.mdl", g_Chars[i][szModel], g_Chars[i][szModel]);
-		precache_generic(mdl);
-		format(mdl, charsmax(mdl), "models/player/%s/%sT.mdl", g_Chars[i][szModel], g_Chars[i][szModel]);
-		if(file_exists(mdl))
-			precache_generic(mdl);
-	}
-		
-
 }
+
 
 //Menu to choose the menu you want
 public SkinsMenu(id){
-	/*
-	if(!isPlayerVip(id)){
-		CC_SendMessage(id, "&x01Trebuie sa fii &x04VIP pentru a cumpara acest item!");
-		return PLUGIN_HANDLED;
-	}
-	*/
+
 	new menu = menu_create( "\rChoose The Weapon You Want!:", "menu_handler1" );
 
 	menu_additem( menu, "\wKnife Skins", "", 0 );
 	menu_additem( menu, "\wUsp Skins", "", 0 );
-	menu_additem( menu, "\wPlayer Skins", "", 0);
 
 	menu_setprop( menu, MPROP_EXIT, MEXIT_ALL );
 	menu_display( id, menu, 0 );
 
 	return PLUGIN_CONTINUE;
 }
-//menu handler for the vip menu /vmenu
+//menu handler
 public menu_handler1( id, menu, item ){
-	
 	switch( item )
 	{
 		case 0:
@@ -132,10 +105,6 @@ public menu_handler1( id, menu, item ){
 		case 1:
 		{
 			UspMenu(id);
-		}
-		case 2:
-		{
-			CharSkinMenu(id);
 		}
 	}
 	menu_destroy( menu );
@@ -256,8 +225,8 @@ public KnifeSkinMenu(id){
 //Second Handler for the second menu
 public knife_skin_handler( id, menu, item){
 	if ( item == MENU_EXIT ){
-		menu_destroy( menu );
 		KnifeMenu(id);
+		menu_destroy( menu );
 		return PLUGIN_HANDLED;
 	}
 	
@@ -273,57 +242,9 @@ public knife_skin_handler( id, menu, item){
 		return PLUGIN_HANDLED;
 
 	}
-
 	menu_destroy( menu );
 	BuyKnifeSkin(id, item);
 	KnifeSkinMenu(id);
-	return PLUGIN_HANDLED;
-}
-
-public CharSkinMenu(id){
-
-	new itemText[128], title[128];
-	new credits = get_user_credits(id);
-	formatex(title, 127, "\rChoose Player Skin\w - Credits : \y%d", credits);
-	new menu = menu_create( title, "player_skin_handler" );
-	
-	for(new i = 0;i<CHARS_NUM;i++){
-		if(inventory_get_item(id, g_Chars[i][iSkinId]) || !g_Chars[i][iCost])
-			formatex(itemText, 127, "\y%s", g_Chars[i][szName]);
-		else{
-			if(credits>=g_Chars[i][iCost])
-				formatex(itemText, 127, "\w%s - \y%d", g_Chars[i][szName], g_Chars[i][iCost]);
-			else
-				formatex(itemText, 127, "\w%s - \r%d", g_Chars[i][szName], g_Chars[i][iCost]);
-		}
-		
-		menu_additem( menu, itemText, "", 0 );
-	}
-	
-	menu_setprop( menu, MPROP_EXIT, MEXIT_ALL );
-	menu_setprop(menu, MPROP_EXITNAME, "Back");
-	menu_display( id, menu, 0 );
-}
-
-//Second Handler for the second menu
-public player_skin_handler( id, menu, item){
-	if ( item == MENU_EXIT ){
-		menu_destroy( menu );
-		SkinsMenu(id);
-		return PLUGIN_HANDLED;
-	}
-	
-	if(inventory_get_item(id, g_Chars[item][iSkinId])){
-		set_user_skin(id, g_Chars[item][szModel]);
-		
-		menu_destroy( menu );
-		CharSkinMenu(id);
-		return PLUGIN_HANDLED;
-
-	}
-	menu_destroy( menu );
-	BuyPlayerSkin(id, item);
-	CharSkinMenu(id);
 	return PLUGIN_HANDLED;
 }
 
@@ -352,19 +273,6 @@ public BuyUspSkin(id, item){
 		inventory_add(id, g_Usps[item][iSkinId]);
 		set_user_usp(id, g_Usps[item][szModel]);
 		CC_SendMessage(id, "&x01Ai cumparat &x04%s &x01!", g_Usps[item][szName]);
-	}
-	else{
-		CC_SendMessage(id, "&x01Nu ai suficiente credite pentru a cumpara acest skin!");
-	}
-}
-
-public BuyPlayerSkin(id, item){
-	new credits = get_user_credits(id);
-	if(credits >= g_Chars[item][iCost]){
-		set_user_credits(id, credits - g_Chars[item][iCost])
-		inventory_add(id, g_Chars[item][iSkinId]);
-		set_user_skin(id, g_Chars[item][szModel]);
-		CC_SendMessage(id, "&x01Ai cumparat &x04%s &x01!", g_Chars[item][szName]);
 	}
 	else{
 		CC_SendMessage(id, "&x01Nu ai suficiente credite pentru a cumpara acest skin!");

@@ -3,7 +3,6 @@
 #include <cromchat>
 
 #include <shop>
-#include <vip>
 
 new g_iTagType[33];
 
@@ -11,20 +10,14 @@ public plugin_init(){
 
 	register_clcmd("TAG", "inputTAG");
 
-	register_item("Tag 1 Day", "handleTag1", "shop_vip_tag.amxx", 1000);
-	register_item("Tag 30 Day", "handleTag30", "shop_vip_tag.amxx", 15000);
-	//register_item("Vip 1 Day", "handleVip1", "shop_vip_tag.amxx", 2500);
-	//register_item("Vip 30 Day", "handleVip30", "shop_vip_tag.amxx", 25000);
+	register_item("Tag 1 Day", "handleTag1", "shop_tag.amxx", 1000);
+	register_item("Tag 30 Day", "handleTag30", "shop_tag.amxx", 15000);
+	//register_item("Vip 1 Day", "handleVip1", "shop_tag.amxx", 2500);
+	//register_item("Vip 30 Day", "handleVip30", "shop_tag.amxx", 25000);
 
 }
 
 public handleTag1(id){
-	/*
-	if(!isPlayerVip(id)){
-		CC_SendMessage(id, "&x01Trebuie sa fii &x04VIP pentru a cumpara acest item!");
-		return PLUGIN_HANDLED;
-	}
-	*/
 	
 	g_iTagType[id] = 1;
 	client_cmd(id, "messagemode TAG");
@@ -33,12 +26,6 @@ public handleTag1(id){
 }
 
 public handleTag30(id){
-	/*
-	if(!isPlayerVip(id)){
-		CC_SendMessage(id, "&x01Trebuie sa fii &x04VIP pentru a cumpara acest item!");
-		return PLUGIN_HANDLED;
-	}
-	*/
 
 	g_iTagType[id] = 30;
 	client_cmd(id, "messagemode TAG");
