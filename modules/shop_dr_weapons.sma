@@ -28,13 +28,13 @@ public eventNewRound(){
 }
 
 registerItems(){
-	register_item("Terorist Runda Urmatoare", "handleBuyTerro", "shopDR_weapons.amxx", 100);
-	register_item("50 HP", "handleHealth50", "shopDR_weapons.amxx", 100);
-	register_item("50 Armura", "handleArmor50", "shopDR_weapons.amxx", 50);
-	register_item("Desert Eagle", "handleDeagle", "shopDR_weapons.amxx", 50);
-	register_item("M4a1", "handleM4a1", "shopDR_weapons.amxx", 100);
-	register_item("Ak47", "handleAk47", "shopDR_weapons.amxx", 100);
-	register_item("AWP", "handleAwp", "shopDR_weapons.amxx", 150);
+	register_item("Terorist Runda Urmatoare", "handleBuyTerro", "shop_dr_weapons.amxx", 100);
+	register_item("50 HP", "handleHealth50", "shop_dr_weapons.amxx", 100);
+	register_item("50 Armura", "handleArmor50", "shop_dr_weapons.amxx", 50);
+	register_item("Desert Eagle", "handleDeagle", "shop_dr_weapons.amxx", 50);
+	register_item("M4a1", "handleM4a1", "shop_dr_weapons.amxx", 100);
+	register_item("Ak47", "handleAk47", "shop_dr_weapons.amxx", 100);
+	register_item("AWP", "handleAwp", "shop_dr_weapons.amxx", 150);
 }
 
 public handleBuyTerro(id){

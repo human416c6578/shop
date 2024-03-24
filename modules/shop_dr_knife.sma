@@ -9,8 +9,8 @@
 #define KATANA_KNIFEID 257
 
 public plugin_init(){
-	register_item("Premium Knife", "handlePremium", "shopDR_knife.amxx", 50000, PREMIUM_KNIFEID);
-	register_item("Katana", "handleKatana", "shopDR_knife.amxx", 40000, KATANA_KNIFEID);
+	register_item("Premium Knife", "handlePremium", "shop_dr_knife.amxx", 50000, PREMIUM_KNIFEID);
+	register_item("Katana", "handleKatana", "shop_dr_knife.amxx", 40000, KATANA_KNIFEID);
 
 	CC_SetPrefix("&x04[LLG]");
 }
