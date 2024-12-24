@@ -15,19 +15,28 @@
 
 #pragma tabsize 0
 
-#define KNIFE_NUM 19
+#define KNIFE_NUM 12
+#define BUTCHER_NUM 8
 #define BAYONET_NUM 3
 #define DAGGER_NUM 3
 #define KATANA_NUM 3
 #define USP_NUM 9
-#define CHARS_NUM 5
+#define CHARS_NUM 7
 
 enum eSkin
 {
 	iSkinId,
 	szName[64],
-	szModel[128],
+	iSubModel,
 	iCost
+}
+
+enum ePlayerSkin
+{
+	iPlayerSkinId,
+	szPlayerName[64],
+	szPlayerModel[128],
+	iPlayerCost
 }
 
 enum eMenu
@@ -42,63 +51,69 @@ enum eMenu
 }
 
 new g_Knives[KNIFE_NUM][eSkin] = {
-	{100, "Default", "", 0},
-	{101, "Knife Iridescent", 		"models/llg/shop/knife/v_def_iridescent.mdl", 	2500},
-	{102, "Butcher Iridescent", 	"models/llg/shop/knife/v_but_iridescent.mdl", 	2500},
-	{103, "Knife Neo-Noir", 		"models/llg/shop/knife/v_def_neo-noir.mdl", 	2500},
-	{104, "Butcher Neo-Noir", 		"models/llg/shop/knife/v_but_neo-noir.mdl", 	2500},
-	{105, "Knife Blood", 			"models/llg/shop/knife/v_def_blood.mdl", 		2500},
-	{106, "Butcher Carbon", 		"models/llg/shop/knife/v_but_carbon.mdl", 		2500},
-	{107, "Knife Nexus", 			"models/llg/shop/knife/v_def_nexus.mdl", 		2500},
-	{108, "Butcher Gojo", 			"models/llg/shop/knife/v_but_gojo.mdl", 		2500},
-	{109, "Knife Moon", 			"models/llg/shop/knife/v_def_moon.mdl", 		2500},
-	{110, "Butcher Hyperbeast", 	"models/llg/shop/knife/v_but_hyperbeast.mdl", 	2500},
-	{111, "Knife King", 			"models/llg/shop/knife/v_def_king.mdl", 		2500},
-	{112, "Butcher Lion", 			"models/llg/shop/knife/v_but_lion.mdl", 		2500},
-	{113, "Knife Lightning", 		"models/llg/shop/knife/v_def_lightning.mdl", 	2500},
-	{114, "Butcher Xiao", 			"models/llg/shop/knife/v_but_xiao.mdl", 		2500},
-	{115, "Knife Ahegao", 			"models/llg/shop/knife/v_def_ahegao.mdl", 		2500},
-	{116, "Knife Sakura", 			"models/llg/shop/knife/v_def_sakura.mdl", 		2500},
-	{117, "Knife Grizzly", 			"models/llg/shop/knife/v_def_grizzly.mdl", 		2500},
-	{118, "Knife Ghost", 			"models/llg/shop/knife/v_def_ghost.mdl", 		2500}
+	{100, "Default", 					0, 0},
+	{101, "Knife Iridescent", 		 	1,	2500},
+	{102, "Knife Neo-Noir", 		 	2,	2500},
+	{103, "Knife Blood", 			 	3,	2500},
+	{104, "Knife Nexus", 			 	4,	2500},
+	{105, "Knife Moon", 			 	5,	2500},
+	{106, "Knife King", 			 	6,	2500},
+	{107, "Knife Lightning", 		 	7,	2500},
+	{108, "Knife Ahegao", 			 	8,	2500},
+	{109, "Knife Sakura", 			 	9,	2500},
+	{110, "Knife Grizzly", 			 	10,	2500},
+	{111, "Knife Ghost", 			 	11,	2500}
+}
+
+new g_Butchers[BUTCHER_NUM][eSkin] = {
+	{150, "Default", 				0, 	0},
+	{151, "Butcher Iridescent", 	1,	2500},
+	{152, "Butcher Neo-Noir", 		2, 	2500},
+	{153, "Butcher Carbon", 		3,	2500},
+	{154, "Butcher Gojo", 			4,	2500},
+	{155, "Butcher Hyperbeast", 	5,	2500},
+	{156, "Butcher Lion", 			6,	2500},
+	{157, "Butcher Xiao", 			7,	2500}
 }
 
 new g_Bayonets[BAYONET_NUM][eSkin] = {
-	{400, "Tiger Tooth", 	"", 									0},
-	{401, "Purple Haze", 	"models/llg/shop/v_vip_purple.mdl", 	2500},
-	{402, "Crimson Web", 	"models/llg/shop/v_vip_crimson.mdl", 	2500}
+	{400, "Tiger Tooth", 			0,	0},
+	{401, "Purple Haze", 			1, 	2500},
+	{402, "Crimson Web", 		 	2,	2500}
 }
 
 new g_Daggers[DAGGER_NUM][eSkin] = {
-	{500, "Default", 		"", 										0},
-	{501, "Ruby", 			"models/llg/shop/v_premium_red.mdl", 		2500},
-	{502, "Purple Vibe", 	"models/llg/shop/v_premium_purple.mdl", 	2500}
+	{500, "Default", 				0,	0},
+	{501, "Ruby", 					1, 	2500},
+	{502, "Purple Vibe", 			2,	2500}
 }
 
 new g_Katanas[KATANA_NUM][eSkin] = {
-	{600, "Default", 		"", 									0},
-	{601, "Fade", 			"models/llg/shop/v_kat_fade.mdl", 		2500},
-	{602, "Sakura", 		"models/llg/shop/v_kat_sakura.mdl", 	2500}
+	{600, "Default", 				0,	0},
+	{601, "Fade", 					1, 	2500},
+	{602, "Sakura", 				2,	2500}
 }
 
 new g_Usps[USP_NUM][eSkin]={
-	{200, "Default", "", 0},
-	{201, "Iridescent", 	"models/llg/shop/usp/v_usp_iridescent.mdl", 	2500},
-	{202, "Neo-Noir", 		"models/llg/shop/usp/v_usp_neo-noir.mdl", 		2500},
-	{203, "Blue", 			"models/llg/shop/usp/v_usp_blue.mdl", 			2500},
-	{204, "Carbon", 		"models/llg/shop/usp/v_usp_carbon.mdl", 		2500},
-	{205, "Cortex", 		"models/llg/shop/usp/v_usp_cortex.mdl", 		2500},
-	{206, "Night Wolf", 	"models/llg/shop/usp/v_usp_night_wolf.mdl", 	2500},
-	{207, "Sakura", 		"models/llg/shop/usp/v_usp_sakura.mdl", 		2500},
-	{208, "Xiao", 			"models/llg/shop/usp/v_usp_xiao.mdl", 			2500}
+	{200, "Default", 				0, 	0},
+	{201, "Iridescent", 			1,	2500},
+	{202, "Neo-Noir", 				2,	2500},
+	{203, "Blue", 					3,	2500},
+	{204, "Carbon", 				4,	2500},
+	{205, "Cortex", 				5,	2500},
+	{206, "Night Wolf", 			6,	2500},
+	{207, "Sakura", 				7,	2500},
+	{208, "Xiao", 					8,	2500}
 };
 
-new g_Chars[CHARS_NUM][eSkin]={
-	{300, "Default", "", 0},
-	{301, "Arctic", "arctic2", 2000},
-	{302, "Hitman", "hitman", 5000},
-	{303, "Ema", "ema", 10000},
-	{304, "Agent Ritsuka", "ritsuka", 15000},
+new g_Chars[CHARS_NUM][ePlayerSkin]={
+	{300, "Default", "", 				0},
+	{301, "Arctic", "arctic2", 			2000},
+	{302, "Hitman", "hitman", 			5000},
+	{303, "Ema", "ema", 				10000},
+	{304, "Agent Ritsuka", "ritsuka", 	15000},
+	{305, "Sub-zero", "sub-zero", 		5000},
+	{306, "Scorpion", "scorpion", 		5000},
 }
 
 new g_iMenuId[33];
@@ -115,27 +130,14 @@ public plugin_init(){
 }
 //Precaching the skins from the list above
 public plugin_precache(){
-	for(new i=1;i<KNIFE_NUM;i++)
-		precache_model(g_Knives[i][szModel]);
-	for(new i=1;i<BAYONET_NUM;i++)
-		precache_model(g_Bayonets[i][szModel]);
-	for(new i=1;i<DAGGER_NUM;i++)
-		precache_model(g_Daggers[i][szModel]);
-	for(new i=1;i<KATANA_NUM;i++)
-		precache_model(g_Katanas[i][szModel]);
-	for(new i=1;i<USP_NUM;i++)
-		precache_model(g_Usps[i][szModel]);
-	
 	new mdl[128];
 	for(new i=1;i<CHARS_NUM;i++){
-		format(mdl, charsmax(mdl), "models/player/%s/%s.mdl", g_Chars[i][szModel], g_Chars[i][szModel]);
+		format(mdl, charsmax(mdl), "models/player/%s/%s.mdl", g_Chars[i][szPlayerModel], g_Chars[i][szPlayerModel]);
 		precache_generic(mdl);
-		format(mdl, charsmax(mdl), "models/player/%s/%sT.mdl", g_Chars[i][szModel], g_Chars[i][szModel]);
+		format(mdl, charsmax(mdl), "models/player/%s/%sT.mdl", g_Chars[i][szPlayerModel], g_Chars[i][szPlayerModel]);
 		if(file_exists(mdl))
 			precache_generic(mdl);
 	}
-		
-
 }
 
 //Menu to choose the menu you want
@@ -162,15 +164,11 @@ public menu_handler1( id, menu, item ){
 		}
 		case 1:
 		{
-			//UspMenu(id);
-			g_iMenuId[id] = iUsps;
-			KnifeSkinMenu(id, g_Usps, USP_NUM);
+			UspMenu(id);
 		}
 		case 2:
 		{
-			//CharSkinMenu(id);
-			g_iMenuId[id] = iCharacters;
-			KnifeSkinMenu(id, g_Chars, CHARS_NUM);
+			CharSkinMenu(id);
 		}
 	}
 	menu_destroy( menu );
@@ -212,7 +210,7 @@ public menu_handler( id, menu, item ){
 		case 1:
 		{
 			g_iMenuId[id] = iButchers;
-			KnifeSkinMenu(id, g_Knives, KNIFE_NUM);
+			KnifeSkinMenu(id, g_Butchers, KNIFE_NUM);
 		}
 		case 2:
 		{
@@ -270,7 +268,7 @@ public knife_skin_handler( id, menu, item){
 		case iKnives:
 			skinItem = g_Knives[item];
 		case iButchers:
-			skinItem = g_Knives[item];
+			skinItem = g_Butchers[item];
 		case iBayonets:
 			skinItem = g_Bayonets[item];
 		case iDaggers:
@@ -279,12 +277,10 @@ public knife_skin_handler( id, menu, item){
 			skinItem = g_Katanas[item];
 		case iUsps:
 			skinItem = g_Usps[item];
-		case iCharacters:
-			skinItem = g_Chars[item];
 	}
 	
 	if(inventory_get_item(id, skinItem[iSkinId])){
-		set_user_weapon_skin(id, skinItem[szModel]);
+		set_user_weapon_skin(id, skinItem[iSubModel]);
 
 		menu_destroy( menu );
 		KnifeMenu(id);
@@ -297,6 +293,7 @@ public knife_skin_handler( id, menu, item){
 	KnifeMenu(id);
 	return PLUGIN_HANDLED;
 }
+
 
 //Menu to choose a custom knife skin
 public UspMenu(id){
@@ -336,7 +333,7 @@ public usp_menu_handler( id, menu, item ){
 	}
 	
 	if(inventory_get_item(id, g_Usps[item][iSkinId])){
-		set_user_usp(id, g_Usps[item][szModel]);
+		set_user_usp(id, g_Usps[item][iSubModel]);
 		menu_destroy( menu );
 		UspMenu(id);
 		return PLUGIN_HANDLED;
@@ -356,13 +353,13 @@ public CharSkinMenu(id){
 	new menu = menu_create( title, "player_skin_handler" );
 	
 	for(new i = 0;i<CHARS_NUM;i++){
-		if(inventory_get_item(id, g_Chars[i][iSkinId]) || !g_Chars[i][iCost])
-			formatex(itemText, 127, "\y%s", g_Chars[i][szName]);
+		if(inventory_get_item(id, g_Chars[i][iPlayerSkinId]) || !g_Chars[i][iPlayerCost])
+			formatex(itemText, 127, "\y%s", g_Chars[i][szPlayerName]);
 		else{
-			if(credits>=g_Chars[i][iCost])
-				formatex(itemText, 127, "\w%s - \y%d", g_Chars[i][szName], g_Chars[i][iCost]);
+			if(credits>=g_Chars[i][iPlayerCost])
+				formatex(itemText, 127, "\w%s - \y%d", g_Chars[i][szPlayerName], g_Chars[i][iPlayerCost]);
 			else
-				formatex(itemText, 127, "\w%s - \r%d", g_Chars[i][szName], g_Chars[i][iCost]);
+				formatex(itemText, 127, "\w%s - \r%d", g_Chars[i][szPlayerName], g_Chars[i][iPlayerCost]);
 		}
 		
 		menu_additem( menu, itemText, "", 0 );
@@ -381,8 +378,8 @@ public player_skin_handler( id, menu, item){
 		return PLUGIN_HANDLED;
 	}
 	
-	if(inventory_get_item(id, g_Chars[item][iSkinId])){
-		set_user_player_skin(id, g_Chars[item][szModel]);
+	if(inventory_get_item(id, g_Chars[item][iPlayerSkinId])){
+		set_user_player_skin(id, g_Chars[item][szPlayerModel]);
 		
 		menu_destroy( menu );
 		CharSkinMenu(id);
@@ -402,7 +399,7 @@ public BuySkin(id, itemSkin[eSkin]){
 		inventory_add(id, itemSkin[iSkinId]);
 		CC_SendMessage(id, "&x01Ai cumparat &x04%s &x01!", itemSkin[szName]);
 
-		set_user_weapon_skin(id, itemSkin[szModel]);
+		set_user_weapon_skin(id, itemSkin[iSubModel]);
 	}		
 	else{
 		CC_SendMessage(id, "&x01Nu ai suficiente credite pentru a cumpara acest skin!");
@@ -415,7 +412,7 @@ public BuyUspSkin(id, item){
 	if(credits >= g_Usps[item][iCost]){
 		set_user_credits(id, credits - g_Usps[item][iCost])
 		inventory_add(id, g_Usps[item][iSkinId]);
-		set_user_usp(id, g_Usps[item][szModel]);
+		set_user_usp(id, g_Usps[item][iSubModel]);
 		CC_SendMessage(id, "&x01Ai cumparat &x04%s &x01!", g_Usps[item][szName]);
 	}
 	else{
@@ -425,32 +422,30 @@ public BuyUspSkin(id, item){
 
 public BuyPlayerSkin(id, item){
 	new credits = get_user_credits(id);
-	if(credits >= g_Chars[item][iCost]){
-		set_user_credits(id, credits - g_Chars[item][iCost])
-		inventory_add(id, g_Chars[item][iSkinId]);
-		set_user_player_skin(id, g_Chars[item][szModel]);
-		CC_SendMessage(id, "&x01Ai cumparat &x04%s &x01!", g_Chars[item][szName]);
+	if(credits >= g_Chars[item][iPlayerCost]){
+		set_user_credits(id, credits - g_Chars[item][iPlayerCost])
+		inventory_add(id, g_Chars[item][iPlayerSkinId]);
+		set_user_player_skin(id, g_Chars[item][szPlayerModel]);
+		CC_SendMessage(id, "&x01Ai cumparat &x04%s &x01!", g_Chars[item][szPlayerName]);
 	}
 	else{
 		CC_SendMessage(id, "&x01Nu ai suficiente credite pentru a cumpara acest skin!");
 	}
 }
 
-public set_user_weapon_skin(id, model[]) {
+public set_user_weapon_skin(id, submodel) {
 	switch(g_iMenuId[id]) {
 		case iKnives:
-			set_user_knife(id, model);
+			set_user_knife(id, submodel);
 		case iButchers:
-			set_user_butcher(id, model);
+			set_user_butcher(id, submodel);
 		case iBayonets:
-			set_user_bayonet(id, model);
+			set_user_bayonet(id, submodel);
 		case iDaggers:
-			set_user_dagger(id, model);
+			set_user_dagger(id, submodel);
 		case iKatanas:
-			set_user_katana(id, model);
+			set_user_katana(id, submodel);
 		case iUsps:
-			set_user_usp(id, model);
-		case iCharacters:
-			set_user_player_skin(id, model);
+			set_user_usp(id, submodel);
 	}
 }

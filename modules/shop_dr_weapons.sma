@@ -14,7 +14,7 @@ public plugin_init(){
 
 	registerItems();
 	
-	CC_SetPrefix("&x04[LLG]") 
+	CC_SetPrefix("&x04[DR]") 
 }
 
 public client_putinserver(id){
