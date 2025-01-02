@@ -1,6 +1,6 @@
 #include <amxmodx>
 #include <cstrike>
-#include <cromchat>
+#include <cromchat2>
 #include <fakemeta_util>
 #include <credits>
 #include <shop>
@@ -15,6 +15,12 @@ public plugin_init(){
 	registerItems();
 	
 	CC_SetPrefix("&x04[DR]") 
+}
+
+public plugin_cfg(){
+
+	register_dictionary("shop_dr_weapons.txt");
+
 }
 
 public client_putinserver(id){
@@ -41,29 +47,34 @@ public handleBuyTerro(id){
 	new terro = get_next_terrorist();
 	new szName[64];
 	if(g_iTero[id] >= 3){
-		CC_SendMessage(id, "Ai atins limita maxima a acestui item.");
+		CC_SendMessage(id, "%L", id, "MAX_ITEM_LIMIT_REACHED");
+		//CC_SendMessage(id, "Ai atins limita maxima a acestui item.");
 		return -1;
 	}
 	if(terro){
 		get_user_name(terro, szName, sizeof(szName));
-		CC_SendMessage(id, "&x04%s &x01a ales deja sa fie terrorist urmatoare runda!", szName);
+		CC_SendMessage(id, "%L", id, "ALREADY_SELECTED_TERRORIST", szName);
+		//CC_SendMessage(id, "&x04%s &x01a ales deja sa fie terrorist urmatoare runda!", szName);
 		return -1;
 	}
 	else{
 		set_next_terrorist(id);
 		get_user_name(id, szName, 63);
-		CC_SendMessage(0, "&x04%s &x01a ales sa fie &x03terorist runda urmatoare!", szName);
+		CC_SendMessage(0, "%l", "TERRORIST_SELECTED_NEXT_ROUND", szName);
+		//CC_SendMessage(0, "&x04%s &x01a ales sa fie &x03terorist runda urmatoare!", szName);
 		g_iTero[id]++;
 	}
 }
 //Doar pentru tero
 public handleHealth50(id){
 	if(cs_get_user_team(id) != CS_TEAM_T){
-		CC_SendMessage(id, "&x01Optiunea aceasta este doar pentru terorist!");
+		CC_SendMessage(id, "%L", id, "OPTION_ONLY_FOR_TERRORIST");
+		//CC_SendMessage(id, "&x01Optiunea aceasta este doar pentru terorist!");
 		return -1;
 	}
 	if(g_iHP[id] >= 5){
-		CC_SendMessage(id, "Ai atins limita maxima a acestui item.");
+		CC_SendMessage(id, "%L", id, "MAX_ITEM_LIMIT_REACHED");
+		//CC_SendMessage(id, "Ai atins limita maxima a acestui item.");
 		return -1;
 	}
 
@@ -76,7 +87,8 @@ public handleHealth50(id){
 
 public handleArmor50(id){
 	if(cs_get_user_team(id) != CS_TEAM_T){
-		CC_SendMessage(id, "&x01Optiunea aceasta este doar pentru terorist!");
+		CC_SendMessage(id, "%L", id, "OPTION_ONLY_FOR_TERRORIST");
+		//CC_SendMessage(id, "&x01Optiunea aceasta este doar pentru terorist!");
 		set_user_credits(id, get_user_credits(id) + 50)
 		return - 1;
 	}

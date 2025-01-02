@@ -1,7 +1,7 @@
 #include <amxmodx>
 #include <amxmisc>
 #include <engine>
-#include <cromchat>
+#include <cromchat2>
 #include <nvault>
 
 #include <shop>
@@ -37,6 +37,12 @@ public plugin_init(){
 	set_pev(g_iTaskEnt, pev_nextthink, get_gametime() + 1.01)
 
 	g_vault = nvault_open("rainbow");
+}
+
+public plugin_cfg(){
+
+	register_dictionary("shop_hud.txt");
+
 }
 
 public plugin_end(){
@@ -116,8 +122,10 @@ public handleRainbow(id){
 
 	new szName[64];
 	get_user_name(id, szName, 63);
-	CC_SendMessage(0, "&x01Jucatorul &x04%s &x01a cumparat &x07Rainbow Hud &x01din shop pentru &x04%d &x01de credite!", szName, RAINBOW_PRICE);
-	CC_SendMessage(id, "&x01Felicitari, acum ai acces la comanda &x04/rainbow!");
+	CC_SendMessage(0, "%l", "RAINBOW_HUD_PURCHASED", szName, RAINBOW_PRICE);
+	//CC_SendMessage(0, "&x01Jucatorul &x04%s &x01a cumparat &x07Rainbow Hud &x01din shop pentru &x04%d &x01de credite!", szName, RAINBOW_PRICE);
+	CC_SendMessage(id, "%L", id, "RAINBOW_COMMAND_GRANTED");
+	//CC_SendMessage(id, "&x01Felicitari, acum ai acces la comanda &x04/rainbow!");
 
 
 	return PLUGIN_CONTINUE;
@@ -125,12 +133,14 @@ public handleRainbow(id){
 
 public toggle_rainbow(id){
 	if(!inventory_get_item(id, RAINBOW_ID)){
-		CC_SendMessage(id, "&x01Nu ai acces la comanda &x04/rainbow!");
+		CC_SendMessage(id, "%L", id, "RAINBOW_COMMAND_NO_ACCESS");
+		//CC_SendMessage(id, "&x01Nu ai acces la comanda &x04/rainbow!");
 		return PLUGIN_HANDLED;
 	}
 	g_bRainbow[id] = !g_bRainbow[id];
 
-	CC_SendMessage(id, "&x01Ai %s &x04Rainbow Hud!", g_bRainbow[id]?"activat":"dezactivat");
+	CC_SendMessage(id, "%L", id, "RAINBOW_HUD_STATUS", g_bRainbow[id]?"RAINBOW_ON":"RAINBOW_OFF");
+	//CC_SendMessage(id, "&x01Ai %s &x04Rainbow Hud!", g_bRainbow[id]?"activat":"dezactivat");
 
 	save_rainbow(id);
 

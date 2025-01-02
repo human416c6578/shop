@@ -1,0 +1,14 @@
+[en]
+
+SKIN_PURCHASED = You purchased &x04%s &x01.
+NOT_ENOUGH_CREDITS_SKIN = You don't have enough credits to purchase this skin.
+
+[bp]
+
+SKIN_PURCHASED = Você comprou &x04%s &x01.
+NOT_ENOUGH_CREDITS_SKIN = Você não tem créditos suficientes para comprar este skin.
+
+[ro]
+
+SKIN_PURCHASED = Ai cumparat &x04%s &x01!
+NOT_ENOUGH_CREDITS_SKIN = Nu ai suficiente credite pentru a cumpara acest skin!

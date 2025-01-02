@@ -1,0 +1,26 @@
+[en]
+
+RAINBOW_HUD_PURCHASED = Player &x04%s &x01has purchased &x07Rainbow Hud &x01from the shop for &x04%d &x01credits.
+RAINBOW_COMMAND_GRANTED = Congratulations, you now have access to the command &x04/rainbow.
+RAINBOW_COMMAND_NO_ACCESS = You do not have access to the command &x04/rainbow.
+RAINBOW_HUD_STATUS = You have %s &x04Rainbow Hud.
+RAINBOW_ON = enabled
+RAINBOW_OFF = disabled
+
+[bp]
+
+RAINBOW_HUD_PURCHASED = O jogador &x04%s &x01comprou &x07Rainbow Hud &x01da loja por &x04%d &x01créditos.
+RAINBOW_COMMAND_GRANTED = Parabéns, agora você tem acesso ao comando &x04/rainbow.
+RAINBOW_COMMAND_NO_ACCESS = Você não tem acesso ao comando &x04/rainbow.
+RAINBOW_HUD_STATUS = Você  %s &x04Rainbow Hud.
+RAINBOW_ON = ativou
+RAINBOW_OFF = desativou
+
+[ro]
+
+RAINBOW_HUD_PURCHASED = Jucatorul &x04%s &x01a cumparat &x07Rainbow Hud &x01din shop pentru &x04%d &x01de credite!
+RAINBOW_COMMAND_GRANTED = Felicitari, acum ai acces la comanda &x04/rainbow!
+RAINBOW_COMMAND_NO_ACCESS = Nu ai acces la comanda &x04/rainbow!
+RAINBOW_HUD_STATUS = Ai %s &x04Rainbow Hud!
+RAINBOW_ON = activat
+RAINBOW_OFF = dezactivat

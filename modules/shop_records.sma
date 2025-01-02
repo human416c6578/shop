@@ -2,7 +2,7 @@
 #include <amxmisc>
 #include <cstrike>
 #include <hamsandwich>
-#include <cromchat>
+#include <cromchat2>
 #include <nvault>
 
 #include <inventory>
@@ -56,6 +56,12 @@ public plugin_init(){
 	g_iVault = nvault_open("recordsounds");
 
 	CC_SetPrefix("&x04[SHOP]") 
+}
+
+public plugin_cfg(){
+
+	register_dictionary("shop_records.txt");
+
 }
 
 public plugin_precache(){
@@ -238,10 +244,12 @@ public BuySound(id, item){
 		set_user_credits(id, credits - eItem[iCost])
 		inventory_add(id, eItem[iID]);
 		formatex(currentSound[id], 127, "%s", eItem[szPath]);
-		CC_SendMessage(id, "&x01Ai cumparat &x04%s &x01!", eItem[szName]);
+		CC_SendMessage(id, "%L", id, "ITEM_PURCHASED", eItem[szName]);
+		//CC_SendMessage(id, "&x01Ai cumparat &x04%s &x01!", eItem[szName]);
 	}
 	else{
-		CC_SendMessage(id, "&x01Nu ai suficiente credite pentru a cumpara acest sunet!");
+		CC_SendMessage(id, "%L", id, "NOT_ENOUGH_CREDITS_SOUND");
+		//CC_SendMessage(id, "&x01Nu ai suficiente credite pentru a cumpara acest sunet!");
 	}
 
 	return PLUGIN_HANDLED;

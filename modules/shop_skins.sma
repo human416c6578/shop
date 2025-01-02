@@ -2,7 +2,7 @@
 #include <cstrike>
 #include <fakemeta_util>
 #include <nvault>
-#include <cromchat>
+#include <cromchat2>
 
 #include <player_skins>
 #include <shop>
@@ -128,6 +128,13 @@ public plugin_init(){
 	CC_SetPrefix("&x04[SHOP]") 
 
 }
+
+public plugin_cfg(){
+
+	register_dictionary("shop_skins.txt");
+
+}
+
 //Precaching the skins from the list above
 public plugin_precache(){
 	new mdl[128];
@@ -397,12 +404,15 @@ public BuySkin(id, itemSkin[eSkin]){
 	if(credits >= itemSkin[iCost]){
 		set_user_credits(id, credits - itemSkin[iCost])
 		inventory_add(id, itemSkin[iSkinId]);
-		CC_SendMessage(id, "&x01Ai cumparat &x04%s &x01!", itemSkin[szName]);
+		CC_SendMessage(id, "%L", id, "SKIN_PURCHASED", itemSkin[szName]);
+		//CC_SendMessage(id, "&x01Ai cumparat &x04%s &x01!", itemSkin[szName]);
 
 		set_user_weapon_skin(id, itemSkin[iSubModel]);
 	}		
 	else{
-		CC_SendMessage(id, "&x01Nu ai suficiente credite pentru a cumpara acest skin!");
+		//CC_SendMessage(id, "&x01Nu ai suficiente credite pentru a cumpara acest skin!");
+		CC_SendMessage(id, "%L", id, "NOT_ENOUGH_CREDITS_SKIN");
+
 	}
 	
 }
@@ -413,10 +423,12 @@ public BuyUspSkin(id, item){
 		set_user_credits(id, credits - g_Usps[item][iCost])
 		inventory_add(id, g_Usps[item][iSkinId]);
 		set_user_usp(id, g_Usps[item][iSubModel]);
-		CC_SendMessage(id, "&x01Ai cumparat &x04%s &x01!", g_Usps[item][szName]);
+		CC_SendMessage(id, "%L", id, "SKIN_PURCHASED", g_Usps[item][szName]);
+		//CC_SendMessage(id, "&x01Ai cumparat &x04%s &x01!", g_Usps[item][szName]);
 	}
 	else{
-		CC_SendMessage(id, "&x01Nu ai suficiente credite pentru a cumpara acest skin!");
+		//CC_SendMessage(id, "&x01Nu ai suficiente credite pentru a cumpara acest skin!");
+		CC_SendMessage(id, "%L", id, "NOT_ENOUGH_CREDITS_SKIN");
 	}
 }
 
@@ -426,10 +438,12 @@ public BuyPlayerSkin(id, item){
 		set_user_credits(id, credits - g_Chars[item][iPlayerCost])
 		inventory_add(id, g_Chars[item][iPlayerSkinId]);
 		set_user_player_skin(id, g_Chars[item][szPlayerModel]);
-		CC_SendMessage(id, "&x01Ai cumparat &x04%s &x01!", g_Chars[item][szPlayerName]);
+		CC_SendMessage(id, "%L", id, "SKIN_PURCHASED", g_Chars[item][szPlayerName]);
+		//CC_SendMessage(id, "&x01Ai cumparat &x04%s &x01!", g_Chars[item][szPlayerName]);
 	}
 	else{
-		CC_SendMessage(id, "&x01Nu ai suficiente credite pentru a cumpara acest skin!");
+		//CC_SendMessage(id, "&x01Nu ai suficiente credite pentru a cumpara acest skin!");
+		CC_SendMessage(id, "%L", id, "NOT_ENOUGH_CREDITS_SKIN");
 	}
 }
 

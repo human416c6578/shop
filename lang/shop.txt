@@ -1,0 +1,20 @@
+[en]
+
+NEED_REGISTER_TO_SHOP = You need to be registered to buy from the shop.
+ITEM_ALREADY_PURCHASED = You have already purchased this item.
+NOT_ENOUGH_CREDITS = You don't have enough credits to buy this item.
+ITEM_PURCHASED = You have purchased &x04%s &x01.
+
+[bp]
+
+NEED_REGISTER_TO_SHOP = Você precisa estar registrado para comprar na loja.
+ITEM_ALREADY_PURCHASED = Você já comprou este item.
+NOT_ENOUGH_CREDITS = Você não tem créditos suficientes para comprar este item.
+ITEM_PURCHASED = Você comprou &x04%s &x01.
+
+[ro]
+
+NEED_REGISTER_TO_SHOP = Trebuie sa fii inregistrat pentru a cumpara din shop!
+ITEM_ALREADY_PURCHASED = Deja ai cumparat acest item!
+NOT_ENOUGH_CREDITS = Nu ai suficente credite pentru a cumpara acest item!
+ITEM_PURCHASED = Ai cumparat &x04%s &x01!

@@ -1,0 +1,21 @@
+[en]
+
+PREMIUM_KNIFE_PURCHASED = Player &x04%s &x01has purchased the &x07Premium Knife &x01from the shop for &x0450,000 &x01credits.
+PREMIUM_KNIFE_GRANTED = Congratulations, you now have access to the &x04Premium Knife.
+KATANA_KNIFE_PURCHASED = Player &x04%s &x01has purchased the &x07Katana &x01from the shop for &x0425,000 &x01credits.
+KATANA_KNIFE_GRANTED = Congratulations, you now have access to the &x04Katana.
+
+[bp]
+
+PREMIUM_KNIFE_PURCHASED = O jogador &x04%s &x01comprou &x07Premium Knife &x01da loja por &x0450.000 &x01créditos.
+PREMIUM_KNIFE_GRANTED = Parabéns, agora você tem acesso ao item: &x04Premium Knife.
+KATANA_KNIFE_PURCHASED = O jogador &x04%s &x01comprou &x07Katana &x01da loja por &x0425.000 &x01créditos.
+KATANA_KNIFE_GRANTED = Parabéns, agora você tem acesso ao item: &x04Katana.
+
+
+[ro]
+
+PREMIUM_KNIFE_PURCHASED = Jucatorul &x04%s &x01a cumparat &x07Premium Knife &x01din shop pentru &x0450.000 &x01de credite!
+PREMIUM_KNIFE_GRANTED = Felicitari, acum ai acces la &x04Premium Knife!
+KATANA_KNIFE_PURCHASED = Jucatorul &x04%s &x01a cumparat &x07Katana &x01din shop pentru &x0425.000 &x01de credite!
+KATANA_KNIFE_GRANTED = Felicitari, acum ai acces la &x04Katana!

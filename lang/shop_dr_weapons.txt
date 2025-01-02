@@ -1,0 +1,21 @@
+[en]
+
+MAX_ITEM_LIMIT_REACHED = You have reached the maximum limit for this item.
+ALREADY_SELECTED_TERRORIST = &x04%s &x01has already chosen to be terrorist in the next round.
+TERRORIST_SELECTED_NEXT_ROUND = &x04%s &x01has chosen to be &x03terrorist &x01in the next round.
+OPTION_ONLY_FOR_TERRORIST = This option is only available for terrorists.
+
+[bp]
+
+MAX_ITEM_LIMIT_REACHED = Você atingiu o limite máximo para este item.
+ALREADY_SELECTED_TERRORIST = &x04%s &x01já escolheu ser terrorista na próxima rodada.
+TERRORIST_SELECTED_NEXT_ROUND = &x04%s &x01escolheu ser &x03terrorista &x01na próxima rodada.
+OPTION_ONLY_FOR_TERRORIST = Esta opção é apenas para o time terrorista.
+
+
+[ro]
+
+MAX_ITEM_LIMIT_REACHED = Ai atins limita maxima a acestui item.
+ALREADY_SELECTED_TERRORIST = &x04%s &x01a ales deja sa fie terrorist urmatoare runda!
+TERRORIST_SELECTED_NEXT_ROUND = &x04%s &x01a ales sa fie &x03terorist runda urmatoare!
+OPTION_ONLY_FOR_TERRORIST = Optiunea aceasta este doar pentru terorist!
