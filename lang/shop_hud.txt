@@ -24,3 +24,75 @@ RAINBOW_COMMAND_NO_ACCESS = Nu ai acces la comanda &x04/rainbow!
 RAINBOW_HUD_STATUS = Ai %s &x04Rainbow Hud!
 RAINBOW_ON = activat
 RAINBOW_OFF = dezactivat
+
+[pt]
+
+RAINBOW_HUD_PURCHASED = O jogador &x04%s &x01comprou &x07Rainbow Hud &x01da loja por &x04%d &x01créditos.
+RAINBOW_COMMAND_GRANTED = Parabéns, agora você tem acesso ao comando &x04/rainbow.
+RAINBOW_COMMAND_NO_ACCESS = Você não tem acesso ao comando &x04/rainbow.
+RAINBOW_HUD_STATUS = Você  %s &x04Rainbow Hud.
+RAINBOW_ON = ativou
+RAINBOW_OFF = desativou
+
+[es]
+
+RAINBOW_HUD_PURCHASED = El jugador &x04%s &x01compró &x07Rainbow Hud &x01de la tienda por &x04%d &x01créditos.
+RAINBOW_COMMAND_GRANTED = Felicitaciones, ahora tienes acceso al comando &x04/rainbow.
+RAINBOW_COMMAND_NO_ACCESS = No tienes acceso al comando &x04/rainbow.
+RAINBOW_HUD_STATUS = Tú %s &x04Rainbow Hud.
+RAINBOW_ON = activó
+RAINBOW_OFF = desactivó
+
+[pl]
+
+RAINBOW_HUD_PURCHASED = Gracz &x04%s &x01kupił &x07Rainbow Hud &x01ze sklepu za &x04%d &x01kredytów.
+RAINBOW_COMMAND_GRANTED = Gratulacje, teraz masz dostęp do komendy &x04/rainbow.
+RAINBOW_COMMAND_NO_ACCESS = Nie masz dostępu do komendy &x04/rainbow.
+RAINBOW_HUD_STATUS = Ty %s &x04Rainbow Hud.
+RAINBOW_ON = włączył
+RAINBOW_OFF = wyłączył
+
+[de]
+
+RAINBOW_HUD_PURCHASED = Der Spieler &x04%s &x01hat &x07Rainbow Hud &x01im Shop für &x04%d &x01Kredite gekauft.
+RAINBOW_COMMAND_GRANTED = Glückwunsch, du hast jetzt Zugriff auf den Befehl &x04/rainbow.
+RAINBOW_COMMAND_NO_ACCESS = Du hast keinen Zugriff auf den Befehl &x04/rainbow.
+RAINBOW_HUD_STATUS = Du %s &x04Rainbow Hud.
+RAINBOW_ON = aktiviert
+RAINBOW_OFF = deaktiviert
+
+[fr]
+
+RAINBOW_HUD_PURCHASED = Le joueur &x04%s &x01a acheté &x07Rainbow Hud &x01dans la boutique pour &x04%d &x01crédits.
+RAINBOW_COMMAND_GRANTED = Félicitations, vous avez maintenant accès à la commande &x04/rainbow.
+RAINBOW_COMMAND_NO_ACCESS = Vous n'avez pas accès à la commande &x04/rainbow.
+RAINBOW_HUD_STATUS = Vous %s &x04Rainbow Hud.
+RAINBOW_ON = a activé
+RAINBOW_OFF = a désactivé
+
+[tr]
+
+RAINBOW_HUD_PURCHASED = Oyuncu &x04%s &x01, mağazadan &x07Rainbow Hud &x01'ı &x04%d &x01krediye satın aldı.
+RAINBOW_COMMAND_GRANTED = Tebrikler, artık &x04/rainbow &x01komutuna erişiminiz var.
+RAINBOW_COMMAND_NO_ACCESS = &x04/rainbow &x01komutuna erişiminiz yok.
+RAINBOW_HUD_STATUS = Siz %s &x04Rainbow Hud.
+RAINBOW_ON = etkinleştirdi
+RAINBOW_OFF = devre dışı bıraktı
+
+[ru]
+
+RAINBOW_HUD_PURCHASED = Игрок &x04%s &x01купил &x07Rainbow Hud &x01в магазине за &x04%d &x01кредитов.
+RAINBOW_COMMAND_GRANTED = Поздравляем, теперь у вас есть доступ к команде &x04/rainbow.
+RAINBOW_COMMAND_NO_ACCESS = У вас нет доступа к команде &x04/rainbow.
+RAINBOW_HUD_STATUS = Вы %s &x04Rainbow Hud.
+RAINBOW_ON = активировал
+RAINBOW_OFF = деактивировал
+
+[bg]
+
+RAINBOW_HUD_PURCHASED = Играчът &x04%s &x01закупи &x07Rainbow Hud &x01от магазина за &x04%d &x01кредита.
+RAINBOW_COMMAND_GRANTED = Честито, вече имате достъп до командата &x04/rainbow.
+RAINBOW_COMMAND_NO_ACCESS = Нямате достъп до командата &x04/rainbow.
+RAINBOW_HUD_STATUS = Вие %s &x04Rainbow Hud.
+RAINBOW_ON = активира
+RAINBOW_OFF = деактивира

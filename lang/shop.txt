@@ -18,3 +18,59 @@ NEED_REGISTER_TO_SHOP = Trebuie sa fii inregistrat pentru a cumpara din shop!
 ITEM_ALREADY_PURCHASED = Deja ai cumparat acest item!
 NOT_ENOUGH_CREDITS = Nu ai suficente credite pentru a cumpara acest item!
 ITEM_PURCHASED = Ai cumparat &x04%s &x01!
+
+[pt]
+
+NEED_REGISTER_TO_SHOP = Você precisa estar registrado para comprar na loja.
+ITEM_ALREADY_PURCHASED = Você já comprou este item.
+NOT_ENOUGH_CREDITS = Você não tem créditos suficientes para comprar este item.
+ITEM_PURCHASED = Você comprou &x04%s &x01.
+
+[es]
+
+NEED_REGISTER_TO_SHOP = Necesitas estar registrado para comprar en la tienda.
+ITEM_ALREADY_PURCHASED = Ya has comprado este ítem.
+NOT_ENOUGH_CREDITS = No tienes suficientes créditos para comprar este ítem.
+ITEM_PURCHASED = Compraste &x04%s &x01.
+
+[pl]
+
+NEED_REGISTER_TO_SHOP = Musisz być zarejestrowany, aby kupować w sklepie.
+ITEM_ALREADY_PURCHASED = Już kupiłeś ten przedmiot.
+NOT_ENOUGH_CREDITS = Nie masz wystarczającej ilości kredytów, aby kupić ten przedmiot.
+ITEM_PURCHASED = Kupiłeś &x04%s &x01.
+
+[de]
+
+NEED_REGISTER_TO_SHOP = Du musst registriert sein, um im Shop zu kaufen.
+ITEM_ALREADY_PURCHASED = Du hast diesen Gegenstand bereits gekauft.
+NOT_ENOUGH_CREDITS = Du hast nicht genug Credits, um diesen Gegenstand zu kaufen.
+ITEM_PURCHASED = Du hast &x04%s &x01gekauft.
+
+[fr]
+
+NEED_REGISTER_TO_SHOP = Vous devez être inscrit pour acheter dans la boutique.
+ITEM_ALREADY_PURCHASED = Vous avez déjà acheté cet objet.
+NOT_ENOUGH_CREDITS = Vous n'avez pas assez de crédits pour acheter cet objet.
+ITEM_PURCHASED = Vous avez acheté &x04%s &x01.
+
+[tr]
+
+NEED_REGISTER_TO_SHOP = Mağazadan alışveriş yapabilmek için kayıt olmanız gerekmektedir.
+ITEM_ALREADY_PURCHASED = Bu öğeyi zaten satın aldınız.
+NOT_ENOUGH_CREDITS = Bu öğeyi satın almak için yeterli krediniz yok.
+ITEM_PURCHASED = &x04%s &x01 satın aldınız.
+
+[ru]
+
+NEED_REGISTER_TO_SHOP = Вам нужно зарегистрироваться, чтобы купить в магазине.
+ITEM_ALREADY_PURCHASED = Вы уже купили этот предмет.
+NOT_ENOUGH_CREDITS = У вас недостаточно кредитов для покупки этого предмета.
+ITEM_PURCHASED = Вы купили &x04%s &x01.
+
+[bg]
+
+NEED_REGISTER_TO_SHOP = Трябва да сте регистрирани, за да купувате в магазина.
+ITEM_ALREADY_PURCHASED = Вече сте закупили този елемент.
+NOT_ENOUGH_CREDITS = Нямате достатъчно кредити, за да закупите този елемент.
+ITEM_PURCHASED = Закупихте &x04%s &x01.
