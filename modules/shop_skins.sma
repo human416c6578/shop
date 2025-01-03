@@ -15,12 +15,12 @@
 
 #pragma tabsize 0
 
-#define KNIFE_NUM 12
-#define BUTCHER_NUM 8
+#define KNIFE_NUM 11
+#define BUTCHER_NUM 11
 #define BAYONET_NUM 3
 #define DAGGER_NUM 3
-#define KATANA_NUM 3
-#define USP_NUM 9
+#define KATANA_NUM 4
+#define USP_NUM 11
 #define CHARS_NUM 7
 
 enum eSkin
@@ -52,34 +52,36 @@ enum eMenu
 
 new g_Knives[KNIFE_NUM][eSkin] = {
 	{100, "Default", 					0, 0},
-	{101, "Knife Iridescent", 		 	1,	2500},
-	{102, "Knife Neo-Noir", 		 	2,	2500},
-	{103, "Knife Blood", 			 	3,	2500},
-	{104, "Knife Nexus", 			 	4,	2500},
-	{105, "Knife Moon", 			 	5,	2500},
+	{101, "Knife Iridescent", 		 	5,	2500},
+	{102, "Knife Neo-Noir", 		 	9,	2500},
+	{103, "Knife Blood", 			 	2,	2500},
+	{104, "Knife Nexus", 			 	10,	2500},
+	{105, "Knife Moon", 			 	8,	2500},
 	{106, "Knife King", 			 	6,	2500},
 	{107, "Knife Lightning", 		 	7,	2500},
-	{108, "Knife Ahegao", 			 	8,	2500},
-	{109, "Knife Sakura", 			 	9,	2500},
-	{110, "Knife Grizzly", 			 	10,	2500},
-	{111, "Knife Ghost", 			 	11,	2500}
+	{108, "Knife Ahegao", 			 	1,	2500},
+	{109, "Knife Grizzly", 			 	4,	2500},
+	{110, "Knife Ghost", 			 	3,	2500}
 }
 
 new g_Butchers[BUTCHER_NUM][eSkin] = {
 	{150, "Default", 				0, 	0},
-	{151, "Butcher Iridescent", 	1,	2500},
-	{152, "Butcher Neo-Noir", 		2, 	2500},
-	{153, "Butcher Carbon", 		3,	2500},
-	{154, "Butcher Gojo", 			4,	2500},
-	{155, "Butcher Hyperbeast", 	5,	2500},
-	{156, "Butcher Lion", 			6,	2500},
-	{157, "Butcher Xiao", 			7,	2500}
+	{151, "Butcher Iridescent", 	6,	2500},
+	{152, "Butcher Neo-Noir", 		8, 	2500},
+	{153, "Butcher Blood", 			1,	2500},
+	{154, "Butcher Carbon", 		2,	2500},
+	{155, "Butcher Fade", 			3,	2500},
+	{156, "Butcher Gojo", 			4,	2500},
+	{157, "Butcher Hyperbeast", 	5,	2500},
+	{158, "Butcher Lion", 			7,	2500},
+	{159, "Butcher Nezuko", 		9,	2500},
+	{160, "Butcher Xiao", 			10,	2500}
 }
 
 new g_Bayonets[BAYONET_NUM][eSkin] = {
 	{400, "Tiger Tooth", 			0,	0},
-	{401, "Purple Haze", 			1, 	2500},
-	{402, "Crimson Web", 		 	2,	2500}
+	{401, "Purple Haze", 			2, 	2500},
+	{402, "Crimson Web", 		 	1,	2500}
 }
 
 new g_Daggers[DAGGER_NUM][eSkin] = {
@@ -90,20 +92,23 @@ new g_Daggers[DAGGER_NUM][eSkin] = {
 
 new g_Katanas[KATANA_NUM][eSkin] = {
 	{600, "Default", 				0,	0},
-	{601, "Fade", 					1, 	2500},
-	{602, "Sakura", 				2,	2500}
+	{601, "Christmas", 				3,	0},
+	{602, "Fade", 					1, 	2500},
+	{603, "Sakura", 				2,	2500}
 }
 
 new g_Usps[USP_NUM][eSkin]={
 	{200, "Default", 				0, 	0},
-	{201, "Iridescent", 			1,	2500},
-	{202, "Neo-Noir", 				2,	2500},
-	{203, "Blue", 					3,	2500},
-	{204, "Carbon", 				4,	2500},
-	{205, "Cortex", 				5,	2500},
-	{206, "Night Wolf", 			6,	2500},
-	{207, "Sakura", 				7,	2500},
-	{208, "Xiao", 					8,	2500}
+	{201, "Iridescent", 			6,	2500},
+	{202, "Neo-Noir", 				7,	2500},
+	{203, "Blood", 					1,	2500},
+	{204, "Blue", 					2,	2500},
+	{205, "Carbon", 				3,	2500},
+	{206, "Cortex", 				4,	2500},
+	{207, "Fade", 					5,	2500},
+	{208, "Night Wolf", 			9,	2500},
+	{209, "Sakura", 				8,	2500},
+	{210, "Xiao", 					10,	2500}
 };
 
 new g_Chars[CHARS_NUM][ePlayerSkin]={
