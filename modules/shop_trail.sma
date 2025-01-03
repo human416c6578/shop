@@ -109,6 +109,12 @@ public plugin_init() {
 	register_item("Trail", "handleTrail", "shop_trail.amxx", TRAIL_PRICE, TRAIL_ID);
 }
 
+public plugin_cfg(){
+
+	register_dictionary("shop_trail.txt");
+
+}
+
 public handleTrail(id){
 	inventory_add(id, TRAIL_ID);
 
