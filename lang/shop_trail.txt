@@ -1,0 +1,54 @@
+[en]
+
+TRAIL_PURCHASED = Player &x04%s &x01has purchased the &x07Trail &x01from the shop for &x04%d &x01credits.
+TRAIL_ACCESS_GRANTED = Congratulations, you now have access to the &x04Trail.
+
+[bp]
+
+TRAIL_PURCHASED = O jogador &x04%s &x01comprou &x07Trail &x01da loja por &x04%d &x01créditos.
+TRAIL_ACCESS_GRANTED = Parabéns, agora você tem acesso ao &x04Trail.
+
+[ro]
+
+TRAIL_PURCHASED = Jucatorul &x04%s &x01a cumparat &x07Trail &x01din shop pentru &x04%d &x01de credite!
+TRAIL_ACCESS_GRANTED = Felicitari, acum ai acces la &x04Trail!
+
+[pt]
+
+TRAIL_PURCHASED = O jogador &x04%s &x01comprou &x07Trail &x01da loja por &x04%d &x01créditos.
+TRAIL_ACCESS_GRANTED = Parabéns, agora você tem acesso ao &x04Trail.
+
+[es]
+
+TRAIL_PURCHASED = El jugador &x04%s &x01compró &x07Trail &x01de la tienda por &x04%d &x01créditos.
+TRAIL_ACCESS_GRANTED = Felicitaciones, ahora tienes acceso al &x04Trail.
+
+[pl]
+
+TRAIL_PURCHASED = Gracz &x04%s &x01kupił &x07Trail &x01ze sklepu za &x04%d &x01kredytów.
+TRAIL_ACCESS_GRANTED = Gratulacje, teraz masz dostęp do &x04Trail.
+
+[de]
+
+TRAIL_PURCHASED = Der Spieler &x04%s &x01hat &x07Trail &x01im Shop für &x04%d &x01Kredite gekauft.
+TRAIL_ACCESS_GRANTED = Glückwunsch, du hast jetzt Zugriff auf &x04Trail.
+
+[fr]
+
+TRAIL_PURCHASED = Le joueur &x04%s &x01a acheté &x07Trail &x01dans la boutique pour &x04%d &x01crédits.
+TRAIL_ACCESS_GRANTED = Félicitations, vous avez maintenant accès au &x04Trail.
+
+[tr]
+
+TRAIL_PURCHASED = Oyuncu &x04%s &x01, mağazadan &x07Trail &x01'ı &x04%d &x01krediye satın aldı.
+TRAIL_ACCESS_GRANTED = Tebrikler, artık &x04Trail &x01'ya erişiminiz var.
+
+[ru]
+
+TRAIL_PURCHASED = Игрок &x04%s &x01купил &x07Trail &x01в магазине за &x04%d &x01кредитов.
+TRAIL_ACCESS_GRANTED = Поздравляем, теперь у вас есть доступ к &x04Trail.
+
+[bg]
+
+TRAIL_PURCHASED = Играчът &x04%s &x01закупи &x07Trail &x01от магазина за &x04%d &x01кредита.
+TRAIL_ACCESS_GRANTED = Честито, вече имате достъп до &x04Trail.

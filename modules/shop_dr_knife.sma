@@ -1,6 +1,6 @@
 #include <amxmodx>
 #include <amxmisc>
-#include <cromchat>
+#include <cromchat2>
 
 #include <shop>
 #include <inventory>
@@ -15,13 +15,21 @@ public plugin_init(){
 	CC_SetPrefix("&x04[LLG]");
 }
 
+public plugin_cfg(){
+
+	register_dictionary("shop_dr_knife.txt");
+
+}
+
 public handlePremium(id){
 	inventory_add(id, PREMIUM_KNIFEID);
 
 	new szName[64];
 	get_user_name(id, szName, 63);
-	CC_SendMessage(0, "&x01Jucatorul &x04%s &x01a cumparat &x07Premium Knife &x01din shop pentru &x0450.000 &x01de credite!", szName);
-	CC_SendMessage(id, "&x01Felicitari, acum ai acces la &x04Premium Knife!", szName);
+	CC_SendMessage(0, "%l", "PREMIUM_KNIFE_PURCHASED", szName);
+	//CC_SendMessage(0, "&x01Jucatorul &x04%s &x01a cumparat &x07Premium Knife &x01din shop pentru &x0450.000 &x01de credite!", szName);
+	CC_SendMessage(id, "%L", id, "PREMIUM_KNIFE_GRANTED");
+	//CC_SendMessage(id, "&x01Felicitari, acum ai acces la &x04Premium Knife!", szName);
 }
 
 public handleKatana(id){
@@ -29,6 +37,9 @@ public handleKatana(id){
 
 	new szName[64];
 	get_user_name(id, szName, 63);
-	CC_SendMessage(0, "&x01Jucatorul &x04%s &x01a cumparat &x07Katana &x01din shop pentru &x0425.000 &x01de credite!", szName);
-	CC_SendMessage(id, "&x01Felicitari, acum ai acces la &x04Katana!", szName);
+	CC_SendMessage(0, "%l", "KATANA_KNIFE_PURCHASED", szName);
+	//CC_SendMessage(0, "&x01Jucatorul &x04%s &x01a cumparat &x07Katana &x01din shop pentru &x0425.000 &x01de credite!", szName);
+	CC_SendMessage(id, "%L", id, "KATANA_KNIFE_GRANTED");
+	//CC_SendMessage(id, "&x01Felicitari, acum ai acces la &x04Katana!", szName);
+	
 }
