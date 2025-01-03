@@ -4,8 +4,7 @@
 #include <fakemeta_util>
 #include <nvault>
 #include <nvault_array>
-#include <cromchat>
-
+#include <cromchat2>
 #include <credits>
 #include <inventory>
 
@@ -13,7 +12,7 @@ native reg_is_user_logged(id);
 native reg_is_user_registered(id);
 
 #define PLUGIN "Dr Shop"
-#define VERSION "0.1"
+#define VERSION "1.1"
 #define AUTHOR "MrShark45"
 
 enum eShopItem
@@ -38,6 +37,9 @@ public plugin_init(){
 }
 
 public plugin_cfg(){
+
+	register_dictionary("shop.txt");
+
 	static datestr[11], FilePath[64];
 	get_localinfo("amxx_logs", FilePath, 63);
 	get_time("%Y.%m.%d", datestr, 10);
@@ -112,7 +114,8 @@ public menu_handler(id, menu, item){
 		return PLUGIN_CONTINUE;
 
 	if(!reg_is_user_logged(id) || !reg_is_user_registered(id)){
-		CC_SendMessage(id, "&x01Trebuie sa fii inregistrat pentru a cumpara din shop!");
+		CC_SendMessage(id, "%L", id, "NEED_REGISTER_TO_SHOP");
+		//CC_SendMessage(id, "&x01Trebuie sa fii inregistrat pentru a cumpara din shop!");
 		return PLUGIN_CONTINUE;
 	}
 
@@ -126,12 +129,14 @@ public menu_handler(id, menu, item){
 	new credits = get_user_credits(id);
 
 	if(inventory_get_item(id, shopItem[iItemID])){
-		CC_SendMessage(id, "&x01Deja ai cumparat acest item!");
+		CC_SendMessage(id, "%L", id, "ITEM_ALREADY_PURCHASED");
+		//CC_SendMessage(id, "&x01Deja ai cumparat acest item!");
 		return PLUGIN_HANDLED;
 	}
 
 	if(credits < shopItem[iCost]){
-		CC_SendMessage(id, "&x01Nu ai suficente credite pentru a cumpara acest item!");
+		CC_SendMessage(id, "%L", id, "NOT_ENOUGH_CREDITS");
+		//CC_SendMessage(id, "&x01Nu ai suficente credite pentru a cumpara acest item!");
 		return PLUGIN_HANDLED;
 	}
 
@@ -143,7 +148,8 @@ public menu_handler(id, menu, item){
 			menu_destroy( menu );
 			return PLUGIN_HANDLED;
 		}
-		CC_SendMessage(id, "&x01Ai cumparat &x04%s &x01!", shopItem[szName]);
+		CC_SendMessage(id, "%L", id, "ITEM_PURCHASED", shopItem[szName]);
+		//CC_SendMessage(id, "&x01Ai cumparat &x04%s &x01!", shopItem[szName]);
 		UTIL_LogBuy(id, "A cumparat %s", shopItem[szName]);
 		new newCredits = credits-shopItem[iCost];
 		set_user_credits(id, newCredits);

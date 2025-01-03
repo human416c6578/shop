@@ -1,0 +1,47 @@
+[en]
+
+SKIN_PURCHASED = You purchased &x04%s &x01.
+NOT_ENOUGH_CREDITS_SKIN = You don't have enough credits to purchase this skin.
+
+[bp]
+
+SKIN_PURCHASED = Você comprou &x04%s &x01.
+NOT_ENOUGH_CREDITS_SKIN = Você não tem créditos suficientes para comprar este skin.
+
+[ro]
+
+SKIN_PURCHASED = Ai cumparat &x04%s &x01!
+NOT_ENOUGH_CREDITS_SKIN = Nu ai suficiente credite pentru a cumpara acest skin!
+
+[pt]
+
+SKIN_PURCHASED = Você comprou &x04%s &x01.
+NOT_ENOUGH_CREDITS_SKIN = Você não tem créditos suficientes para comprar este skin.
+
+[es]
+SKIN_PURCHASED = Compraste &x04%s &x01.
+NOT_ENOUGH_CREDITS_SKIN = No tienes suficientes créditos para comprar este skin.
+
+[pl]
+SKIN_PURCHASED = Kupiłeś &x04%s &x01.
+NOT_ENOUGH_CREDITS_SKIN = Nie masz wystarczającej ilości kredytów, aby kupić ten skin.
+
+[de]
+SKIN_PURCHASED = Du hast &x04%s &x01gekauft.
+NOT_ENOUGH_CREDITS_SKIN = Du hast nicht genug Credits, um dieses Skin zu kaufen.
+
+[fr]
+SKIN_PURCHASED = Vous avez acheté &x04%s &x01.
+NOT_ENOUGH_CREDITS_SKIN = Vous n'avez pas assez de crédits pour acheter ce skin.
+
+[tr]
+SKIN_PURCHASED = &x04%s &x01 satın aldınız.
+NOT_ENOUGH_CREDITS_SKIN = Bu skin'i satın almak için yeterli krediniz yok.
+
+[ru]
+SKIN_PURCHASED = Вы купили &x04%s &x01.
+NOT_ENOUGH_CREDITS_SKIN = У вас недостаточно кредитов для покупки этого скина.
+
+[bg]
+SKIN_PURCHASED = Закупихте &x04%s &x01.
+NOT_ENOUGH_CREDITS_SKIN = Нямате достатъчно кредити, за да закупите този скин.
