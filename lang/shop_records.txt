@@ -1,31 +1,31 @@
 [en]
 
-ITEM_PURCHASED = You purchased &x04%s &x01.
+ITEM_PURCHASED = You purchased &x04%s&x01.
 NOT_ENOUGH_CREDITS_SOUND = You don't have enough credits to purchase this sound.
 
 [bp]
 
-ITEM_PURCHASED = Você comprou &x04%s &x01.
+ITEM_PURCHASED = Você comprou &x04%s&x01.
 NOT_ENOUGH_CREDITS_SOUND = Você não tem créditos suficientes para comprar este som.
 
 [ro]
 
-ITEM_PURCHASED = Ai cumparat &x04%s &x01!
+ITEM_PURCHASED = Ai cumparat &x04%s&x01!
 NOT_ENOUGH_CREDITS_SOUND = Nu ai suficiente credite pentru a cumpara acest sunet!
 
 [pt]
 
-ITEM_PURCHASED = Você comprou &x04%s &x01.
+ITEM_PURCHASED = Você comprou &x04%s&x01.
 NOT_ENOUGH_CREDITS_SOUND = Você não tem créditos suficientes para comprar este som.
 
 [es]
 
-ITEM_PURCHASED = Compraste &x04%s &x01.
+ITEM_PURCHASED = Compraste &x04%s&x01.
 NOT_ENOUGH_CREDITS_SOUND = No tienes suficientes créditos para comprar este sonido.
 
 [pl]
 
-ITEM_PURCHASED = Kupiłeś &x04%s &x01.
+ITEM_PURCHASED = Kupiłeś &x04%s&x01.
 NOT_ENOUGH_CREDITS_SOUND = Nie masz wystarczającej ilości kredytów, aby kupić ten dźwięk.
 
 [de]
@@ -35,20 +35,20 @@ NOT_ENOUGH_CREDITS_SOUND = Du hast nicht genug Credits, um diesen Sound zu kaufe
 
 [fr]
 
-ITEM_PURCHASED = Vous avez acheté &x04%s &x01.
+ITEM_PURCHASED = Vous avez acheté &x04%s&x01.
 NOT_ENOUGH_CREDITS_SOUND = Vous n'avez pas assez de crédits pour acheter ce son.
 
 [tr]
 
-ITEM_PURCHASED = &x04%s &x01 satın aldınız.
+ITEM_PURCHASED = &x04%s &x01satın aldınız.
 NOT_ENOUGH_CREDITS_SOUND = Bu sesi satın almak için yeterli krediniz yok.
 
 [ru]
 
-ITEM_PURCHASED = Вы купили &x04%s &x01.
+ITEM_PURCHASED = Вы купили &x04%s&x01.
 NOT_ENOUGH_CREDITS_SOUND = У вас недостаточно кредитов для покупки этого звука.
 
 [bg]
 
-ITEM_PURCHASED = Закупихте &x04%s &x01.
+ITEM_PURCHASED = Закупихте &x04%s&x01.
 NOT_ENOUGH_CREDITS_SOUND = Нямате достатъчно кредити, за да закупите този звук.

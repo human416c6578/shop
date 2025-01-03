@@ -14,7 +14,7 @@ public plugin_init(){
 
 	registerItems();
 	
-	CC_SetPrefix("&x04[DR]") 
+	CC_SetPrefix("&x04[SHOP]") 
 }
 
 public plugin_cfg(){

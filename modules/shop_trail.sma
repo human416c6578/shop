@@ -107,6 +107,8 @@ public plugin_init() {
 	gl_timer_limit = floatround(float(gl_trail_life)/TICK)
 
 	register_item("Trail", "handleTrail", "shop_trail.amxx", TRAIL_PRICE, TRAIL_ID);
+
+	CC_SetPrefix("&x04[SHOP]")
 }
 
 public plugin_cfg(){

@@ -12,7 +12,7 @@ public plugin_init(){
 	register_item("Premium Knife", "handlePremium", "shop_dr_knife.amxx", 50000, PREMIUM_KNIFEID);
 	register_item("Katana", "handleKatana", "shop_dr_knife.amxx", 40000, KATANA_KNIFEID);
 
-	CC_SetPrefix("&x04[LLG]");
+	CC_SetPrefix("&x04[SHOP]");
 }
 
 public plugin_cfg(){
