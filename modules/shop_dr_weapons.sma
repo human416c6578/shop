@@ -64,6 +64,8 @@ public handleBuyTerro(id){
 		//CC_SendMessage(0, "&x04%s &x01a ales sa fie &x03terorist runda urmatoare!", szName);
 		g_iTero[id]++;
 	}
+
+	return 1;
 }
 //Doar pentru tero
 public handleHealth50(id){
@@ -83,6 +85,8 @@ public handleHealth50(id){
 	fm_set_user_health(id, health);
 
 	g_iHP[id]++;
+
+	return 1;
 }
 
 public handleArmor50(id){
@@ -92,7 +96,9 @@ public handleArmor50(id){
 		set_user_credits(id, get_user_credits(id) + 50)
 		return - 1;
 	}
-	fm_set_user_armor(id, get_user_armor(id)+50);
+	fm_set_user_armor(id, get_user_armor(id) + 50);
+
+	return 1;
 }
 
 public handleDeagle(id){
