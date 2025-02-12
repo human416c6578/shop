@@ -125,13 +125,12 @@ new g_iMenuId[33];
 
 //Main
 public plugin_init(){
-	
 	register_plugin(PLUGIN,VERSION,AUTHOR);
 
 	register_item("Skins", "SkinsMenu", "shop_skins_submodels.amxx", 0);
 
+	//Chat prefix
 	CC_SetPrefix("&x04[SHOP]") 
-
 }
 
 public plugin_cfg(){
@@ -410,12 +409,9 @@ public BuySkin(id, itemSkin[eSkin]){
 		set_user_credits(id, credits - itemSkin[iCost])
 		inventory_add(id, itemSkin[iSkinId]);
 		CC_SendMessage(id, "%L", id, "SKIN_PURCHASED", itemSkin[szName]);
-		//CC_SendMessage(id, "&x01Ai cumparat &x04%s &x01!", itemSkin[szName]);
-
 		set_user_weapon_skin(id, itemSkin[iSubModel]);
 	}		
 	else{
-		//CC_SendMessage(id, "&x01Nu ai suficiente credite pentru a cumpara acest skin!");
 		CC_SendMessage(id, "%L", id, "NOT_ENOUGH_CREDITS_SKIN");
 
 	}
@@ -429,10 +425,8 @@ public BuyUspSkin(id, item){
 		inventory_add(id, g_Usps[item][iSkinId]);
 		set_user_usp(id, g_Usps[item][iSubModel]);
 		CC_SendMessage(id, "%L", id, "SKIN_PURCHASED", g_Usps[item][szName]);
-		//CC_SendMessage(id, "&x01Ai cumparat &x04%s &x01!", g_Usps[item][szName]);
 	}
 	else{
-		//CC_SendMessage(id, "&x01Nu ai suficiente credite pentru a cumpara acest skin!");
 		CC_SendMessage(id, "%L", id, "NOT_ENOUGH_CREDITS_SKIN");
 	}
 }
@@ -444,10 +438,8 @@ public BuyPlayerSkin(id, item){
 		inventory_add(id, g_Chars[item][iPlayerSkinId]);
 		set_user_player_skin(id, g_Chars[item][szPlayerModel]);
 		CC_SendMessage(id, "%L", id, "SKIN_PURCHASED", g_Chars[item][szPlayerName]);
-		//CC_SendMessage(id, "&x01Ai cumparat &x04%s &x01!", g_Chars[item][szPlayerName]);
 	}
 	else{
-		//CC_SendMessage(id, "&x01Nu ai suficiente credite pentru a cumpara acest skin!");
 		CC_SendMessage(id, "%L", id, "NOT_ENOUGH_CREDITS_SKIN");
 	}
 }

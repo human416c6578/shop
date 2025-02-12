@@ -108,6 +108,7 @@ public plugin_init() {
 
 	register_item("Trail", "handleTrail", "shop_trail.amxx", TRAIL_PRICE, TRAIL_ID);
 
+	//Chat prefix
 	CC_SetPrefix("&x04[SHOP]")
 }
 
@@ -123,9 +124,7 @@ public handleTrail(id){
 	new szName[64];
 	get_user_name(id, szName, 63);
 	CC_SendMessage(0, "%l", "TRAIL_PURCHASED", szName, TRAIL_PRICE);
-	//CC_SendMessage(0, "&x01Jucatorul &x04%s &x01a cumparat &x07Trail &x01din shop pentru &x04%d &x01de credite!", szName, TRAIL_PRICE);
 	CC_SendMessage(id, "%L", id, "TRAIL_ACCESS_GRANTED");
-	//CC_SendMessage(id, "&x01Felicitari, acum ai acces la &x04Trail!", szName);
 
 	return PLUGIN_CONTINUE;
 }
@@ -720,4 +719,3 @@ bool:parse_file() {
 	}
 	return true
 }
-
