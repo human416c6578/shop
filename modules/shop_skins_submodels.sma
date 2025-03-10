@@ -15,12 +15,12 @@
 
 #pragma tabsize 0
 
-#define KNIFE_NUM 11
-#define BUTCHER_NUM 11
+#define KNIFE_NUM 45
+#define BUTCHER_NUM 18
 #define BAYONET_NUM 3
 #define DAGGER_NUM 3
 #define KATANA_NUM 4
-#define USP_NUM 11
+#define USP_NUM 32
 #define CHARS_NUM 7
 
 enum eSkin
@@ -51,31 +51,74 @@ enum eMenu
 }
 
 new g_Knives[KNIFE_NUM][eSkin] = {
-	{100, "Default", 					0, 0},
-	{101, "Knife Iridescent", 		 	5,	2500},
-	{102, "Knife Neo-Noir", 		 	9,	2500},
-	{103, "Knife Blood", 			 	2,	2500},
-	{104, "Knife Nexus", 			 	10,	2500},
-	{105, "Knife Moon", 			 	8,	2500},
-	{106, "Knife King", 			 	6,	2500},
-	{107, "Knife Lightning", 		 	7,	2500},
-	{108, "Knife Ahegao", 			 	1,	2500},
-	{109, "Knife Grizzly", 			 	4,	2500},
-	{110, "Knife Ghost", 			 	3,	2500}
+	{100, "Default", 				0, 0},
+	{101, "Knife Abstract", 		1,	2500},
+	{102, "Knife Among Us", 		2,	2500},
+	{103, "Knife Arc Pink", 		3,	2500},
+	{104, "Knife Cold Cerf", 		4,	2500},
+	{105, "Knife Color", 			5,	2500},
+	{106, "Knife Cosmic Ohmy", 		6,	2500},
+	{107, "Knife Faded",		 	7,	2500},
+	{108, "Knife fekete", 			8,	2500},
+	{109, "Knife frozen", 			9,	2500},
+	{110, "Knife Ghost Blue", 		10,	2500},
+	{111, "Knife Ghost Red", 		11,	2500},
+	{112, "Knife Lightning", 		12,	2500},
+	{113, "Knife Linkin Park", 		13,	2500},
+	{114, "Knife Nexus", 			14,	2500},
+	{115, "Knife Night", 		 	15,	2500},
+	{116, "Knife Nightraid", 		16,	2500},
+	{117, "Knife Space Ohmy", 		17,	2500},
+	{118, "Knife Sponge Bob", 		18,	2500},
+	{119, "Knife Steel", 		 	19,	2500},
+	{120, "Knife Thug Cat", 		20,	2500},
+	{121, "Knife White Duck", 		21,	2500},
+	{122, "Knife Yum", 			 	22,	2500},
+	{123, "Knife Ahegao", 			23,	2500}, //From here down are VIPs
+	{124, "Knife Black", 			24,	2500},
+	{125, "Knife Black White", 		25,	2500},
+	{126, "Knife Blood", 			26,	2500},
+	{127, "Knife Fire", 			27,	2500},
+	{128, "Knife Fire Flower", 		28,	2500},
+	{129, "Knife Galaxy", 			29,	2500},
+	{130, "Knife Goku", 			30,	2500},
+	{131, "Knife Gold", 			31,	2500},
+	{132, "Knife Grizzly", 			32,	2500},
+	{133, "Knife Howl", 			33,	2500},
+	{134, "Knife Icephoenix", 		34,	2500},
+	{135, "Knife Iridescent", 	 	35,	2500},
+	{136, "Knife Joker", 			36,	2500},
+	{137, "Knife King", 			37,	2500},
+	{138, "Knife Moon", 			38,	2500},
+	{139, "Knife Neo-Noir", 		39,	2500},
+	{140, "Knife Purple", 			40,	2500},
+	{141, "Knife Sakura", 			41,	2500},
+	{142, "Knife Shred", 			42,	2500},
+	{143, "Knife Storm", 			43,	2500},
+	{144, "Knife Venom", 			44,	2500}
+
+
 }
 
 new g_Butchers[BUTCHER_NUM][eSkin] = {
 	{150, "Default", 				0, 	0},
-	{151, "Butcher Iridescent", 	6,	2500},
-	{152, "Butcher Neo-Noir", 		8, 	2500},
-	{153, "Butcher Blood", 			1,	2500},
-	{154, "Butcher Carbon", 		2,	2500},
-	{155, "Butcher Fade", 			3,	2500},
-	{156, "Butcher Gojo", 			4,	2500},
-	{157, "Butcher Hyperbeast", 	5,	2500},
-	{158, "Butcher Lion", 			7,	2500},
-	{159, "Butcher Nezuko", 		9,	2500},
-	{160, "Butcher Xiao", 			10,	2500}
+	{151, "Butcher Black Wolf", 	1,	2500},
+	{152, "Butcher Blood", 			2,	2500},
+	{153, "Butcher Carbon", 		3,	2500},
+	{154, "Butcher Fade",			4,	2500},
+	{155, "Butcher Lion",			5,	2500},
+	{156, "Butcher Nezuko",			6,	2500},
+	{157, "Butcher Rainbow", 		7,	2500},
+	{158, "Butcher Red Ghost", 		8,	2500},
+	{159, "Butcher Rias", 			9,	2500},
+	{160, "Butcher Blood Khalifa", 	10,	2500}, //From here down are VIPs
+	{161, "Butcher Boris", 			11,	2500},
+	{162, "Butcher Gojo", 			12,	2500},
+	{163, "Butcher Hyperbeast",		13,	2500},
+	{164, "Butcher Iridescent",		14,	2500},
+	{165, "Butcher Lion blade",		15,	2500},
+	{166, "Butcher Neo-Noir", 		16,	2500},
+	{167, "Butcher Xiao", 			17,	2500}
 }
 
 new g_Bayonets[BAYONET_NUM][eSkin] = {
@@ -99,16 +142,37 @@ new g_Katanas[KATANA_NUM][eSkin] = {
 
 new g_Usps[USP_NUM][eSkin]={
 	{200, "Default", 				0, 	0},
-	{201, "Iridescent", 			6,	2500},
-	{202, "Neo-Noir", 				7,	2500},
-	{203, "Blood", 					1,	2500},
-	{204, "Blue", 					2,	2500},
-	{205, "Carbon", 				3,	2500},
-	{206, "Cortex", 				4,	2500},
-	{207, "Fade", 					5,	2500},
-	{208, "Night Wolf", 			9,	2500},
-	{209, "Sakura", 				8,	2500},
-	{210, "Xiao", 					10,	2500}
+	{201, "Abstract", 				1,	2500},
+	{202, "Blue Print", 			2,	2500},
+	{203, "Carbon", 				3,	2500},
+	{204, "Dark Flower", 			4,	2500},
+	{205, "Dark Red", 				5,	2500},
+	{206, "Dolomit", 				6,	2500},
+	{207, "Fade", 					7,	2500},
+	{208, "Fire", 					8,	2500},
+	{209, "Night Wolf Green", 		9,	2500},
+	{210, "Nightfire", 				10,	2500},
+	{211, "Nightraid", 				11,	2500},
+	{212, "Orion", 					12,	2500},
+	{213, "Pac-Man", 				13,	2500},
+	{214, "Strong Blue", 			14,	2500},
+	{215, "Water", 					15,	2500},
+	{216, "Abstract", 				16,	2500}, //From here down are VIPs
+	{217, "Abstract Blue", 			17,	2500},
+	{218, "Black", 					18,	2500},
+	{219, "Blue", 					19,	2500},
+	{220, "Bright", 				20,	2500},
+	{221, "Cortex", 				21,	2500},
+	{222, "Fire Flower", 			22,	2500},
+	{223, "Flashback", 				23,	2500},
+	{224, "Iridescent", 			24,	2500},
+	{225, "Lightning Monster", 		25,	2500},
+	{226, "Neo-Noir", 				26,	2500},
+	{227, "Night Wolf", 			27,	2500},
+	{228, "Sakura", 				28,	2500},
+	{229, "Ticket To Hell", 		29,	2500},
+	{230, "Xiao", 					30,	2500},
+	{231, "Xtreme", 				31,	2500}
 };
 
 new g_Chars[CHARS_NUM][ePlayerSkin]={
