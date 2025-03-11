@@ -111,19 +111,19 @@ new g_Katanas[KATANA_NUM][eSkin] = {
 
 new g_Usps[USP_NUM][eSkin]={
     {200, "Default",            	0, 0,},
-    {216, "Abstract",          		16, 2500},
-    {217, "Abstract Blue",      	17, 2500},
-    {218, "Black",              	18, 2500},
-    {219, "Blue",               	19, 2500},
-    {220, "Bright",             	20, 2500},
-    {221, "Cortex",             	21, 2500},
-    {222, "Fire Flower",        	22, 2500},
-    {223, "Flashback",          	23, 2500},
-    {224, "Iridescent",         	24, 2500},
-    {225, "Lightning Monster",  	25, 2500},
-    {226, "Neo-Noir",          		26, 2500},
-    {227, "Night Wolf",         	27, 2500},
-    {228, "Sakura",             	28, 2500},
+    {216, "Abstract Blue",      	16, 2500},
+    {217, "Black",              	17, 2500},
+    {218, "Blue",               	18, 2500},
+    {219, "Bright",             	19, 2500},
+    {220, "Cortex",             	20, 2500},
+    {221, "Fire Flower",        	21, 2500},
+    {222, "Flashback",          	22, 2500},
+    {223, "Iridescent",         	23, 2500},
+    {224, "Lightning Monster",  	24, 2500},
+    {225, "Neo-Noir",          		25, 2500},
+    {226, "Night Wolf",         	26, 2500},
+    {227, "Sakura",             	27, 2500},
+	{228, "Shaker",             	28, 2500},
     {229, "Ticket To Hell",     	29, 2500},
     {230, "Xiao",               	30, 2500},
     {231, "Xtreme",             	31, 2500}
@@ -145,7 +145,7 @@ new g_iMenuId[33];
 public plugin_init(){
 	register_plugin(PLUGIN,VERSION,AUTHOR);
 
-	register_item("Skins", "SkinsMenu", "shop_skins_submodels_vip.amxx", 0);
+	register_item("Skins(VIP)", "SkinsMenu", "shop_skins_submodels_vip.amxx", 0);
 
 	//Chat prefix
 	CC_SetPrefix("&x04[SHOP]") 
