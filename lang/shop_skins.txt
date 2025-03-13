@@ -1,47 +1,65 @@
 [en]
 
+VIP_REQUIRED = You need to be &x04VIP &x01to access this menu.
 SKIN_PURCHASED = You purchased &x04%s&x01.
 NOT_ENOUGH_CREDITS_SKIN = You don't have enough credits to purchase this skin.
 
 [bp]
 
+VIP_REQUIRED = Você precisa ser &x04VIP &x01para acessar esse menu.
 SKIN_PURCHASED = Você comprou &x04%s&x01.
 NOT_ENOUGH_CREDITS_SKIN = Você não tem créditos suficientes para comprar este skin.
 
 [ro]
 
-SKIN_PURCHASED = Ai cumparat &x04%s&x01!
-NOT_ENOUGH_CREDITS_SKIN = Nu ai suficiente credite pentru a cumpara acest skin!
+VIP_REQUIRED = Trebuie să fii &x04VIP &x01pentru a accesa acest meniu.
+SKIN_PURCHASED = Ai cumpărat &x04%s&x01!
+NOT_ENOUGH_CREDITS_SKIN = Nu ai suficiente credite pentru a cumpăra acest skin!
 
 [pt]
 
+VIP_REQUIRED = Você precisa ser &x04VIP &x01para acessar esse menu.
 SKIN_PURCHASED = Você comprou &x04%s&x01.
 NOT_ENOUGH_CREDITS_SKIN = Você não tem créditos suficientes para comprar este skin.
 
 [es]
+
+VIP_REQUIRED = Necesitas ser &x04VIP &x01para acceder a este menú.
 SKIN_PURCHASED = Compraste &x04%s&x01.
 NOT_ENOUGH_CREDITS_SKIN = No tienes suficientes créditos para comprar este skin.
 
 [pl]
+
+VIP_REQUIRED = Musisz być &x04VIP &x01aby uzyskać dostęp do tego menu.
 SKIN_PURCHASED = Kupiłeś &x04%s&x01.
 NOT_ENOUGH_CREDITS_SKIN = Nie masz wystarczającej ilości kredytów, aby kupić ten skin.
 
 [de]
+
+VIP_REQUIRED = Du musst &x04VIP &x01sein, um auf dieses Menü zuzugreifen.
 SKIN_PURCHASED = Du hast &x04%s &x01gekauft.
 NOT_ENOUGH_CREDITS_SKIN = Du hast nicht genug Credits, um dieses Skin zu kaufen.
 
 [fr]
+
+VIP_REQUIRED = Vous devez être &x04VIP &x01pour accéder à ce menu.
 SKIN_PURCHASED = Vous avez acheté &x04%s&x01.
 NOT_ENOUGH_CREDITS_SKIN = Vous n'avez pas assez de crédits pour acheter ce skin.
 
 [tr]
+
+VIP_REQUIRED = &x04VIP &x01olmalısınız, bu menüyü erişmek için.
 SKIN_PURCHASED = &x04%s &x01satın aldınız.
 NOT_ENOUGH_CREDITS_SKIN = Bu skin'i satın almak için yeterli krediniz yok.
 
 [ru]
+
+VIP_REQUIRED = Вам нужно быть &x04VIP &x01чтобы получить доступ к этому меню.
 SKIN_PURCHASED = Вы купили &x04%s&x01.
 NOT_ENOUGH_CREDITS_SKIN = У вас недостаточно кредитов для покупки этого скина.
 
 [bg]
+
+VIP_REQUIRED = Трябва да сте &x04VIP &x01за да получите достъп до това меню.
 SKIN_PURCHASED = Закупихте &x04%s&x01.
 NOT_ENOUGH_CREDITS_SKIN = Нямате достатъчно кредити, за да закупите този скин.

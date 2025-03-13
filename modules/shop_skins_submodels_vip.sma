@@ -173,7 +173,7 @@ public plugin_precache(){
 public SkinsMenu(id){
 	
 	if(!isPlayerVip(id)){
-		CC_SendMessage(id, "&x01Você precisa ser &x04VIP &x01para comprar este item."); //TEST
+		CC_SendMessage(id, "%L", id, "VIP_REQUIRED");
 		return PLUGIN_HANDLED;
 	}
 	
