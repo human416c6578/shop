@@ -20,7 +20,7 @@
 //#define BAYONET_NUM 3
 #define DAGGER_NUM 3
 #define KATANA_NUM 4
-#define USP_NUM 16
+#define USP_NUM 23
 //#define CHARS_NUM 7
 
 enum eSkin
@@ -112,20 +112,27 @@ new g_Katanas[KATANA_NUM][eSkin] = {
 new g_Usps[USP_NUM][eSkin]={
 	{200, "Default", 				0, 	0},
 	{201, "Abstract", 				1,	2500},
-	{202, "Blue Print", 			2,	2500},
-	{203, "Carbon", 				3,	2500},
-	{204, "Dark Flower", 			4,	2500},
-	{205, "Dark Red", 				5,	2500},
-	{206, "Dolomit", 				6,	2500},
-	{207, "Fade", 					7,	2500},
-	{208, "Fire", 					8,	2500},
-	{209, "Night Wolf Green", 		9,	2500},
-	{210, "Nightfire", 				10,	2500},
-	{211, "Nightraid", 				11,	2500},
-	{212, "Orion", 					12,	2500},
-	{213, "Pac-Man", 				13,	2500},
-	{214, "Strong Blue", 			14,	2500},
-	{215, "Water", 					15,	2500}
+	{202, "Blood Thirst", 			2,	2500},
+	{203, "Blue Print", 			3,	2500},
+	{204, "Carbon", 				4,	2500},
+	{205, "Cherry Blossom", 		5,	2500},
+	{206, "Dark Flower", 			6,	2500},
+	{207, "Dark Red", 				7,	2500},
+	{208, "Dogon", 					8,	2500},
+	{209, "Dolomit", 				9,	2500},
+	{210, "Fade", 					10,	2500},
+	{211, "Fire", 					11,	2500},
+	{212, "Iced", 					12,	2500},
+	{213, "Night Wolf Green", 		13,	2500},
+	{214, "Nightfire", 				14,	2500},
+	{215, "Nightraid", 				15,	2500},
+	{216, "Orion", 					16,	2500},
+	{217, "Pac-Man", 				17,	2500},
+	{218, "Stained", 				18,	2500},
+	{219, "Strong Blue", 			19,	2500},
+	{220, "Torque", 				20,	2500},
+	{221, "Water", 					21,	2500},
+	{222, "Zebra", 					22,	2500}
 };
 
 /*new g_Chars[CHARS_NUM][ePlayerSkin]={

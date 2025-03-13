@@ -21,7 +21,7 @@
 #define BAYONET_NUM 3
 //#define DAGGER_NUM 3
 //#define KATANA_NUM 4
-#define USP_NUM 17
+#define USP_NUM 24
 #define CHARS_NUM 7
 
 enum eSkin
@@ -109,24 +109,31 @@ new g_Katanas[KATANA_NUM][eSkin] = {
 	{603, "Sakura", 				2,	2500}
 }*/
 
-new g_Usps[USP_NUM][eSkin]={
-    {200, "Default",            	0, 0,},
-    {216, "Abstract Blue",      	16, 1000},
-    {217, "Black",              	17, 1000},
-    {218, "Blue",               	18, 1000},
-    {219, "Bright",             	19, 1000},
-    {220, "Cortex",             	20, 1000},
-    {221, "Fire Flower",        	21, 1000},
-    {222, "Flashback",          	22, 1000},
-    {223, "Iridescent",         	23, 1000},
-    {224, "Lightning Monster",  	24, 1000},
-    {225, "Neo-Noir",          		25, 1000},
-    {226, "Night Wolf",         	26, 1000},
-    {227, "Sakura",             	27, 1000},
-	{228, "Shaker",             	28, 1000},
-    {229, "Ticket To Hell",     	29, 1000},
-    {230, "Xiao",               	30, 1000},
-    {231, "Xtreme",             	31, 1000}
+new g_Usps[USP_NUM][eSkin] = {
+	{200, "Default",             0, 0},
+	{223, "Abstract Blue",       23, 1000},
+	{224, "Black",               24, 1000},
+	{225, "Blue",                25, 1000},
+	{226, "Bright",              26, 1000},
+	{227, "Caiman",              27, 1000},
+	{228, "Cardinal Crystal",    28, 1000},
+	{229, "Cortex",              29, 1000},
+	{230, "Electra",             30, 1000},
+	{231, "Fire Flower",         31, 1000},
+	{232, "Flashback",           32, 1000},
+	{233, "Green Fire",          33, 1000},
+	{234, "Green Realist",       34, 1000},
+	{235, "Iridescent",          35, 1000},
+	{236, "Lightning Monster",   36, 1000},
+	{237, "Neo-Noir",            37, 1000},
+	{238, "Night Wolf",          38, 1000},
+	{239, "Oil Filter",          39, 1000},
+	{240, "Purity",              40, 1000},
+	{241, "Sakura",              41, 1000},
+	{242, "Shaker",              42, 1000},
+	{243, "Ticket to Hell",      43, 1000},
+	{244, "Xiao",                44, 1000},
+	{245, "Xtreme",              45, 1000}
 };
 
 new g_Chars[CHARS_NUM][ePlayerSkin]={
