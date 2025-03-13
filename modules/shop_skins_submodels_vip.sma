@@ -100,9 +100,9 @@ new g_Bayonets[BAYONET_NUM][eSkin] = {
 	{500, "Default", 				0,	0},
 	{501, "Ruby", 					1, 	2500},
 	{502, "Purple Vibe", 			2,	2500}
-}
+}*/
 
-new g_Katanas[KATANA_NUM][eSkin] = {
+/*new g_Katanas[KATANA_NUM][eSkin] = {
 	{600, "Default", 				0,	0},
 	{601, "Christmas", 				3,	0},
 	{602, "Fade", 					1, 	2500},
