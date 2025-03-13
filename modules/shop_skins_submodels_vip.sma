@@ -53,47 +53,47 @@ enum eMenu
 
 new g_Knives[KNIFE_NUM][eSkin] = {
 	{100, "Default",            	0, 0},
-    {123, "Knife Ahegao",       	26, 2500},
-    {124, "Knife Black",        	41, 2500},
-    {125, "Knife Black-Orange",  	37, 2500},
-    {126, "Knife Blood",        	20, 2500},
-    {127, "Knife Fire",         	21, 2500},
-    {128, "Knife Fire Flower",  	22, 2500},
-    {129, "Knife Galaxy",       	30, 2500},
-    {130, "Knife Goku",         	31, 2500},
-    {131, "Knife Gold",         	32, 2500},
-    {132, "Knife Grizzly",      	23, 2500},
-	{133, "Knife Howl",         	24, 2500},
-    {134, "Knife Icephoenix",   	25, 2500},
-    {135, "Knife Iridescent",   	27, 2500},
-    {136, "Knife Joker",        	33, 2500},
-    {137, "Knife King",         	42, 2500},
-    {138, "Knife Moon",         	28, 2500},
-    {139, "Knife Neo-Noir",     	29, 2500},
-    {140, "Knife Purple",      		40, 2500},
-    {141, "Knife Sakura",       	39, 2500},
-    {142, "Knife Shred",        	34, 2500},
-    {143, "Knife Storm",        	35, 2500},
-    {144, "Knife Venom",        	36, 2500}
+    {123, "Knife Ahegao",       	26, 1000},
+    {124, "Knife Black",        	41, 1000},
+    {125, "Knife Black-Orange",  	37, 1000},
+    {126, "Knife Blood",        	20, 1000},
+    {127, "Knife Fire",         	21, 1000},
+    {128, "Knife Fire Flower",  	22, 1000},
+    {129, "Knife Galaxy",       	30, 1000},
+    {130, "Knife Goku",         	31, 1000},
+    {131, "Knife Gold",         	32, 1000},
+    {132, "Knife Grizzly",      	23, 1000},
+	{133, "Knife Howl",         	24, 1000},
+    {134, "Knife Icephoenix",   	25, 1000},
+    {135, "Knife Iridescent",   	27, 1000},
+    {136, "Knife Joker",        	33, 1000},
+    {137, "Knife King",         	42, 1000},
+    {138, "Knife Moon",         	28, 1000},
+    {139, "Knife Neo-Noir",     	29, 1000},
+    {140, "Knife Purple",      		40, 1000},
+    {141, "Knife Sakura",       	39, 1000},
+    {142, "Knife Shred",        	34, 1000},
+    {143, "Knife Storm",        	35, 1000},
+    {144, "Knife Venom",        	36, 1000}
 }
 
 new g_Butchers[BUTCHER_NUM][eSkin] = {
     {150, "Default",           		0, 0,},
-    {160, "Butcher Blood Khalifa", 	11, 2500},
-    {161, "Butcher Boris",      	12, 2500},
-    {162, "Butcher Gojo",       	13, 2500},
-    {163, "Butcher Hyperbeast", 	14, 2500},
-    {164, "Butcher Iridescent", 	10, 2500},
-    {165, "Butcher Lion blade", 	15, 2500},
-    {166, "Butcher Neo-Noir",   	16, 2500},
-    {167, "Butcher Xiao",       	17, 2500}
+    {160, "Butcher Blood Khalifa", 	11, 1000},
+    {161, "Butcher Boris",      	12, 1000},
+    {162, "Butcher Gojo",       	13, 1000},
+    {163, "Butcher Hyperbeast", 	14, 1000},
+    {164, "Butcher Iridescent", 	10, 1000},
+    {165, "Butcher Lion blade", 	15, 1000},
+    {166, "Butcher Neo-Noir",   	16, 1000},
+    {167, "Butcher Xiao",       	17, 1000}
 }
 
 
 new g_Bayonets[BAYONET_NUM][eSkin] = {
 	{400, "Tiger Tooth", 			0,	0},
-	{401, "Purple Haze", 			2, 	2500},
-	{402, "Crimson Web", 		 	1,	2500}
+	{401, "Purple Haze", 			2, 	1000},
+	{402, "Crimson Web", 		 	1,	1000}
 }
 
 /*new g_Daggers[DAGGER_NUM][eSkin] = {
@@ -111,22 +111,22 @@ new g_Katanas[KATANA_NUM][eSkin] = {
 
 new g_Usps[USP_NUM][eSkin]={
     {200, "Default",            	0, 0,},
-    {216, "Abstract Blue",      	16, 2500},
-    {217, "Black",              	17, 2500},
-    {218, "Blue",               	18, 2500},
-    {219, "Bright",             	19, 2500},
-    {220, "Cortex",             	20, 2500},
-    {221, "Fire Flower",        	21, 2500},
-    {222, "Flashback",          	22, 2500},
-    {223, "Iridescent",         	23, 2500},
-    {224, "Lightning Monster",  	24, 2500},
-    {225, "Neo-Noir",          		25, 2500},
-    {226, "Night Wolf",         	26, 2500},
-    {227, "Sakura",             	27, 2500},
-	{228, "Shaker",             	28, 2500},
-    {229, "Ticket To Hell",     	29, 2500},
-    {230, "Xiao",               	30, 2500},
-    {231, "Xtreme",             	31, 2500}
+    {216, "Abstract Blue",      	16, 1000},
+    {217, "Black",              	17, 1000},
+    {218, "Blue",               	18, 1000},
+    {219, "Bright",             	19, 1000},
+    {220, "Cortex",             	20, 1000},
+    {221, "Fire Flower",        	21, 1000},
+    {222, "Flashback",          	22, 1000},
+    {223, "Iridescent",         	23, 1000},
+    {224, "Lightning Monster",  	24, 1000},
+    {225, "Neo-Noir",          		25, 1000},
+    {226, "Night Wolf",         	26, 1000},
+    {227, "Sakura",             	27, 1000},
+	{228, "Shaker",             	28, 1000},
+    {229, "Ticket To Hell",     	29, 1000},
+    {230, "Xiao",               	30, 1000},
+    {231, "Xtreme",             	31, 1000}
 };
 
 new g_Chars[CHARS_NUM][ePlayerSkin]={
@@ -171,12 +171,13 @@ public plugin_precache(){
 
 //Menu to choose the menu you want
 public SkinsMenu(id){
+	
 	if(!isPlayerVip(id)){
 		CC_SendMessage(id, "&x01Você precisa ser &x04VIP &x01para comprar este item."); //TEST
 		return PLUGIN_HANDLED;
 	}
-
-	new menu = menu_create( "\rChoose The Weapon You Want!:", "menu_handler1" );
+	
+	new menu = menu_create( "\r[SHOP] \d- \wChoose your item:", "menu_handler1" );
 
 	menu_additem( menu, "\wKnife Skins", "", 0 );
 	menu_additem( menu, "\wUsp Skins", "", 0 );
@@ -211,7 +212,7 @@ public menu_handler1( id, menu, item ){
 
 //Menu to choose a custom knife skin
 public KnifeMenu(id){
-	new menu = menu_create( "\rChoose Knife To Set Skin To!:", "menu_handler" );
+	new menu = menu_create( "\r[SHOP] \d- \wChoose the type of knife:", "menu_handler" );
 
 	menu_additem( menu, "\wDefault Knife", 	"", 0 );
 	menu_additem( menu, "\wButcher Knife", 	"", 0 );
@@ -270,7 +271,7 @@ public menu_handler( id, menu, item ){
 public KnifeSkinMenu(id, items[][eSkin], num_items){
 	new itemText[128], title[128];
 	new credits = get_user_credits(id);
-	formatex(title, 127, "\rChoose Knife Skin\w - Credits : \y%d", credits);
+	formatex(title, 127, "\r[SHOP] \d- \wKnife Skins^n\wCredits: \y%d\d", credits);
 	new menu = menu_create( title, "knife_skin_handler" );
 	
 	for(new i = 0;i<num_items;i++){
@@ -333,7 +334,7 @@ public UspMenu(id){
 
 	new itemText[128], title[128];
 	new credits = get_user_credits(id);
-	formatex(title, 127, "\rChoose Usp Skin\w - Credits : \y%d", credits);
+	formatex(title, 127, "\r[SHOP] \d- \wUsp Skins^n\wCredits: \y%d\d", credits);
 
 	new menu = menu_create( title, "usp_menu_handler" );
 
@@ -382,7 +383,7 @@ public CharSkinMenu(id){
 
 	new itemText[128], title[128];
 	new credits = get_user_credits(id);
-	formatex(title, 127, "\rChoose Player Skin\w - Credits : \y%d", credits);
+	formatex(title, 127, "\r[SHOP] \d- \wPlayer Skins^n\wCredits: \y%d", credits);
 	new menu = menu_create( title, "player_skin_handler" );
 	
 	for(new i = 0;i<CHARS_NUM;i++){

@@ -57,7 +57,7 @@ new g_Knives[KNIFE_NUM][eSkin] = {
 	{103, "Knife Cold Cerf", 		15,	2500},
 	{104, "Knife Color", 			2,	2500},
 	{105, "Knife Cosmic Ohmy", 		16,	2500},
-	{106, "Knife Faded",		 	3,	2500},
+	{106, "Knife Fade",		 		3,	2500},
 	{107, "Knife Fekete", 			4,	2500},
 	{108, "Knife Frozen", 			5,	2500},
 	{109, "Knife Ghost Blue", 		6,	2500},
@@ -170,7 +170,7 @@ public plugin_cfg(){
 
 //Menu to choose the menu you want
 public SkinsMenu(id){
-	new menu = menu_create( "\rChoose The Weapon You Want!:", "menu_handler1" );
+	new menu = menu_create( "\r[SHOP] \d- \wChoose your item:", "menu_handler1" );
 
 	menu_additem( menu, "\wKnife Skins", "", 0 );
 	menu_additem( menu, "\wUsp Skins", "", 0 );
@@ -205,7 +205,7 @@ public menu_handler1( id, menu, item ){
 
 //Menu to choose a custom knife skin
 public KnifeMenu(id){
-	new menu = menu_create( "\rChoose Knife To Set Skin To!:", "menu_handler" );
+	new menu = menu_create( "\r[SHOP] \d- \wChoose the type of knife:", "menu_handler" );
 
 	menu_additem( menu, "\wDefault Knife", 	"", 0 );
 	menu_additem( menu, "\wButcher Knife", 	"", 0 );
@@ -264,7 +264,7 @@ public menu_handler( id, menu, item ){
 public KnifeSkinMenu(id, items[][eSkin], num_items){
 	new itemText[128], title[128];
 	new credits = get_user_credits(id);
-	formatex(title, 127, "\rChoose Knife Skin\w - Credits : \y%d", credits);
+	formatex(title, 127, "\r[SHOP] \d- \wKnife Skins^n\wCredits: \y%d\d", credits);
 	new menu = menu_create( title, "knife_skin_handler" );
 	
 	for(new i = 0;i<num_items;i++){
@@ -327,7 +327,7 @@ public UspMenu(id){
 
 	new itemText[128], title[128];
 	new credits = get_user_credits(id);
-	formatex(title, 127, "\rChoose Usp Skin\w - Credits : \y%d", credits);
+	formatex(title, 127, "\r[SHOP] \d- \wUsp Skins^n\wCredits: \y%d\d", credits);
 
 	new menu = menu_create( title, "usp_menu_handler" );
 
