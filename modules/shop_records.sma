@@ -131,10 +131,6 @@ public timer_player_record(id){
 		PlaySoundRandom();
 }
 
-public timer_player_world_record(id){
-	play_sound(0, g_szSoundWR);
-}
-
 public RecordsMenu(id){
 	new itemText[128], title[128];
 	new credits = get_user_credits(id);
@@ -244,6 +240,7 @@ public BuySound(id, item){
 		set_user_credits(id, credits - eItem[iCost])
 		inventory_add(id, eItem[iID]);
 		formatex(currentSound[id], 127, "%s", eItem[szPath]);
+		Save(id);
 		CC_SendMessage(id, "%L", id, "ITEM_PURCHASED", eItem[szName]);
 		//CC_SendMessage(id, "&x01Ai cumparat &x04%s &x01!", eItem[szName]);
 	}
