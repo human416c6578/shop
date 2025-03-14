@@ -11,7 +11,7 @@
 native reg_is_user_logged(id);
 native reg_is_user_registered(id);
 
-#define PLUGIN "Dr Shop"
+#define PLUGIN "DR Shop"
 #define VERSION "1.1"
 #define AUTHOR "MrShark45"
 
@@ -29,6 +29,8 @@ new Array: g_aItems;
 new g_szLogFile[64];
 
 public plugin_init(){
+	register_plugin(PLUGIN, VERSION, AUTHOR)
+
 	register_clcmd("say /shop", "shop_menu");
 
 	g_aItems = ArrayCreate( eShopItem );
@@ -84,7 +86,7 @@ public open_shop_menu_native(numParams){
 public shop_menu(id, page){
 	new title[128];
 	new credits = get_user_credits(id);
-	format(title, sizeof(title), "\y%d \wcredits - \rShop Menu\w!:", credits);
+	format(title, sizeof(title), "\r[SHOP] \d- \wShop Menu^nCredits: \y%d", credits);
 	new menu = menu_create( title, "menu_handler" );
 
 	for(new i;i<ArraySize(g_aItems);i++)
@@ -115,7 +117,6 @@ public menu_handler(id, menu, item){
 
 	if(!reg_is_user_logged(id) || !reg_is_user_registered(id)){
 		CC_SendMessage(id, "%L", id, "NEED_REGISTER_TO_SHOP");
-		//CC_SendMessage(id, "&x01Trebuie sa fii inregistrat pentru a cumpara din shop!");
 		return PLUGIN_CONTINUE;
 	}
 
@@ -130,13 +131,11 @@ public menu_handler(id, menu, item){
 
 	if(inventory_get_item(id, shopItem[iItemID])){
 		CC_SendMessage(id, "%L", id, "ITEM_ALREADY_PURCHASED");
-		//CC_SendMessage(id, "&x01Deja ai cumparat acest item!");
 		return PLUGIN_HANDLED;
 	}
 
 	if(credits < shopItem[iCost]){
 		CC_SendMessage(id, "%L", id, "NOT_ENOUGH_CREDITS");
-		//CC_SendMessage(id, "&x01Nu ai suficente credite pentru a cumpara acest item!");
 		return PLUGIN_HANDLED;
 	}
 
@@ -149,7 +148,6 @@ public menu_handler(id, menu, item){
 			return PLUGIN_HANDLED;
 		}
 		CC_SendMessage(id, "%L", id, "ITEM_PURCHASED", shopItem[szName]);
-		//CC_SendMessage(id, "&x01Ai cumparat &x04%s &x01!", shopItem[szName]);
 		UTIL_LogBuy(id, "A cumparat %s", shopItem[szName]);
 		new newCredits = credits-shopItem[iCost];
 		set_user_credits(id, newCredits);

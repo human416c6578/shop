@@ -10,6 +10,10 @@
 #include <credits>
 #include <timer>
 
+#define PLUGIN "DR Shop"
+#define VERSION "1.1"
+#define AUTHOR "MrShark45"
+
 #define SOUNDS_NUM 10
 
 enum eSound
@@ -51,17 +55,18 @@ new g_iVault;
 new currentSound[33][128];
 
 public plugin_init(){
+	register_plugin(PLUGIN, VERSION, AUTHOR)
+
 	register_item("Record Sounds", "RecordsMenu", "shop_records.amxx", 0);
 
 	g_iVault = nvault_open("recordsounds");
 
+	//Chat prefix
 	CC_SetPrefix("&x04[SHOP]") 
 }
 
 public plugin_cfg(){
-
 	register_dictionary("shop_records.txt");
-
 }
 
 public plugin_precache(){
@@ -89,7 +94,6 @@ public client_putinserver(id){
 public client_disconnected(id){
 	Save(id);
 }
-
 
 public LoadSongs(){
 	new szFilename[256]
@@ -138,7 +142,7 @@ public timer_player_world_record(id){
 public RecordsMenu(id){
 	new itemText[128], title[128];
 	new credits = get_user_credits(id);
-	formatex(title, 127, "\rChoose Sound\w - Credits : \y%d", credits);
+	formatex(title, 127, "\r[SHOP] \d- \wChoose your sound^n\wCredits: \y%d\d", credits);
 
 	new menu = menu_create( title, "menu_handler" );
 	new eItem[eSound];
@@ -245,11 +249,9 @@ public BuySound(id, item){
 		inventory_add(id, eItem[iID]);
 		formatex(currentSound[id], 127, "%s", eItem[szPath]);
 		CC_SendMessage(id, "%L", id, "ITEM_PURCHASED", eItem[szName]);
-		//CC_SendMessage(id, "&x01Ai cumparat &x04%s &x01!", eItem[szName]);
 	}
 	else{
 		CC_SendMessage(id, "%L", id, "NOT_ENOUGH_CREDITS_SOUND");
-		//CC_SendMessage(id, "&x01Nu ai suficiente credite pentru a cumpara acest sunet!");
 	}
 
 	return PLUGIN_HANDLED;

@@ -7,6 +7,10 @@
 #include <shop>
 #include <inventory>
 
+#define PLUGIN "DR Shop"
+#define VERSION "1.1"
+#define AUTHOR "MrShark45"
+
 native set_user_colors(id, r, g, b);
 
 #define RAINBOW_PRICE 5000
@@ -21,6 +25,8 @@ new g_cRainbowSpeed;
 new g_iTaskEnt;
 
 public plugin_init(){
+	register_plugin(PLUGIN, VERSION, AUTHOR)
+	
 	register_item("Rainbow Hud", "handleRainbow", "shop_hud.amxx", RAINBOW_PRICE, RAINBOW_ID);
 
 	register_clcmd("say /rainbow", "toggle_rainbow");
@@ -28,6 +34,7 @@ public plugin_init(){
 	g_cRainbowSpeed = register_cvar("rainbow_speed", "5");
 	hook_cvar_change(g_cRainbowSpeed, "rainbow_speed_changed");
 
+	//Chat prefix
 	CC_SetPrefix("&x04[SHOP]");
 
 	register_forward(FM_Think, "think")
@@ -40,9 +47,7 @@ public plugin_init(){
 }
 
 public plugin_cfg(){
-
 	register_dictionary("shop_hud.txt");
-
 }
 
 public plugin_end(){
@@ -115,7 +120,6 @@ public rainbow_task()
 	}
 }
 
-
 public handleRainbow(id){
 
 	inventory_add(id, RAINBOW_ID);
@@ -123,10 +127,7 @@ public handleRainbow(id){
 	new szName[64];
 	get_user_name(id, szName, 63);
 	CC_SendMessage(0, "%l", "RAINBOW_HUD_PURCHASED", szName, RAINBOW_PRICE);
-	//CC_SendMessage(0, "&x01Jucatorul &x04%s &x01a cumparat &x07Rainbow Hud &x01din shop pentru &x04%d &x01de credite!", szName, RAINBOW_PRICE);
 	CC_SendMessage(id, "%L", id, "RAINBOW_COMMAND_GRANTED");
-	//CC_SendMessage(id, "&x01Felicitari, acum ai acces la comanda &x04/rainbow!");
-
 
 	return PLUGIN_CONTINUE;
 }
@@ -134,13 +135,11 @@ public handleRainbow(id){
 public toggle_rainbow(id){
 	if(!inventory_get_item(id, RAINBOW_ID)){
 		CC_SendMessage(id, "%L", id, "RAINBOW_COMMAND_NO_ACCESS");
-		//CC_SendMessage(id, "&x01Nu ai acces la comanda &x04/rainbow!");
 		return PLUGIN_HANDLED;
 	}
 	g_bRainbow[id] = !g_bRainbow[id];
 
 	CC_SendMessage(id, "%L", id, "RAINBOW_HUD_STATUS", g_bRainbow[id]?"RAINBOW_ON":"RAINBOW_OFF");
-	//CC_SendMessage(id, "&x01Ai %s &x04Rainbow Hud!", g_bRainbow[id]?"activat":"dezactivat");
 
 	save_rainbow(id);
 

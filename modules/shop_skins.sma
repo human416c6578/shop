@@ -86,7 +86,8 @@ public plugin_init(){
 	register_plugin(PLUGIN,VERSION,AUTHOR);
 
 	register_item("Skins", "SkinsMenu", "shop_skins.amxx", 0);
-
+	
+	//Chat prefix
 	CC_SetPrefix("&x04[SHOP]") 
 
 }
@@ -116,13 +117,11 @@ public plugin_precache(){
 		if(file_exists(mdl))
 			precache_generic(mdl);
 	}
-		
-
 }
 
 //Menu to choose the menu you want
 public SkinsMenu(id){
-	new menu = menu_create( "\rChoose The Weapon You Want!:", "menu_handler1" );
+	new menu = menu_create( "\r[SHOP] \d- \wChoose your item:", "menu_handler1" );
 
 	menu_additem( menu, "\wKnife Skins", "", 0 );
 	menu_additem( menu, "\wUsp Skins", "", 0 );
@@ -161,7 +160,7 @@ public menu_handler1( id, menu, item ){
 
 //Menu to choose a custom knife skin
 public KnifeMenu(id){
-	new menu = menu_create( "\rChoose Knife To Set Skin To!:", "menu_handler" );
+	new menu = menu_create( "\r[SHOP] \d- \wChoose the type of knife:", "menu_handler" );
 
 	menu_additem( menu, "\wDefault Knife", 	"", 0 );
 	menu_additem( menu, "\wButcher Knife", 	"", 0 );
@@ -220,7 +219,7 @@ public menu_handler( id, menu, item ){
 public KnifeSkinMenu(id, items[][eSkin], num_items){
 	new itemText[128], title[128];
 	new credits = get_user_credits(id);
-	formatex(title, 127, "\rChoose Knife Skin\w - Credits : \y%d", credits);
+	formatex(title, 127, "\r[SHOP] \d- \wKnife Skins^n\wCredits: \y%d\d", credits);
 	new menu = menu_create( title, "knife_skin_handler" );
 	
 	for(new i = 0;i<num_items;i++){
@@ -285,7 +284,7 @@ public UspMenu(id){
 
 	new itemText[128], title[128];
 	new credits = get_user_credits(id);
-	formatex(title, 127, "\rChoose Usp Skin\w - Credits : \y%d", credits);
+	formatex(title, 127, "\r[SHOP] \d- \wUsp Skins^n\wCredits: \y%d\d", credits);
 
 	new menu = menu_create( title, "usp_menu_handler" );
 
@@ -334,7 +333,7 @@ public CharSkinMenu(id){
 
 	new itemText[128], title[128];
 	new credits = get_user_credits(id);
-	formatex(title, 127, "\rChoose Player Skin\w - Credits : \y%d", credits);
+	formatex(title, 127, "\r[SHOP] \d- \wPlayer Skins^n\wCredits: \y%d", credits);
 	new menu = menu_create( title, "player_skin_handler" );
 	
 	for(new i = 0;i<CHARS_NUM;i++){
@@ -382,12 +381,12 @@ public BuySkin(id, itemSkin[eSkin]){
 	if(credits >= itemSkin[iCost]){
 		set_user_credits(id, credits - itemSkin[iCost])
 		inventory_add(id, itemSkin[iSkinId]);
-		CC_SendMessage(id, "&x01Ai cumparat &x04%s &x01!", itemSkin[szName]);
+		CC_SendMessage(id, "%L", id, "SKIN_PURCHASED", itemSkin[szName]);
 
 		set_user_weapon_skin(id, itemSkin[szModel]);
 	}		
 	else{
-		CC_SendMessage(id, "&x01Nu ai suficiente credite pentru a cumpara acest skin!");
+		CC_SendMessage(id, "%L", id, "NOT_ENOUGH_CREDITS_SKIN");
 	}
 	
 }
@@ -398,10 +397,10 @@ public BuyUspSkin(id, item){
 		set_user_credits(id, credits - g_Usps[item][iCost])
 		inventory_add(id, g_Usps[item][iSkinId]);
 		set_user_usp(id, g_Usps[item][szModel]);
-		CC_SendMessage(id, "&x01Ai cumparat &x04%s &x01!", g_Usps[item][szName]);
+		CC_SendMessage(id, "%L", id, "SKIN_PURCHASED", g_Usps[item][szName]);
 	}
 	else{
-		CC_SendMessage(id, "&x01Nu ai suficiente credite pentru a cumpara acest skin!");
+		CC_SendMessage(id, "%L", id, "NOT_ENOUGH_CREDITS_SKIN");
 	}
 }
 
@@ -411,10 +410,10 @@ public BuyPlayerSkin(id, item){
 		set_user_credits(id, credits - g_Chars[item][iCost])
 		inventory_add(id, g_Chars[item][iSkinId]);
 		set_user_player_skin(id, g_Chars[item][szModel]);
-		CC_SendMessage(id, "&x01Ai cumparat &x04%s &x01!", g_Chars[item][szName]);
+		CC_SendMessage(id, "%L", id, "SKIN_PURCHASED", g_Chars[item][szName]);
 	}
 	else{
-		CC_SendMessage(id, "&x01Nu ai suficiente credite pentru a cumpara acest skin!");
+		CC_SendMessage(id, "%L", id, "NOT_ENOUGH_CREDITS_SKIN");
 	}
 }
 
