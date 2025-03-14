@@ -2,25 +2,31 @@
 #include <cstrike>
 #include <cromchat2>
 #include <fakemeta_util>
+
 #include <credits>
 #include <shop>
 #include <deathrun>
+
+#define PLUGIN "DR Shop"
+#define VERSION "1.1"
+#define AUTHOR "MrShark45"
 
 new g_iTero[MAX_PLAYERS];
 new g_iHP[MAX_PLAYERS];
 
 public plugin_init(){
+	register_plugin(PLUGIN, VERSION, AUTHOR)
+
 	register_event("HLTV", "eventNewRound", "a", "1=0", "2=0");
 
 	registerItems();
 	
-	CC_SetPrefix("&x04[DR]") 
+	//Chat prefix
+	CC_SetPrefix("&x04[SHOP]") 
 }
 
 public plugin_cfg(){
-
 	register_dictionary("shop_dr_weapons.txt");
-
 }
 
 public client_putinserver(id){
@@ -48,20 +54,17 @@ public handleBuyTerro(id){
 	new szName[64];
 	if(g_iTero[id] >= 3){
 		CC_SendMessage(id, "%L", id, "MAX_ITEM_LIMIT_REACHED");
-		//CC_SendMessage(id, "Ai atins limita maxima a acestui item.");
 		return -1;
 	}
 	if(terro){
 		get_user_name(terro, szName, sizeof(szName));
 		CC_SendMessage(id, "%L", id, "ALREADY_SELECTED_TERRORIST", szName);
-		//CC_SendMessage(id, "&x04%s &x01a ales deja sa fie terrorist urmatoare runda!", szName);
 		return -1;
 	}
 	else{
 		set_next_terrorist(id);
 		get_user_name(id, szName, 63);
 		CC_SendMessage(0, "%l", "TERRORIST_SELECTED_NEXT_ROUND", szName);
-		//CC_SendMessage(0, "&x04%s &x01a ales sa fie &x03terorist runda urmatoare!", szName);
 		g_iTero[id]++;
 	}
 
@@ -71,12 +74,10 @@ public handleBuyTerro(id){
 public handleHealth50(id){
 	if(cs_get_user_team(id) != CS_TEAM_T){
 		CC_SendMessage(id, "%L", id, "OPTION_ONLY_FOR_TERRORIST");
-		//CC_SendMessage(id, "&x01Optiunea aceasta este doar pentru terorist!");
 		return -1;
 	}
 	if(g_iHP[id] >= 5){
 		CC_SendMessage(id, "%L", id, "MAX_ITEM_LIMIT_REACHED");
-		//CC_SendMessage(id, "Ai atins limita maxima a acestui item.");
 		return -1;
 	}
 
@@ -92,7 +93,6 @@ public handleHealth50(id){
 public handleArmor50(id){
 	if(cs_get_user_team(id) != CS_TEAM_T){
 		CC_SendMessage(id, "%L", id, "OPTION_ONLY_FOR_TERRORIST");
-		//CC_SendMessage(id, "&x01Optiunea aceasta este doar pentru terorist!");
 		set_user_credits(id, get_user_credits(id) + 50)
 		return - 1;
 	}

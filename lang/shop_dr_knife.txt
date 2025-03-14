@@ -9,7 +9,7 @@ KATANA_KNIFE_GRANTED = Congratulations, you now have access to the &x04Katana.
 
 PREMIUM_KNIFE_PURCHASED = O jogador &x04%s &x01comprou &x07Premium Knife &x01da loja por &x0450.000 &x01créditos.
 PREMIUM_KNIFE_GRANTED = Parabéns, agora você tem acesso ao item: &x04Premium Knife.
-KATANA_KNIFE_PURCHASED = O jogador &x04%s &x01comprou &x07Katana &x01da loja por &x0425.000 &x01créditos.
+KATANA_KNIFE_PURCHASED = O jogador &x04%s &x01comprou &x07Katana &x01da loja por &x0440.000 &x01créditos.
 KATANA_KNIFE_GRANTED = Parabéns, agora você tem acesso ao item: &x04Katana.
 
 
@@ -17,61 +17,61 @@ KATANA_KNIFE_GRANTED = Parabéns, agora você tem acesso ao item: &x04Katana.
 
 PREMIUM_KNIFE_PURCHASED = Jucatorul &x04%s &x01a cumparat &x07Premium Knife &x01din shop pentru &x0450.000 &x01de credite!
 PREMIUM_KNIFE_GRANTED = Felicitari, acum ai acces la &x04Premium Knife!
-KATANA_KNIFE_PURCHASED = Jucatorul &x04%s &x01a cumparat &x07Katana &x01din shop pentru &x0425.000 &x01de credite!
+KATANA_KNIFE_PURCHASED = Jucatorul &x04%s &x01a cumparat &x07Katana &x01din shop pentru &x0440.000 &x01de credite!
 KATANA_KNIFE_GRANTED = Felicitari, acum ai acces la &x04Katana!
 
 [pt]
 
 PREMIUM_KNIFE_PURCHASED = O jogador &x04%s &x01comprou &x07Premium Knife &x01da loja por &x0450.000 &x01créditos.
 PREMIUM_KNIFE_GRANTED = Parabéns, agora você tem acesso ao item: &x04Premium Knife.
-KATANA_KNIFE_PURCHASED = O jogador &x04%s &x01comprou &x07Katana &x01da loja por &x0425.000 &x01créditos.
+KATANA_KNIFE_PURCHASED = O jogador &x04%s &x01comprou &x07Katana &x01da loja por &x0440.000 &x01créditos.
 KATANA_KNIFE_GRANTED = Parabéns, agora você tem acesso ao item: &x04Katana.
 
 [es]
 
 PREMIUM_KNIFE_PURCHASED = El jugador &x04%s &x01compró &x07Premium Knife &x01de la tienda por &x0450.000 &x01créditos.
 PREMIUM_KNIFE_GRANTED = Felicitaciones, ahora tienes acceso al ítem: &x04Premium Knife.
-KATANA_KNIFE_PURCHASED = El jugador &x04%s &x01compró &x07Katana &x01de la tienda por &x0425.000 &x01créditos.
+KATANA_KNIFE_PURCHASED = El jugador &x04%s &x01compró &x07Katana &x01de la tienda por &x0440.000 &x01créditos.
 KATANA_KNIFE_GRANTED = Felicitaciones, ahora tienes acceso al ítem: &x04Katana.
 
 [pl]
 
 PREMIUM_KNIFE_PURCHASED = Gracz &x04%s &x01kupił &x07Premium Knife &x01ze sklepu za &x0450.000 &x01kredytów.
 PREMIUM_KNIFE_GRANTED = Gratulacje, teraz masz dostęp do przedmiotu: &x04Premium Knife.
-KATANA_KNIFE_PURCHASED = Gracz &x04%s &x01kupił &x07Katana &x01ze sklepu za &x0425.000 &x01kredytów.
+KATANA_KNIFE_PURCHASED = Gracz &x04%s &x01kupił &x07Katana &x01ze sklepu za &x0440.000 &x01kredytów.
 KATANA_KNIFE_GRANTED = Gratulacje, teraz masz dostęp do przedmiotu: &x04Katana.
 
 [de]
 
 PREMIUM_KNIFE_PURCHASED = Der Spieler &x04%s &x01hat &x07Premium Knife &x01im Shop für &x0450.000 &x01Kredite gekauft.
 PREMIUM_KNIFE_GRANTED = Glückwunsch, du hast jetzt Zugriff auf den Gegenstand: &x04Premium Knife.
-KATANA_KNIFE_PURCHASED = Der Spieler &x04%s &x01hat &x07Katana &x01im Shop für &x0425.000 &x01Kredite gekauft.
+KATANA_KNIFE_PURCHASED = Der Spieler &x04%s &x01hat &x07Katana &x01im Shop für &x0440.000 &x01Kredite gekauft.
 KATANA_KNIFE_GRANTED = Glückwunsch, du hast jetzt Zugriff auf den Gegenstand: &x04Katana.
 
 [fr]
 
 PREMIUM_KNIFE_PURCHASED = Le joueur &x04%s &x01a acheté &x07Premium Knife &x01dans la boutique pour &x0450.000 &x01crédits.
 PREMIUM_KNIFE_GRANTED = Félicitations, vous avez maintenant accès à l'objet : &x04Premium Knife.
-KATANA_KNIFE_PURCHASED = Le joueur &x04%s &x01a acheté &x07Katana &x01dans la boutique pour &x0425.000 &x01crédits.
+KATANA_KNIFE_PURCHASED = Le joueur &x04%s &x01a acheté &x07Katana &x01dans la boutique pour &x0440.000 &x01crédits.
 KATANA_KNIFE_GRANTED = Félicitations, vous avez maintenant accès à l'objet : &x04Katana.
 
 [tr]
 
 PREMIUM_KNIFE_PURCHASED = Oyuncu &x04%s &x01, mağazadan &x07Premium Knife &x01'ı &x0450.000 &x01krediye satın aldı.
 PREMIUM_KNIFE_GRANTED = Tebrikler, artık &x04Premium Knife &x01'ya erişiminiz var.
-KATANA_KNIFE_PURCHASED = Oyuncu &x04%s &x01, mağazadan &x07Katana &x01'ı &x0425.000 &x01krediye satın aldı.
+KATANA_KNIFE_PURCHASED = Oyuncu &x04%s &x01, mağazadan &x07Katana &x01'ı &x0440.000 &x01krediye satın aldı.
 KATANA_KNIFE_GRANTED = Tebrikler, artık &x04Katana &x01'ya erişiminiz var.
 
 [ru]
 
 PREMIUM_KNIFE_PURCHASED = Игрок &x04%s &x01купил &x07Premium Knife &x01в магазине за &x0450.000 &x01кредитов.
 PREMIUM_KNIFE_GRANTED = Поздравляем, теперь у вас есть доступ к предмету: &x04Premium Knife.
-KATANA_KNIFE_PURCHASED = Игрок &x04%s &x01купил &x07Katana &x01в магазине за &x0425.000 &x01кредитов.
+KATANA_KNIFE_PURCHASED = Игрок &x04%s &x01купил &x07Katana &x01в магазине за &x0440.000 &x01кредитов.
 KATANA_KNIFE_GRANTED = Поздравляем, теперь у вас есть доступ к предмету: &x04Katana.
 
 [bg]
 
 PREMIUM_KNIFE_PURCHASED = Играчът &x04%s &x01закупи &x07Premium Knife &x01от магазина за &x0450.000 &x01кредита.
 PREMIUM_KNIFE_GRANTED = Честито, вече имате достъп до елемента: &x04Premium Knife.
-KATANA_KNIFE_PURCHASED = Играчът &x04%s &x01закупи &x07Katana &x01от магазина за &x0425.000 &x01кредита.
+KATANA_KNIFE_PURCHASED = Играчът &x04%s &x01закупи &x07Katana &x01от магазина за &x0440.000 &x01кредита.
 KATANA_KNIFE_GRANTED = Честито, вече имате достъп до елемента: &x04Katana.
