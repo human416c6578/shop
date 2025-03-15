@@ -22,7 +22,7 @@
 //#define DAGGER_NUM 3
 //#define KATANA_NUM 4
 #define USP_NUM 24
-#define CHARS_NUM 7
+#define CHARS_NUM 16
 
 enum eSkin
 {
@@ -38,6 +38,7 @@ enum ePlayerSkin
 	iPlayerSkinId,
 	szPlayerName[64],
 	szPlayerModel[128],
+	iSubmodel,
 	iPlayerCost
 }
 
@@ -137,13 +138,22 @@ new g_Usps[USP_NUM][eSkin] = {
 };
 
 new g_Chars[CHARS_NUM][ePlayerSkin]={
-	{300, "Default", "", 				0},
-	{301, "Arctic", "arctic2", 			2000},
-	{302, "Hitman", "hitman", 			5000},
-	{303, "Ema", "ema", 				10000},
-	{304, "Agent Ritsuka", "ritsuka", 	15000},
-	{305, "Sub-zero", "sub-zero", 		5000},
-	{306, "Scorpion", "scorpion", 		5000}
+	{300,	"Default",			"gign", 0},
+	{301,	"Admin Gign",		"fwo_player_teste", 1, 5000},
+	{302,	"Agent Ritsuka",	"fwo_ritsuka_teste", 15000},
+	{303,	"Arctic",			"fwo_arctic_teste", 2000},
+	{304,	"Banana",			"fwo_player_teste", 7, 5000},
+	{305,	"Ema",				"fwo_ema_teste", 10000},
+	{306,	"GTA Homeless",		"fwo_player_teste", 2, 5000},
+	{307,	"Hitman",			"fwo_player_teste", 3, 5000},
+	{308,	"Itachi",			"fwo_player_teste", 4, 5000},
+	{309,	"Mila",				"fwo_mila_teste", 15000},
+	{310,	"Neo",				"fwo_player_teste", 8, 5000},
+	{311,	"Phillip",			"fwo_player_teste", 5, 5000},
+	{312,	"Pink Panther",		"fwo_panther_teste", 7000},
+	{313,	"Scorpion",			"fwo_scorpion_teste", 5000},
+	{314,	"Sponge Bob",		"fwo_player_teste", 6, 5000},
+	{315,	"Sub-zero",			"fwo_sub-zero_teste", 5000}
 }
 
 new g_iMenuId[33];
