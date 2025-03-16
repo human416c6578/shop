@@ -97,9 +97,9 @@ new g_Butchers[BUTCHER_NUM][eSkin] = {
 }*/
 
 new g_Daggers[DAGGER_NUM][eSkin] = {
-	{500, "Default", 				0,	0},
-	{501, "Ruby", 					1, 	2500},
-	{502, "Purple Vibe", 			2,	2500}
+	{500, "Default",        "models/llg3/v_premium.mdl", 0, 0},
+	{501, "Ruby",           "models/llg3/v_premium.mdl", 1, 2500},
+	{502, "Purple Vibe",    "models/llg3/v_premium.mdl", 2, 2500}
 }
 
 new g_Katanas[KATANA_NUM][eSkin] = {
