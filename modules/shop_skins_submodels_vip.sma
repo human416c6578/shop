@@ -22,7 +22,7 @@
 //#define DAGGER_NUM 3
 //#define KATANA_NUM 4
 #define USP_NUM 24
-#define CHARS_NUM 7
+#define CHARS_NUM 16
 
 enum eSkin
 {
@@ -38,6 +38,7 @@ enum ePlayerSkin
 	iPlayerSkinId,
 	szPlayerName[64],
 	szPlayerModel[128],
+	iSubmodel,
 	iPlayerCost
 }
 
@@ -53,48 +54,47 @@ enum eMenu
 }
 
 new g_Knives[KNIFE_NUM][eSkin] = {
-	{100, "models/fwo2025/v_def_free_and_vip.mdl", "Default",            	0, 0},
-    {123, "models/fwo2025/v_def_free_and_vip.mdl", "Knife Ahegao",       	26, 1000},
-    {124, "models/fwo2025/v_def_free_and_vip.mdl", "Knife Black",        	41, 1000},
-    {125, "models/fwo2025/v_def_free_and_vip.mdl", "Knife Black-Orange",  	37, 1000},
-    {126, "models/fwo2025/v_def_free_and_vip.mdl", "Knife Blood",        	20, 1000},
-    {127, "models/fwo2025/v_def_free_and_vip.mdl", "Knife Fire",         	21, 1000},
-    {128, "models/fwo2025/v_def_free_and_vip.mdl", "Knife Fire Flower",  	22, 1000},
-    {129, "models/fwo2025/v_def_free_and_vip.mdl", "Knife Galaxy",       	30, 1000},
-    {130, "models/fwo2025/v_def_free_and_vip.mdl", "Knife Goku",         	31, 1000},
-    {131, "models/fwo2025/v_def_free_and_vip.mdl", "Knife Gold",         	32, 1000},
-    {132, "models/fwo2025/v_def_free_and_vip.mdl", "Knife Grizzly",      	23, 1000},
-	{133, "models/fwo2025/v_def_free_and_vip.mdl", "Knife Howl",         	24, 1000},
-    {134, "models/fwo2025/v_def_free_and_vip.mdl", "Knife Icephoenix",   	25, 1000},
-    {135, "models/fwo2025/v_def_free_and_vip.mdl", "Knife Iridescent",   	27, 1000},
-    {136, "models/fwo2025/v_def_free_and_vip.mdl", "Knife Joker",        	33, 1000},
-    {137, "models/fwo2025/v_def_free_and_vip.mdl", "Knife King",         	42, 1000},
-    {138, "models/fwo2025/v_def_free_and_vip.mdl", "Knife Moon",         	28, 1000},
-    {139, "models/fwo2025/v_def_free_and_vip.mdl", "Knife Neo-Noir",     	29, 1000},
-    {140, "models/fwo2025/v_def_free_and_vip.mdl", "Knife Purple",      	40, 1000},
-    {141, "models/fwo2025/v_def_free_and_vip.mdl", "Knife Sakura",       	39, 1000},
-    {142, "models/fwo2025/v_def_free_and_vip.mdl", "Knife Shred",        	34, 1000},
-    {143, "models/fwo2025/v_def_free_and_vip.mdl", "Knife Storm",        	35, 1000},
-    {144, "models/fwo2025/v_def_free_and_vip.mdl", "Knife Venom",        	36, 1000}
+	{100, "Default",            "models/fwo20251/v_def_free_and_vip.mdl", 0, 0},
+	{123, "Knife Ahegao",       "models/fwo20251/v_def_free_and_vip.mdl", 26, 1000},
+	{124, "Knife Black",        "models/fwo20251/v_def_free_and_vip.mdl", 41, 1000},
+	{125, "Knife Black-Orange", "models/fwo20251/v_def_free_and_vip.mdl", 37, 1000},
+	{126, "Knife Blood",        "models/fwo20251/v_def_free_and_vip.mdl", 20, 1000},
+	{127, "Knife Fire",         "models/fwo20251/v_def_free_and_vip.mdl", 21, 1000},
+	{128, "Knife Fire Flower",  "models/fwo20251/v_def_free_and_vip.mdl", 22, 1000},
+	{129, "Knife Galaxy",       "models/fwo20251/v_def_free_and_vip.mdl", 30, 1000},
+	{130, "Knife Goku",         "models/fwo20251/v_def_free_and_vip.mdl", 31, 1000},
+	{131, "Knife Gold",         "models/fwo20251/v_def_free_and_vip.mdl", 32, 1000},
+	{132, "Knife Grizzly",      "models/fwo20251/v_def_free_and_vip.mdl", 23, 1000},
+	{133, "Knife Howl",         "models/fwo20251/v_def_free_and_vip.mdl", 24, 1000},
+	{134, "Knife Icephoenix",   "models/fwo20251/v_def_free_and_vip.mdl", 25, 1000},
+	{135, "Knife Iridescent",   "models/fwo20251/v_def_free_and_vip.mdl", 27, 1000},
+	{136, "Knife Joker",        "models/fwo20251/v_def_free_and_vip.mdl", 33, 1000},
+	{137, "Knife King",         "models/fwo20251/v_def_free_and_vip.mdl", 42, 1000},
+	{138, "Knife Moon",         "models/fwo20251/v_def_free_and_vip.mdl", 28, 1000},
+	{139, "Knife Neo-Noir",     "models/fwo20251/v_def_free_and_vip.mdl", 29, 1000},
+	{140, "Knife Purple",       "models/fwo20251/v_def_free_and_vip.mdl", 40, 1000},
+	{141, "Knife Sakura",       "models/fwo20251/v_def_free_and_vip.mdl", 39, 1000},
+	{142, "Knife Shred",        "models/fwo20251/v_def_free_and_vip.mdl", 34, 1000},
+	{143, "Knife Storm",        "models/fwo20251/v_def_free_and_vip.mdl", 35, 1000},
+	{144, "Knife Venom",        "models/fwo20251/v_def_free_and_vip.mdl", 36, 1000}
 }
 
 new g_Butchers[BUTCHER_NUM][eSkin] = {
-    {150, "models/fwo2025/v_but_free_and_vip.mdl", "Default",           		0, 0,},
-    {160, "models/fwo2025/v_but_free_and_vip.mdl", "Butcher Blood Khalifa", 	11, 1000},
-    {161, "models/fwo2025/v_but_free_and_vip.mdl", "Butcher Boris",      	12, 1000},
-    {162, "models/fwo2025/v_but_free_and_vip.mdl", "Butcher Gojo",       	13, 1000},
-    {163, "models/fwo2025/v_but_free_and_vip.mdl", "Butcher Hyperbeast", 	14, 1000},
-    {164, "models/fwo2025/v_but_free_and_vip.mdl", "Butcher Iridescent", 	10, 1000},
-    {165, "models/fwo2025/v_but_free_and_vip.mdl", "Butcher Lion blade", 	15, 1000},
-    {166, "models/fwo2025/v_but_free_and_vip.mdl", "Butcher Neo-Noir",   	16, 1000},
-    {167, "models/fwo2025/v_but_free_and_vip.mdl", "Butcher Xiao",       	17, 1000}
+	{150, "Default",             	"models/fwo20251/v_but_free_and_vip.mdl", 0, 0},
+	{160, "Butcher Blood Khalifa", "models/fwo20251/v_but_free_and_vip.mdl", 11, 1000},
+	{161, "Butcher Boris",       	"models/fwo20251/v_but_free_and_vip.mdl", 12, 1000},
+	{162, "Butcher Gojo",        	"models/fwo20251/v_but_free_and_vip.mdl", 13, 1000},
+	{163, "Butcher Hyperbeast",  	"models/fwo20251/v_but_free_and_vip.mdl", 14, 1000},
+	{164, "Butcher Iridescent",  	"models/fwo20251/v_but_free_and_vip.mdl", 10, 1000},
+	{165, "Butcher Lion blade",  	"models/fwo20251/v_but_free_and_vip.mdl", 15, 1000},
+	{166, "Butcher Neo-Noir",    	"models/fwo20251/v_but_free_and_vip.mdl", 16, 1000},
+	{167, "Butcher Xiao",        	"models/fwo20251/v_but_free_and_vip.mdl", 17, 1000}
 }
 
-
 new g_Bayonets[BAYONET_NUM][eSkin] = {
-	{400, "models/llg3/v_vip.mdl", "Tiger Tooth", 			0,	0},
-	{401, "models/llg3/v_vip.mdl", "Purple Haze", 			2, 	1000},
-	{402, "models/llg3/v_vip.mdl", "Crimson Web", 		 	1,	1000}
+	{400, "Tiger Tooth",         "models/llg3/v_vip.mdl", 0, 0},
+	{401, "Purple Haze",         "models/llg3/v_vip.mdl", 2, 1000},
+	{402, "Crimson Web",         "models/llg3/v_vip.mdl", 1, 1000}
 }
 
 /*new g_Daggers[DAGGER_NUM][eSkin] = {
@@ -111,40 +111,49 @@ new g_Bayonets[BAYONET_NUM][eSkin] = {
 }*/
 
 new g_Usps[USP_NUM][eSkin] = {
-	{200, "models/fwo2025/v_usp_vip", "Default",             0, 0},
-	{223, "models/fwo2025/v_usp_vip", "Abstract Blue",       23, 1000},
-	{224, "models/fwo2025/v_usp_vip", "Black",               24, 1000},
-	{225, "models/fwo2025/v_usp_vip", "Blue",                25, 1000},
-	{226, "models/fwo2025/v_usp_vip", "Bright",              26, 1000},
-	{227, "models/fwo2025/v_usp_vip", "Caiman",              27, 1000},
-	{228, "models/fwo2025/v_usp_vip", "Cardinal Crystal",    28, 1000},
-	{229, "models/fwo2025/v_usp_vip", "Cortex",              29, 1000},
-	{230, "models/fwo2025/v_usp_vip", "Electra",             30, 1000},
-	{231, "models/fwo2025/v_usp_vip", "Fire Flower",         31, 1000},
-	{232, "models/fwo2025/v_usp_vip", "Flashback",           32, 1000},
-	{233, "models/fwo2025/v_usp_vip", "Green Fire",          33, 1000},
-	{234, "models/fwo2025/v_usp_vip", "Green Realist",       34, 1000},
-	{235, "models/fwo2025/v_usp_vip", "Iridescent",          35, 1000},
-	{236, "models/fwo2025/v_usp_vip", "Lightning Monster",   36, 1000},
-	{237, "models/fwo2025/v_usp_vip", "Neo-Noir",            37, 1000},
-	{238, "models/fwo2025/v_usp_vip", "Night Wolf",          38, 1000},
-	{239, "models/fwo2025/v_usp_vip", "Oil Filter",          39, 1000},
-	{240, "models/fwo2025/v_usp_vip", "Purity",              40, 1000},
-	{241, "models/fwo2025/v_usp_vip", "Sakura",              41, 1000},
-	{242, "models/fwo2025/v_usp_vip", "Shaker",              42, 1000},
-	{243, "models/fwo2025/v_usp_vip", "Ticket to Hell",      43, 1000},
-	{244, "models/fwo2025/v_usp_vip", "Xiao",                44, 1000},
-	{245, "models/fwo2025/v_usp_vip", "Xtreme",              45, 1000}
+	{200, "Default",             "models/fwo20251/v_usp_free_and_vip.mdl", 0, 0},
+	{223, "Abstract Blue",       "models/fwo20251/v_usp_free_and_vip.mdl", 23, 1000},
+	{224, "Black",               "models/fwo20251/v_usp_free_and_vip.mdl", 24, 1000},
+	{225, "Blue",                "models/fwo20251/v_usp_free_and_vip.mdl", 25, 1000},
+	{226, "Bright",              "models/fwo20251/v_usp_free_and_vip.mdl", 26, 1000},
+	{227, "Caiman",              "models/fwo20251/v_usp_free_and_vip.mdl", 27, 1000},
+	{228, "Cardinal Crystal",    "models/fwo20251/v_usp_free_and_vip.mdl", 28, 1000},
+	{229, "Cortex",              "models/fwo20251/v_usp_free_and_vip.mdl", 29, 1000},
+	{230, "Electra",             "models/fwo20251/v_usp_free_and_vip.mdl", 30, 1000},
+	{231, "Fire Flower",         "models/fwo20251/v_usp_free_and_vip.mdl", 31, 1000},
+	{232, "Flashback",           "models/fwo20251/v_usp_free_and_vip.mdl", 32, 1000},
+	{233, "Green Fire",          "models/fwo20251/v_usp_free_and_vip.mdl", 33, 1000},
+	{234, "Green Realist",       "models/fwo20251/v_usp_free_and_vip.mdl", 34, 1000},
+	{235, "Iridescent",          "models/fwo20251/v_usp_free_and_vip.mdl", 35, 1000},
+	{236, "Lightning Monster",   "models/fwo20251/v_usp_free_and_vip.mdl", 36, 1000},
+	{237, "Neo-Noir",            "models/fwo20251/v_usp_free_and_vip.mdl", 37, 1000},
+	{238, "Night Wolf",          "models/fwo20251/v_usp_free_and_vip.mdl", 38, 1000},
+	{239, "Oil Filter",          "models/fwo20251/v_usp_free_and_vip.mdl", 39, 1000},
+	{240, "Purity",              "models/fwo20251/v_usp_free_and_vip.mdl", 40, 1000},
+	{241, "Sakura",              "models/fwo20251/v_usp_free_and_vip.mdl", 41, 1000},
+	{242, "Shaker",              "models/fwo20251/v_usp_free_and_vip.mdl", 42, 1000},
+	{243, "Ticket to Hell",      "models/fwo20251/v_usp_free_and_vip.mdl", 43, 1000},
+	{244, "Xiao",                "models/fwo20251/v_usp_free_and_vip.mdl", 44, 1000},
+	{245, "Xtreme",              "models/fwo20251/v_usp_free_and_vip.mdl", 45, 1000}
 };
 
 new g_Chars[CHARS_NUM][ePlayerSkin]={
-	{300, "Default", "", 				0},
-	{301, "Arctic", "arctic2", 			2000},
-	{302, "Hitman", "hitman", 			5000},
-	{303, "Ema", "ema", 				10000},
-	{304, "Agent Ritsuka", "ritsuka", 	15000},
-	{305, "Sub-zero", "sub-zero", 		5000},
-	{306, "Scorpion", "scorpion", 		5000}
+	{300,	"Default",			"gign", 0, 0},
+	{301,	"Admin Gign",		"fwo_player_teste", 0, 5000},
+	{302,	"Agent Ritsuka",	"fwo_ritsuka_teste", 0, 15000},
+	{303,	"Arctic",			"fwo_arctic_teste", 0, 2000},
+	{304,	"Banana",			"fwo_player_teste", 6, 5000},
+	{305,	"Ema",				"fwo_ema_teste", 0, 10000},
+	{306,	"GTA Homeless",		"fwo_player_teste", 1, 5000},
+	{307,	"Hitman",			"fwo_player_teste", 2, 5000},
+	{308,	"Itachi",			"fwo_player_teste", 3, 5000},
+	{309,	"Mila",				"fwo_mila_teste", 0, 15000},
+	{310,	"Neo",				"fwo_player_teste", 7, 5000},
+	{311,	"Phillip",			"fwo_player_teste", 4, 5000},
+	{312,	"Pink Panther",		"fwo_panther_teste", 0, 7000},
+	{313,	"Scorpion",			"fwo_scorpion_teste", 0, 5000},
+	{314,	"Sponge Bob",		"fwo_player_teste", 5, 5000},
+	{315,	"Sub-zero",			"fwo_sub-zero_teste", 0, 5000}
 }
 
 new g_iMenuId[33];
@@ -175,6 +184,10 @@ public plugin_precache(){
 		if(file_exists(mdl))
 			precache_generic(mdl);
 	}
+	precache_model(g_Knives[0][szModel]);
+	precache_model(g_Butchers[0][szModel]);
+	precache_model(g_Bayonets[0][szModel]);
+	precache_model(g_Usps[0][szModel]);
 }
 
 //Menu to choose the menu you want
@@ -234,6 +247,7 @@ public KnifeMenu(id){
 
 	return PLUGIN_CONTINUE;
 }
+
 //Handler for the knife skin menu
 public menu_handler( id, menu, item ){
 	if ( item == MENU_EXIT ){
@@ -336,7 +350,6 @@ public knife_skin_handler( id, menu, item){
 	return PLUGIN_HANDLED;
 }
 
-
 //Menu to choose a custom knife skin
 public UspMenu(id){
 
@@ -421,7 +434,7 @@ public player_skin_handler( id, menu, item){
 	}
 	
 	if(inventory_get_item(id, g_Chars[item][iPlayerSkinId])){
-		set_user_player_skin(id, g_Chars[item][szPlayerModel]);
+		set_user_player_skin(id, g_Chars[item][szPlayerModel], g_Chars[item][iSubmodel]);
 		
 		menu_destroy( menu );
 		CharSkinMenu(id);
@@ -467,7 +480,7 @@ public BuyPlayerSkin(id, item){
 	if(credits >= g_Chars[item][iPlayerCost]){
 		set_user_credits(id, credits - g_Chars[item][iPlayerCost])
 		inventory_add(id, g_Chars[item][iPlayerSkinId]);
-		set_user_player_skin(id, g_Chars[item][szPlayerModel]);
+		set_user_player_skin(id, g_Chars[item][szPlayerModel], g_Chars[item][iSubmodel]);
 		CC_SendMessage(id, "%L", id, "SKIN_PURCHASED", g_Chars[item][szPlayerName]);
 	}
 	else{
