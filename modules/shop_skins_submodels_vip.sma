@@ -138,22 +138,22 @@ new g_Usps[USP_NUM][eSkin] = {
 };
 
 new g_Chars[CHARS_NUM][ePlayerSkin]={
-	{300,	"Default",			"gign", 0},
-	{301,	"Admin Gign",		"fwo_player_teste", 1, 5000},
-	{302,	"Agent Ritsuka",	"fwo_ritsuka_teste", 15000},
-	{303,	"Arctic",			"fwo_arctic_teste", 2000},
-	{304,	"Banana",			"fwo_player_teste", 7, 5000},
-	{305,	"Ema",				"fwo_ema_teste", 10000},
-	{306,	"GTA Homeless",		"fwo_player_teste", 2, 5000},
-	{307,	"Hitman",			"fwo_player_teste", 3, 5000},
-	{308,	"Itachi",			"fwo_player_teste", 4, 5000},
-	{309,	"Mila",				"fwo_mila_teste", 15000},
-	{310,	"Neo",				"fwo_player_teste", 8, 5000},
-	{311,	"Phillip",			"fwo_player_teste", 5, 5000},
-	{312,	"Pink Panther",		"fwo_panther_teste", 7000},
-	{313,	"Scorpion",			"fwo_scorpion_teste", 5000},
-	{314,	"Sponge Bob",		"fwo_player_teste", 6, 5000},
-	{315,	"Sub-zero",			"fwo_sub-zero_teste", 5000}
+	{300,	"Default",			"gign", 0, 0},
+	{301,	"Admin Gign",		"fwo_player_teste", 0, 5000},
+	{302,	"Agent Ritsuka",	"fwo_ritsuka_teste", 0, 15000},
+	{303,	"Arctic",			"fwo_arctic_teste", 0, 2000},
+	{304,	"Banana",			"fwo_player_teste", 6, 5000},
+	{305,	"Ema",				"fwo_ema_teste", 0, 10000},
+	{306,	"GTA Homeless",		"fwo_player_teste", 1, 5000},
+	{307,	"Hitman",			"fwo_player_teste", 2, 5000},
+	{308,	"Itachi",			"fwo_player_teste", 3, 5000},
+	{309,	"Mila",				"fwo_mila_teste", 0, 15000},
+	{310,	"Neo",				"fwo_player_teste", 7, 5000},
+	{311,	"Phillip",			"fwo_player_teste", 4, 5000},
+	{312,	"Pink Panther",		"fwo_panther_teste", 0, 7000},
+	{313,	"Scorpion",			"fwo_scorpion_teste", 0, 5000},
+	{314,	"Sponge Bob",		"fwo_player_teste", 5, 5000},
+	{315,	"Sub-zero",			"fwo_sub-zero_teste", 0, 5000}
 }
 
 new g_iMenuId[33];
@@ -434,7 +434,7 @@ public player_skin_handler( id, menu, item){
 	}
 	
 	if(inventory_get_item(id, g_Chars[item][iPlayerSkinId])){
-		set_user_player_skin(id, g_Chars[item][szPlayerModel]);
+		set_user_player_skin(id, g_Chars[item][szPlayerModel], g_Chars[item][iSubmodel]);
 		
 		menu_destroy( menu );
 		CharSkinMenu(id);
@@ -480,7 +480,7 @@ public BuyPlayerSkin(id, item){
 	if(credits >= g_Chars[item][iPlayerCost]){
 		set_user_credits(id, credits - g_Chars[item][iPlayerCost])
 		inventory_add(id, g_Chars[item][iPlayerSkinId]);
-		set_user_player_skin(id, g_Chars[item][szPlayerModel]);
+		set_user_player_skin(id, g_Chars[item][szPlayerModel], g_Chars[item][iSubmodel]);
 		CC_SendMessage(id, "%L", id, "SKIN_PURCHASED", g_Chars[item][szPlayerName]);
 	}
 	else{
