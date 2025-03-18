@@ -251,7 +251,7 @@ public menu_handler( id, menu, item ){
 		case 1:
 		{
 			g_iMenuId[id] = iButchers;
-			KnifeSkinMenu(id, g_Butchers, KNIFE_NUM);
+			KnifeSkinMenu(id, g_Butchers, BUTCHER_NUM);
 		}
 		/*case 2:
 		{
