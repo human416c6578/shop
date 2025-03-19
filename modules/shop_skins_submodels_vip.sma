@@ -17,10 +17,7 @@
 #pragma tabsize 0
 
 #define KNIFE_NUM 32
-//#define BUTCHER_NUM 9
 #define BAYONET_NUM 3
-//#define DAGGER_NUM 3
-//#define KATANA_NUM 4
 #define USP_NUM 24
 #define CHARS_NUM 16
 
@@ -47,8 +44,6 @@ enum eMenu
 	iKnives = 0,
 	iButchers,
 	iBayonets,
-	//iDaggers,
-	//iKatanas,
 	iUsps,
 	iCharacters
 }
@@ -94,19 +89,6 @@ new g_Bayonets[BAYONET_NUM][eSkin] = {
 	{401, "Purple Haze",         "models/llg3/v_vip.mdl", 2, 1000},
 	{402, "Crimson Web",         "models/llg3/v_vip.mdl", 1, 1000}
 }
-
-/*new g_Daggers[DAGGER_NUM][eSkin] = {
-	{500, "Default", 				0,	0},
-	{501, "Ruby", 					1, 	2500},
-	{502, "Purple Vibe", 			2,	2500}
-}*/
-
-/*new g_Katanas[KATANA_NUM][eSkin] = {
-	{600, "Default", 				0,	0},
-	{601, "Christmas", 				3,	0},
-	{602, "Fade", 					1, 	2500},
-	{603, "Sakura", 				2,	2500}
-}*/
 
 new g_Usps[USP_NUM][eSkin] = {
 	{200, "Default",             "models/fwo20251/v_usp_free_and_vip.mdl", 0, 0},
@@ -236,8 +218,6 @@ public KnifeMenu(id){
 	menu_additem( menu, "\wDefault Knife", 	"", 0 );
 	menu_additem( menu, "\wButcher Knife", 	"", 0 );
 	menu_additem( menu, "\wVip Knife", 		"", 0 );
-	//menu_additem( menu, "\wPremium Knife", 	"", 0 );
-	//menu_additem( menu, "\wKatana Knife", 	"", 0 );
 
 	menu_setprop( menu, MPROP_EXIT, MEXIT_ALL );
 	menu_setprop(menu, MPROP_EXITNAME, "Back");
@@ -272,16 +252,6 @@ public menu_handler( id, menu, item ){
 			g_iMenuId[id] = iBayonets;
 			KnifeSkinMenu(id, g_Bayonets, BAYONET_NUM);
 		}
-		/*case 3:
-		{
-			g_iMenuId[id] = iDaggers;
-			KnifeSkinMenu(id, g_Daggers, DAGGER_NUM);
-		}
-		case 4:
-		{
-			g_iMenuId[id] = iKatanas;
-			KnifeSkinMenu(id, g_Katanas, KATANA_NUM);
-		}*/
 	}
 	menu_destroy( menu );
 	return PLUGIN_HANDLED;
@@ -323,10 +293,6 @@ public knife_skin_handler( id, menu, item){
 			skinItem = g_Knives[item];
 		case iBayonets:
 			skinItem = g_Bayonets[item];
-		/*case iDaggers:
-			skinItem = g_Daggers[item];
-		case iKatanas:
-			skinItem = g_Katanas[item];*/
 		case iUsps:
 			skinItem = g_Usps[item];
 	}
@@ -489,10 +455,6 @@ public set_user_weapon_skin(id, model[], submodel) {
 			set_user_butcher(id, model, submodel);
 		case iBayonets:
 			set_user_bayonet(id, model, submodel);
-		/*case iDaggers:
-			set_user_dagger(id, submodel);
-		case iKatanas:
-			set_user_katana(id, submodel);*/
 		case iUsps:
 			set_user_usp(id, model, submodel);
 	}

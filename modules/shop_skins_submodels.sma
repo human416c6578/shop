@@ -16,11 +16,9 @@
 #pragma tabsize 0
 
 #define KNIFE_NUM 33
-//#define BAYONET_NUM 3
 #define DAGGER_NUM 3
 #define KATANA_NUM 4
 #define USP_NUM 23
-//#define CHARS_NUM 7
 
 enum eSkin
 {
@@ -31,23 +29,13 @@ enum eSkin
 	iCost
 }
 
-enum ePlayerSkin
-{
-	iPlayerSkinId,
-	szPlayerName[64],
-	szPlayerModel[128],
-	iPlayerCost
-}
-
 enum eMenu
 {
 	iKnives = 0,
 	iButchers,
-	//iBayonets,
 	iDaggers,
 	iKatanas,
-	iUsps,
-	//iCharacters
+	iUsps
 }
 
 new g_Knives[KNIFE_NUM][eSkin] = {
@@ -85,12 +73,6 @@ new g_Knives[KNIFE_NUM][eSkin] = {
 	{131, "Butcher Red Ghost",      "models/fwo20251/v_but_free_and_vip.mdl", 8, 2500},
 	{132, "Butcher Rias",           "models/fwo20251/v_but_free_and_vip.mdl", 9, 2500}
 }
-
-/*new g_Bayonets[BAYONET_NUM][eSkin] = {
-	{400, "Tiger Tooth", 			0,	0},
-	{401, "Purple Haze", 			2, 	2500},
-	{402, "Crimson Web", 		 	1,	2500}
-}*/
 
 new g_Daggers[DAGGER_NUM][eSkin] = {
 	{500, "Default",        "models/llg3/v_premium.mdl", 0, 0},
@@ -131,16 +113,6 @@ new g_Usps[USP_NUM][eSkin]={
 	{222, "Zebra", 					"models/fwo20251/v_usp_free_and_vip.mdl", 22, 2500}
 };
 
-/*new g_Chars[CHARS_NUM][ePlayerSkin]={
-	{300, "Default", "", 				0},
-	{301, "Arctic", "arctic2", 			2000},
-	{302, "Hitman", "hitman", 			5000},
-	{303, "Ema", "ema", 				10000},
-	{304, "Agent Ritsuka", "ritsuka", 	15000},
-	{305, "Sub-zero", "sub-zero", 		5000},
-	{306, "Scorpion", "scorpion", 		5000}
-}*/
-
 new eMenu:g_iMenuId[33];
 
 //Main
@@ -161,20 +133,11 @@ public plugin_cfg(){
 
 //Precaching the skins from the list above
 public plugin_precache(){
-	precache_model(g_Knives[0][szModel]);
-	precache_model(g_Knives[1][szModel]);
+	precache_model(g_Knives[0][szModel]); // Knife Default
+	precache_model(g_Knives[1][szModel]); // Knife Butcher
 	precache_model(g_Daggers[0][szModel]);
 	precache_model(g_Katanas[0][szModel]);
 	precache_model(g_Usps[0][szModel]);
-
-	/*new mdl[128];
-	for(new i=1;i<CHARS_NUM;i++){
-		format(mdl, charsmax(mdl), "models/player/%s/%s.mdl", g_Chars[i][szPlayerModel], g_Chars[i][szPlayerModel]);
-		precache_generic(mdl);
-		format(mdl, charsmax(mdl), "models/player/%s/%sT.mdl", g_Chars[i][szPlayerModel], g_Chars[i][szPlayerModel]);
-		if(file_exists(mdl))
-			precache_generic(mdl);
-	}*/
 }
 
 //Menu to choose the menu you want
@@ -183,7 +146,6 @@ public SkinsMenu(id){
 
 	menu_additem( menu, "\wKnife Skins", "", 0 );
 	menu_additem( menu, "\wUsp Skins", "", 0 );
-	//menu_additem( menu, "\wPlayer Skins", "", 0);
 
 	menu_setprop( menu, MPROP_EXIT, MEXIT_ALL );
 	menu_display( id, menu, 0 );
@@ -203,10 +165,6 @@ public menu_handler1( id, menu, item ){
 		{
 			UspMenu(id);
 		}
-		/*case 2:
-		{
-			CharSkinMenu(id);
-		}*/
 	}
 	menu_destroy( menu );
 	return PLUGIN_HANDLED;
@@ -218,7 +176,6 @@ public KnifeMenu(id){
 
 	menu_additem( menu, "\wDefault Knife", 	"", 0 );
 	menu_additem( menu, "\wButcher Knife", 	"", 0 );
-	//menu_additem( menu, "\wVip Knife", 		"", 0 );
 	menu_additem( menu, "\wPremium Knife", 	"", 0 );
 	menu_additem( menu, "\wKatana Knife", 	"", 0 );
 
@@ -250,11 +207,6 @@ public menu_handler( id, menu, item ){
 			g_iMenuId[id] = iButchers;
 			KnifeSkinMenu(id, g_Knives, KNIFE_NUM);
 		}
-		/*case 2:
-		{
-			g_iMenuId[id] = iBayonets;
-			KnifeSkinMenu(id, g_Bayonets, BAYONET_NUM);
-		}*/
 		case 2:
 		{
 			g_iMenuId[id] = iDaggers;
@@ -304,8 +256,6 @@ public knife_skin_handler( id, menu, item){
 	switch(g_iMenuId[id]) {
 		case iKnives, iButchers: 
 		skinItem = g_Knives[item];
-		/*case iBayonets:
-			skinItem = g_Bayonets[item];*/
 		case iDaggers:
 			skinItem = g_Daggers[item];
 		case iKatanas:
@@ -378,53 +328,6 @@ public usp_menu_handler( id, menu, item ){
 	return PLUGIN_HANDLED;
 }
 
-/*public CharSkinMenu(id){
-
-	new itemText[128], title[128];
-	new credits = get_user_credits(id);
-	formatex(title, 127, "\r[SHOP] \d- \wPlayer Skins^n\wCredits: \y%d", credits);
-	new menu = menu_create( title, "player_skin_handler" );
-	
-	for(new i = 0;i<CHARS_NUM;i++){
-		if(inventory_get_item(id, g_Chars[i][iPlayerSkinId]) || !g_Chars[i][iPlayerCost])
-			formatex(itemText, 127, "\y%s", g_Chars[i][szPlayerName]);
-		else{
-			if(credits>=g_Chars[i][iPlayerCost])
-				formatex(itemText, 127, "\w%s - \y%d", g_Chars[i][szPlayerName], g_Chars[i][iPlayerCost]);
-			else
-				formatex(itemText, 127, "\w%s - \r%d", g_Chars[i][szPlayerName], g_Chars[i][iPlayerCost]);
-		}
-		
-		menu_additem( menu, itemText, "", 0 );
-	}
-	
-	menu_setprop( menu, MPROP_EXIT, MEXIT_ALL );
-	menu_setprop(menu, MPROP_EXITNAME, "Back");
-	menu_display( id, menu, 0 );
-}
-
-//Second Handler for the second menu
-public player_skin_handler( id, menu, item){
-	if ( item == MENU_EXIT ){
-		menu_destroy( menu );
-		SkinsMenu(id);
-		return PLUGIN_HANDLED;
-	}
-	
-	if(inventory_get_item(id, g_Chars[item][iPlayerSkinId])){
-		set_user_player_skin(id, g_Chars[item][szPlayerModel]);
-		
-		menu_destroy( menu );
-		CharSkinMenu(id);
-		return PLUGIN_HANDLED;
-
-	}
-	menu_destroy( menu );
-	BuyPlayerSkin(id, item);
-	CharSkinMenu(id);
-	return PLUGIN_HANDLED;
-}*/
-
 public BuySkin(id, itemSkin[eSkin]){
 	new credits = get_user_credits(id);
 	if(credits >= itemSkin[iCost]){
@@ -451,27 +354,12 @@ public BuyUspSkin(id, item){
 	}
 }
 
-/*public BuyPlayerSkin(id, item){
-	new credits = get_user_credits(id);
-	if(credits >= g_Chars[item][iPlayerCost]){
-		set_user_credits(id, credits - g_Chars[item][iPlayerCost])
-		inventory_add(id, g_Chars[item][iPlayerSkinId]);
-		set_user_player_skin(id, g_Chars[item][szPlayerModel]);
-		CC_SendMessage(id, "%L", id, "SKIN_PURCHASED", g_Chars[item][szPlayerName]);
-	}
-	else{
-		CC_SendMessage(id, "%L", id, "NOT_ENOUGH_CREDITS_SKIN");
-	}
-}*/
-
 public set_user_weapon_skin(id, model[], submodel) {
 	switch(g_iMenuId[id]) {
 		case iKnives:
 			set_user_knife(id, model, submodel);
 		case iButchers:
 			set_user_butcher(id, model, submodel);
-		/*case iBayonets:
-			set_user_bayonet(id, model, submodel);*/
 		case iDaggers:
 			set_user_dagger(id, model, submodel);
 		case iKatanas:
