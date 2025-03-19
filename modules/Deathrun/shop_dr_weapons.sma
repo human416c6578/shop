@@ -22,7 +22,7 @@ public plugin_init(){
 	registerItems();
 	
 	//Chat prefix
-	CC_SetPrefix("&x04[SHOP]") 
+	CC_SetPrefix("&x04[SHOP]");
 }
 
 public plugin_cfg(){
