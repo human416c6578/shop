@@ -51,37 +51,37 @@ enum eMenu
 new g_Knives[KNIFE_NUM][eSkin] = {
 	{100, "Knife Default",          "models/llg2025/v_def_knife.mdl", 0, 0},
 	{101, "Butcher Default",        "models/llg2025/v_but_knife.mdl", 0, 0},
-	{133, "Knife Ahegao",       "models/llg2025/v_def_knife.mdl", 26, 1000},
-	{134, "Knife Black",        "models/llg2025/v_def_knife.mdl", 41, 1000},
-	{135, "Knife Black-Orange", "models/llg2025/v_def_knife.mdl", 37, 1000},
-	{136, "Knife Blood",        "models/llg2025/v_def_knife.mdl", 20, 1000},
-	{137, "Knife Fire",         "models/llg2025/v_def_knife.mdl", 21, 1000},
-	{138, "Knife Fire Flower",  "models/llg2025/v_def_knife.mdl", 22, 1000},
-	{139, "Knife Galaxy",       "models/llg2025/v_def_knife.mdl", 30, 1000},
-	{140, "Knife Goku",         "models/llg2025/v_def_knife.mdl", 31, 1000},
-	{141, "Knife Gold",         "models/llg2025/v_def_knife.mdl", 32, 1000},
-	{142, "Knife Grizzly",      "models/llg2025/v_def_knife.mdl", 23, 1000},
-	{143, "Knife Howl",         "models/llg2025/v_def_knife.mdl", 24, 1000},
-	{144, "Knife Icephoenix",   "models/llg2025/v_def_knife.mdl", 25, 1000},
-	{145, "Knife Iridescent",   "models/llg2025/v_def_knife.mdl", 27, 1000},
-	{146, "Knife Joker",        "models/llg2025/v_def_knife.mdl", 33, 1000},
-	{147, "Knife King",         "models/llg2025/v_def_knife.mdl", 42, 1000},
-	{148, "Knife Moon",         "models/llg2025/v_def_knife.mdl", 28, 1000},
-	{149, "Knife Neo-Noir",     "models/llg2025/v_def_knife.mdl", 29, 1000},
-	{150, "Knife Purple",       "models/llg2025/v_def_knife.mdl", 40, 1000},
-	{151, "Knife Sakura",       "models/llg2025/v_def_knife.mdl", 39, 1000},
-	{152, "Knife Shred",        "models/llg2025/v_def_knife.mdl", 34, 1000},
-	{153, "Knife Storm",        "models/llg2025/v_def_knife.mdl", 35, 1000},
-	{154, "Knife Venom",        "models/llg2025/v_def_knife.mdl", 36, 1000},
-	{156, "Butcher Blood Khalifa", "models/llg2025/v_but_knife.mdl", 11, 1000},
-	{157, "Butcher Boris",       	"models/llg2025/v_but_knife.mdl", 12, 1000},
-	{158, "Butcher Gojo",        	"models/llg2025/v_but_knife.mdl", 13, 1000},
-	{159, "Butcher Hyperbeast",  	"models/llg2025/v_but_knife.mdl", 14, 1000},
-	{160, "Butcher Iridescent",  	"models/llg2025/v_but_knife.mdl", 10, 1000},
-	{161, "Butcher Lion blade",  	"models/llg2025/v_but_knife.mdl", 15, 1000},
-	{162, "Butcher Neo-Noir",    	"models/llg2025/v_but_knife.mdl", 16, 1000},
-	{163, "Butcher Xiao",        	"models/llg2025/v_but_knife.mdl", 17, 1000}
-}
+	{133, "Knife Ahegao",           "models/llg2025/v_def_knife.mdl", 26, 1000},
+	{134, "Knife Black",            "models/llg2025/v_def_knife.mdl", 41, 1000},
+	{135, "Knife Black-Orange",     "models/llg2025/v_def_knife.mdl", 37, 1000},
+	{136, "Butcher Blood Khalifa",  "models/llg2025/v_but_knife.mdl", 11, 1000},
+	{137, "Knife Blood",            "models/llg2025/v_def_knife.mdl", 20, 1000},
+	{138, "Butcher Boris",          "models/llg2025/v_but_knife.mdl", 12, 1000},
+	{139, "Knife Fire",             "models/llg2025/v_def_knife.mdl", 21, 1000},
+	{140, "Knife Fire Flower",      "models/llg2025/v_def_knife.mdl", 22, 1000},
+	{141, "Knife Galaxy",           "models/llg2025/v_def_knife.mdl", 30, 1000},
+	{142, "Butcher Gojo",           "models/llg2025/v_but_knife.mdl", 13, 1000},
+	{143, "Knife Goku",             "models/llg2025/v_def_knife.mdl", 31, 1000},
+	{144, "Knife Gold",             "models/llg2025/v_def_knife.mdl", 32, 1000},
+	{145, "Knife Grizzly",          "models/llg2025/v_def_knife.mdl", 23, 1000},
+	{146, "Knife Howl",             "models/llg2025/v_def_knife.mdl", 24, 1000},
+	{147, "Butcher Hyperbeast",     "models/llg2025/v_but_knife.mdl", 14, 1000},
+	{148, "Knife Icephoenix",       "models/llg2025/v_def_knife.mdl", 25, 1000},
+	{149, "Knife Iridescent",       "models/llg2025/v_def_knife.mdl", 27, 1000},
+	{150, "Butcher Iridescent",     "models/llg2025/v_but_knife.mdl", 10, 1000},
+	{151, "Knife Joker",            "models/llg2025/v_def_knife.mdl", 33, 1000},
+	{152, "Knife King",             "models/llg2025/v_def_knife.mdl", 42, 1000},
+	{153, "Butcher Lion blade",     "models/llg2025/v_but_knife.mdl", 15, 1000},
+	{154, "Knife Moon",             "models/llg2025/v_def_knife.mdl", 28, 1000},
+	{155, "Knife Neo-Noir",         "models/llg2025/v_def_knife.mdl", 29, 1000},
+	{156, "Butcher Neo-Noir",       "models/llg2025/v_but_knife.mdl", 16, 1000},
+	{157, "Knife Purple",           "models/llg2025/v_def_knife.mdl", 40, 1000},
+	{158, "Knife Sakura",           "models/llg2025/v_def_knife.mdl", 39, 1000},
+	{159, "Knife Shred",            "models/llg2025/v_def_knife.mdl", 34, 1000},
+	{160, "Knife Storm",            "models/llg2025/v_def_knife.mdl", 35, 1000},
+	{161, "Knife Venom",            "models/llg2025/v_def_knife.mdl", 36, 1000},
+	{162, "Butcher Xiao",           "models/llg2025/v_but_knife.mdl", 17, 1000}
+};
 
 new g_Bayonets[BAYONET_NUM][eSkin] = {
 	{400, "Tiger Tooth",         "models/llg2025/v_vip.mdl", 0, 0},
@@ -117,22 +117,22 @@ new g_Usps[USP_NUM][eSkin] = {
 };
 
 new g_Chars[CHARS_NUM][ePlayerSkin]={
-	{300,	"Default",			"gign", 0, 0},
-	{301,	"Admin Gign",		"llg_player_compiled", 0, 5000},
-	{302,	"Agent Ritsuka",	"llg2025_ritsuka", 0, 15000},
-	{303,	"Arctic",			"llg2025_arctic", 0, 2000},
-	{304,	"Banana",			"llg_player_compiled", 6, 5000},
-	{305,	"Ema",				"llg2025_ema", 0, 10000},
-	{306,	"GTA Homeless",		"llg_player_compiled", 1, 5000},
-	{307,	"Hitman",			"llg_player_compiled", 2, 5000},
-	{308,	"Itachi",			"llg_player_compiled", 3, 5000},
-	{309,	"Mila",				"llg2025_mila", 0, 15000},
-	{310,	"Neo",				"llg_player_compiled", 7, 5000},
-	{311,	"Phillip",			"llg_player_compiled", 4, 5000},
-	{312,	"Pink Panther",		"llg2025_panther", 0, 7000},
-	{313,	"Scorpion",			"llg2025_scorpion", 0, 5000},
-	{314,	"Sponge Bob",		"llg_player_compiled", 5, 5000},
-	{315,	"Sub-zero",			"llg2025_sub-zero", 0, 5000}
+	{300,	"Default",          "gign", 0, 0},
+	{301,	"Admin Gign",       "llg_player_compiled", 0, 5000},
+	{302,	"Agent Ritsuka",    "llg2025_ritsuka", 0, 15000},
+	{303,	"Arctic",           "llg2025_arctic", 0, 2000},
+	{304,	"Banana",           "llg_player_compiled", 6, 5000},
+	{305,	"Ema",              "llg2025_ema", 0, 10000},
+	{306,	"GTA Homeless",     "llg_player_compiled", 1, 5000},
+	{307,	"Hitman",           "llg_player_compiled", 2, 5000},
+	{308,	"Itachi",           "llg_player_compiled", 3, 5000},
+	{309,	"Mila",             "llg2025_mila", 0, 15000},
+	{310,	"Neo",              "llg_player_compiled", 7, 5000},
+	{311,	"Phillip",          "llg_player_compiled", 4, 5000},
+	{312,	"Pink Panther",     "llg2025_panther", 0, 7000},
+	{313,	"Scorpion",         "llg2025_scorpion", 0, 5000},
+	{314,	"Sponge Bob",       "llg_player_compiled", 5, 5000},
+	{315,	"Sub-zero",         "llg2025_sub-zero", 0, 5000}
 }
 
 new eMenu:g_iMenuId[33];
@@ -148,9 +148,7 @@ public plugin_init(){
 }
 
 public plugin_cfg(){
-
 	register_dictionary("shop_skins.txt");
-
 }
 
 //Precaching the skins from the list above
